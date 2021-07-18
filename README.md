@@ -1,2 +1,2 @@
 # PFE_Project
-This is a branch for developement process
+This is the main branch for the project
