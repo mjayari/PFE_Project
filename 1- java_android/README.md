@@ -1,2 +1,2 @@
-# PFE_Project
-This the folder contaning the source code for the java android application
+# Java Android Folder
+This folder contaning the source code for the java android application
