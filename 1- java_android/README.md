@@ -1,2 +1,2 @@
 # Java Android Folder
-This folder contaning the source code for the java android application
+This folder contains the source code for the java android version of the application
