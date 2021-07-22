@@ -8,7 +8,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
@@ -20,13 +19,13 @@ public class Connexion extends AppCompatActivity {
     private Button button,button2;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_connexion);
 
         userid=findViewById(R.id.userid);
         password=findViewById(R.id.password);
-        button=findViewById(R.id.button);
+        button=findViewById(R.id.button1);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
