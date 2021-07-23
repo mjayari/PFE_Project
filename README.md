@@ -1,4 +1,4 @@
 # PFE_Project
-This is the description for the prject
+This branch contains the conception documents for the project
 
 
