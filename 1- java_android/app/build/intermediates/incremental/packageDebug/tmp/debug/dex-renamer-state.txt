@@ -1,0 +1,4 @@
+#Thu Jul 22 22:16:09 GMT+01:00 2021
+base.0=C\:\\Users\\salim\\Downloads\\prin\\MyApplication5\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

@@ -1,0 +1,19 @@
+com/example/myapplication/ui/Configuration/DBHelper.java
+ com.example.myapplication.ui.Configuration.DBHelper
+com/example/myapplication/ui/Connexion/Connexion.java
+ com.example.myapplication.ui.Connexion.Connexion
+ com.example.myapplication.ui.Connexion.Connexion$1
+com/example/myapplication/BuildConfig.java
+ com.example.myapplication.BuildConfig
+com/example/myapplication/MainActivity.java
+ com.example.myapplication.MainActivity
+com/example/myapplication/ui/Configuration/ConfigurationFragment.java
+ com.example.myapplication.ui.Configuration.ConfigurationFragment
+com/example/myapplication/ui/FileTransfer/FileTransferFragment.java
+ com.example.myapplication.ui.FileTransfer.FileTransferFragment
+com/example/myapplication/ui/Menu/MenuFragment.java
+ com.example.myapplication.ui.Menu.MenuFragment
+com/example/myapplication/ui/Administration/AdministrationFragment.java
+ com.example.myapplication.ui.Administration.AdministrationFragment
+com/example/myapplication/ui/Connexion/ConnexionFragment.java
+ com.example.myapplication.ui.Connexion.ConnexionFragment
