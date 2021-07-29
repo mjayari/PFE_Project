@@ -227,6 +227,14 @@
             tools:layout_editor_absoluteX="278dp"
             tools:layout_editor_absoluteY="597dp" />
 
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            tools:layout_editor_absoluteX="29dp"
+            tools:layout_editor_absoluteY="682dp" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
