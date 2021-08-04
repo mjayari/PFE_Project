@@ -44,28 +44,57 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="131dp"
-        android:layout_marginLeft="131dp"
-        android:layout_marginBottom="275dp"
-        android:text="Files Send" />
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginBottom="306dp"
+        android:text="Uploaded Files" />
 
     <Button
         android:id="@+id/button12"
-        android:layout_width="166dp"
+        android:layout_width="152dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="132dp"
-        android:layout_marginLeft="132dp"
-        android:layout_marginBottom="197dp"
-        android:text="Received Files" />
+        android:layout_centerInParent="true"
+        android:layout_marginStart="244dp"
+        android:layout_marginLeft="244dp"
+        android:layout_marginBottom="299dp"
+        android:text="Files to Download" />
 
-    <TextView
-        android:id="@+id/textView20"
+    <TableRow
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:background="@color/colorBlue">
+
+        <TextView
+        android:layout_width="45dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:gravity="center_horizontal"
+        android:padding="10sp"
+
+        android:text="User ID "
+
+        android:textColor="@android:color/white"
+        android:textSize="14sp" />
+
+
+    <TextView
+        android:layout_width="176dp"
+        android:layout_height="182dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="56dp"
+        android:layout_marginLeft="56dp"
+        android:layout_marginBottom="-277dp"
+        android:layout_weight="4"
+        android:gravity="center_horizontal"
+        android:padding="10sp"
+        android:text="File Name"
+        android:textColor="@android:color/white"
+        android:textSize="14sp" />
+
 
 </RelativeLayout>
