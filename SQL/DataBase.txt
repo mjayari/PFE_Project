@@ -1,0 +1,90 @@
+/*==============================================================*/
+/* Nom de SGBD :  MySQL 5.0                                     */
+/* Date de création :  8/6/2021 12:55:20                        */
+/*==============================================================*/
+
+
+drop table if exists CONNEXION;
+
+drop table if exists ROLE;
+
+drop table if exists SERVERCONFIG;
+
+drop table if exists TRANSFER_FILE;
+
+drop table if exists USER;
+
+/*==============================================================*/
+/* Table : CONNEXION                                            */
+/*==============================================================*/
+create table CONNEXION
+(
+   CONNEXION_ID_        char(10) not null,
+   USER                 char(10) not null,
+   CONFIG_ID            char(10) not null,
+   ADURATION_OF_CONNEXION_ char(10),
+   NUMBER_DOWNLOADS     char(10),
+   NUMBER_UPLOADS       char(10),
+   primary key (CONNEXION_ID_)
+);
+
+/*==============================================================*/
+/* Table : ROLE                                                 */
+/*==============================================================*/
+create table ROLE
+(
+   SERVER_INFORMATION_  char(10) not null,
+   TITLE___USER_OR_ADMIN char(10),
+   DEFINITION           char(10),
+   primary key (SERVER_INFORMATION_)
+);
+
+/*==============================================================*/
+/* Table : SERVERCONFIG                                         */
+/*==============================================================*/
+create table SERVERCONFIG
+(
+   CONFIG_ID            char(10) not null,
+   PORT_NUMBER          char(10),
+   UPLOAD_PATH__        char(10),
+   DOWNLOAD_PATH        char(10),
+   primary key (CONFIG_ID)
+);
+
+/*==============================================================*/
+/* Table : TRANSFER_FILE                                        */
+/*==============================================================*/
+create table TRANSFER_FILE
+(
+   TRANSFER_ID          char(10) not null,
+   CONNEXION_ID_        char(10) not null,
+   TRANSFER_TYPE___UPLOAD_OR_DOWNLOAD char(10),
+   FILE_NAME            char(10),
+   TRANSFER_TIME        char(10),
+   primary key (TRANSFER_ID)
+);
+
+/*==============================================================*/
+/* Table : USER                                                 */
+/*==============================================================*/
+create table USER
+(
+   USER                 char(10) not null,
+   SERVER_INFORMATION_  char(10) not null,
+   PASSWORD             char(10),
+   SIGNUP_DATE          char(10),
+   primary key (USER)
+);
+
+alter table CONNEXION add constraint FK_ESTABLISH foreign key (USER)
+      references USER (USER) on delete restrict on update restrict;
+
+alter table CONNEXION add constraint FK_USE foreign key (CONFIG_ID)
+      references SERVERCONFIG (CONFIG_ID) on delete restrict on update restrict;
+
+alter table TRANSFER_FILE add constraint FK_MAKE foreign key (CONNEXION_ID_)
+      references CONNEXION (CONNEXION_ID_) on delete restrict on update restrict;
+
+alter table USER add constraint FK_IS_AFFECTED_TO_ foreign key (SERVER_INFORMATION_)
+      references ROLE (SERVER_INFORMATION_) on delete restrict on update restrict;
+
