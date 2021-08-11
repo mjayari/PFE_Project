@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "User";
+    private static final String MyDatabase = "MYDATA";
     private static final String TABLE_USER = "user";
     private static final String KEY_ID = "user-id";
     private static final String KEY_PASSWORD = "Password";
@@ -21,13 +21,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_USER + "("
+        String CREATE_TABLE_USER = "CREATE TABLE " + TABLE_USER + "("
                 + KEY_ID + " INTEGER PRIMARY KEY," + KEY_PASSWORD + " TEXT,"
                 + KEY_SIGNUP + " TEXT" + ")";
-        db.execSQL(CREATE_CONTACTS_TABLE);
+        db.execSQL(CREATE_TABLE_USER);
     }
 
 
@@ -37,13 +36,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
 
     }
+
     void addUser(User user) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(KEY_PASSWORD, user.getpassword());
-        values.put(KEY_SIGNUP, user.getsignup());
-
-
+        values.put(KEY_PASSWORD, user.get_Password());
+        values.put(KEY_SIGNUP, user.get_Signup_date());
 
     }
+}
