@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.db;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -41,7 +41,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(KEY_PASSWORD, user.get_Password());
+        values.put(KEY_PASSWORD, user.get_password());
         values.put(KEY_SIGNUP, user.get_Signup_date());
 
     }
