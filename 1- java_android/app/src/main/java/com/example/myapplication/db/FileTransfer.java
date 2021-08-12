@@ -1,13 +1,13 @@
 package com.example.myapplication.db;
 
-public class File_Transfer {
+public class FileTransfer {
 
     int transfer_id;
     String transfer_time_upload_or_download;
     String file_name;
     String transfer_time;
 
-    public File_Transfer(int transfer_id, String transfer_time_upload_or_download, String file_name, String transfer_time) {
+    public FileTransfer(int transfer_id, String transfer_time_upload_or_download, String file_name, String transfer_time) {
         this.transfer_id = transfer_id;
         this.transfer_time_upload_or_download = transfer_time_upload_or_download;
         this.file_name = file_name;

@@ -1,12 +1,12 @@
 package com.example.myapplication.db;
 
-public class Server_Config {
+public class ServerConfig {
     int config_id;
     float port_number;
     float upload_path;
     float download_path;
 
-    public Server_Config(int config_id, float port_number, float upload_path, float download_path) {
+    public ServerConfig(int config_id, float port_number, float upload_path, float download_path) {
         this.config_id = config_id;
         this.port_number = port_number;
         this.upload_path = upload_path;

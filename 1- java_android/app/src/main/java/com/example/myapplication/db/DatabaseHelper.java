@@ -2,6 +2,7 @@ package com.example.myapplication.db;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -11,12 +12,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     private static final String MyDatabase = "MYDATA";
     private static final String TABLE_USER = "user";
-    private static final String KEY_ID = "user-id";
+    private static final String KEY_ID = "user_id";
     private static final String KEY_PASSWORD = "Password";
     private static final String KEY_SIGNUP = "Signup_date";
 
 
-    public DatabaseHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
+    public DatabaseHelper(@Nullable Context context) {
         super(context, name, factory, version);
     }
 
@@ -37,12 +38,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    void addUser(User user) {
+    public boolean addUser(User user) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
+        values.put(KEY_ID, user.get_id());
         values.put(KEY_PASSWORD, user.get_password());
         values.put(KEY_SIGNUP, user.get_Signup_date());
+        long result = db.insert("user", null, values);
+        if(result==-1) return false;
+        else
+            return true;
+
+
+
+
+
+
+
 
     }
 }

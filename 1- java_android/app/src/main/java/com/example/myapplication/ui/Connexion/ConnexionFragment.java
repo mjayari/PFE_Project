@@ -13,16 +13,23 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.R;
+import com.example.myapplication.db.DatabaseHelper;
 
 public class ConnexionFragment extends Fragment {
 
+    EditText userid1, password, repassword;
+    Button register ;
+    DatabaseHelper DB;
 
-    private  Button button;
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_connexion,container,false);
+
+
     }
+
 
 }

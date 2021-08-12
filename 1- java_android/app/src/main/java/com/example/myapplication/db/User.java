@@ -7,9 +7,9 @@ public class User {
         String signup_date;
 
     public User(int _id, String _Password, String _Signup_date) {
-        this.user_id = user_id;
-        this.password = password;
-        this.signup_date = signup_date;
+        this.user_id = _id ;
+        this.password = _Password ;
+        this.signup_date = _Signup_date;
     }
 
     public int get_id() {
