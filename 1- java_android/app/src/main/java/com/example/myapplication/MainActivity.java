@@ -1,9 +1,12 @@
 package com.example.myapplication;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 
+import com.example.myapplication.db.DatabaseHelper;
+import com.example.myapplication.db.User;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -20,13 +23,32 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        DatabaseHelper db = new DatabaseHelper(this) ;
+
+        Log.d("Insert: ", "Inserting ..");
+
+        db.addUser(new User("user_id_1", "password_1", "date_1"));
+
+
+        db.addUser(new User("user_id_2", "password_2", "date_2"));
+
+
+
+
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
+
+
 
 
 
