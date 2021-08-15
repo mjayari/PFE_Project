@@ -30,14 +30,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
+
+
         DatabaseHelper db = new DatabaseHelper(this) ;
 
-        Log.d("Insert: ", "Inserting ..");
+        /*Log.d("Insert: ", "Inserting .."); */
 
-        db.addUser(new User("user_id_1", "password_1", "date_1"));
+        db.addUser(new User("user_id_3", "password_3", "date_3"));
+        db.addUser(new User("user_id_4", "password_4", "date_4"));
 
 
-        db.addUser(new User("user_id_2", "password_2", "date_2"));
 
 
 
