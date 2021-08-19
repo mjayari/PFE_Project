@@ -3,39 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-
-
     <group android:checkableBehavior="single">
-
-
-
-
         <item
-            android:id="@+id/nav_Conenxion"
-            android:icon="@drawable/ic_baseline_home_24"
-            android:title="Home" />
-
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/menu_home" />
         <item
-            android:id="@+id/nav_Conenxion1"
-            android:icon="@drawable/ic_baseline_account_circle_24"
-            android:title="Connexion" />
-
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/menu_gallery" />
         <item
-            android:id="@+id/nav_Configuration"
-            android:icon="@drawable/ic_baseline_settings_24"
-            android:title="@string/menu_Configuration" />
-
-        <item
-            android:id="@+id/nav_Administration"
+            android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_Administration"/>
-
-        <item
-            android:id="@+id/nav_FilesTransfer"
-            android:icon="@drawable/ic_baseline_drive_file_move_24"
-            android:title="@string/menu_FileTransfer"/>
-
-
-
+            android:title="@string/menu_slideshow" />
     </group>
 </menu>
