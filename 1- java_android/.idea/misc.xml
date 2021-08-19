@@ -3,7 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/salim/Downloads/prin/MyApplication8/app/src/main/res/layout/activity_main.xml" value="0.1793478260869565" />
+        <entry key="..\:/Users/salim/Downloads/prin/MyApplication8/app/src/main/res/layout/administartion_fragment.xml" value="0.1793478260869565" />
+        <entry key="..\:/Users/salim/Downloads/prin/MyApplication8/app/src/main/res/layout/fragment_administration.xml" value="0.1" />
+        <entry key="..\:/Users/salim/Downloads/prin/MyApplication8/app/src/main/res/layout/fragment_configuration.xml" value="0.13020833333333334" />
+        <entry key="..\:/Users/salim/Downloads/prin/MyApplication8/app/src/main/res/layout/fragment_connexion.xml" value="0.12360688956433637" />
+        <entry key="..\:/Users/salim/Downloads/prin/MyApplication8/app/src/main/res/layout/fragment_gallery.xml" value="0.1793478260869565" />
         <entry key="..\:/Users/salim/Downloads/prin/MyApplication8/app/src/main/res/layout/fragment_home.xml" value="0.1793478260869565" />
+        <entry key="..\:/Users/salim/Downloads/prin/MyApplication8/app/src/main/res/layout/fragment_slideshow.xml" value="0.1793478260869565" />
+        <entry key="..\:/Users/salim/Downloads/prin/MyApplication8/app/src/main/res/layout/home_fragment.xml" value="0.1793478260869565" />
+        <entry key="..\:/Users/salim/Downloads/prin/MyApplication8/app/src/main/res/menu/activity_main_drawer.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/salim/Downloads/prin/MyApplication8/app/src/main/res/menu/main.xml" value="0.25416666666666665" />
       </map>
     </option>
   </component>

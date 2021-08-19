@@ -12,14 +12,22 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.fst.myapplication.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_connexion"
+        android:name="com.fst.myapplication.ui.Connexion.ConnexionFragment"
+        android:label="@string/menu_connexion"
+        tools:layout="@layout/fragment_connexion" />
+
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.fst.myapplication.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_configuration"
+        android:name="com.fst.myapplication.ui.Configuration.ConfigurationFragment"
+        android:label="@string/menu_configuration"
+        tools:layout="@layout/fragment_configuration" />
+
+    <fragment
+        android:id="@+id/nav_Administration"
+        android:name="com.example.myapplication.ui.Administration.AdministrationFragment"
+        android:label="@string/menu_Administration"
+        tools:layout="@layout/fragment_administration" />
+
 </navigation>
