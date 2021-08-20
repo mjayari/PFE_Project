@@ -11,5 +11,7 @@
     <string name="menu_connexion">Connexion</string>
     <string name="menu_configuration">Configuration</string>
     <string name="menu_Administration">Administration</string>
+    <string name="menu_Filetransfer">FileTransfer</string>
+
 
 </resources>

@@ -1,4 +1,4 @@
-package com.fst.myapplication.ui.Connexion;
+package com.fst.myapplication.ui.Filetransfer;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,31 +13,30 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.fst.myapplication.databinding.FragmentConnexionBinding;
-import com.fst.myapplication.db.DatabaseHelper;
-import com.fst.myapplication.db.User;
-import com.fst.myapplication.ui.home.HomeFragment;
+import com.fst.myapplication.databinding.FragmentFiletransferBinding;
 
-public class ConnexionFragment extends Fragment {
+public class FiletransferFragment extends Fragment {
 
-    private ConnexionViewModel connexionViewModel;
-    private FragmentConnexionBinding binding;
+    private FiletransferViewModel filetransferViewModel;
+    private FragmentFiletransferBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        connexionViewModel =
-                new ViewModelProvider(this).get(ConnexionViewModel.class);
 
-        binding = FragmentConnexionBinding.inflate(inflater, container, false);
+        filetransferViewModel =
+                new ViewModelProvider(this).get(FiletransferViewModel.class);
+
+        binding = FragmentFiletransferBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textGallery;
-        connexionViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        final TextView textView = binding.textHome;
+        filetransferViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
             }
         });
+
         return root;
     }
 
@@ -45,24 +44,20 @@ public class ConnexionFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        DatabaseHelper db = new DatabaseHelper(this) ;
-
-
-
-        binding.btn.setOnClickListener(new View.OnClickListener() {
-
+        binding.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                /* NavHostFragment.findNavController(FirstFragment.this)
                         .navigate(R.id.action_FirstFragment_to_SecondFragment);*/
-                Toast.makeText(ConnexionFragment.super.getContext(), "Button pressed", Toast.LENGTH_SHORT).show();
-
-                db.addUser(new User("user_id_3", "password_3", "date_3"));
-                db.addUser(new User("user_id_4", "password_4", "date_4"));
+                Toast.makeText(FiletransferFragment.super.getContext(), "Button pressed", Toast.LENGTH_SHORT).show();
 
             }
         });
+
+
     }
+
+
 
 
 

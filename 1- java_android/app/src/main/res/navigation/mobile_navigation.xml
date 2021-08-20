@@ -24,10 +24,12 @@
         android:label="@string/menu_configuration"
         tools:layout="@layout/fragment_configuration" />
 
+
+
     <fragment
-        android:id="@+id/nav_Administration"
-        android:name="com.example.myapplication.ui.Administration.AdministrationFragment"
-        android:label="@string/menu_Administration"
-        tools:layout="@layout/fragment_administration" />
+        android:id="@+id/nav_Filetranfer"
+        android:name="com.fst.myapplication.ui.Filetransfer.FiletransferFragment"
+        android:label="@string/menu_Filetransfer"
+        tools:layout="@layout/fragment_filetransfer" />
 
 </navigation>
