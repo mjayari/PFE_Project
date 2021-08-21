@@ -2,6 +2,7 @@ package com.fst.myapplication.db;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -12,10 +13,7 @@ import com.fst.myapplication.ui.Connexion.ConnexionFragment;
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME  = "MyDatabase1.db";
-    private static final String TABLE_USER = "User";
-    private static final String KEY_ID = "user_id";
-    private static final String KEY_PASSWORD = "password";
-    private static final String KEY_SIGNUP_DATE  = "signup_date";
+
 
 
     public DatabaseHelper(@Nullable ConnexionFragment context) {
@@ -26,36 +24,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        String CREATE_TABLE_USER = "CREATE TABLE " + TABLE_USER
-
+        // Sql request for the creation of table USer
+        String CREATE_TABLE_USER = "CREATE TABLE " + User.TABLE_NAME
                 + "("
-                + KEY_ID + " TEXT PRIMARY KEY,"
-                + KEY_PASSWORD + " TEXT,"
-                + KEY_SIGNUP_DATE + " TEXT"
+                + User.KEY_ID + " TEXT PRIMARY KEY,"
+                + User.KEY_PASSWORD + " TEXT,"
+                + User.KEY_SIGNUP_DATE + " TEXT"
                 + ")";
-
-
-
-
-       /* String CREATE_TABLE_USER = "CREATE TABLE " + TABLE_USER
-                + "("
-                + KEY_ID + "TEXT PRIMARY KEY,"
-
-                + KEY_PASSWORD + " TEXT,"
-
-                + KEY_SIGNUP_DATE + " TEXT,"
-
-                + ")";*/
-
         db.execSQL(CREATE_TABLE_USER);
 
+        // Sql request for the creation of table Connexion
     }
 
 
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
+        db.execSQL("DROP TABLE IF EXISTS " + User.TABLE_NAME);
         onCreate(db);
 
     }
@@ -66,20 +51,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
 
 
-        values.put(KEY_ID, user.getUser_id());
-        values.put(KEY_PASSWORD, user.getPassword());
-        values.put(KEY_SIGNUP_DATE, user.getSignupDate());
+        values.put(User.KEY_ID, user.getUser_id());
+        values.put(User.KEY_PASSWORD, user.getPassword());
+        values.put(User.KEY_SIGNUP_DATE, user.getSignupDate());
 
-        db.insert(TABLE_USER, null, values);
+        db.insert(User.TABLE_NAME, null, values);
         db.close();
 
 
 
 
-
-
-
-
-
     }
+
 }

@@ -2,10 +2,14 @@ package com.fst.myapplication.db;
 
 public class User {
 
+    public static final String TABLE_NAME = "User";
+    public static final String KEY_ID = "user_id";
+    public static final String KEY_PASSWORD = "password";
+    public static final String KEY_SIGNUP_DATE  = "signup_date";
+
     String user_id;
     String password;
     String signup_date;
-
     public String getUser_id() {
         return user_id;
     }
