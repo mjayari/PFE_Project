@@ -34,6 +34,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_USER);
 
         // Sql request for the creation of table Connexion
+        String CREATE_TABLE_CONNEXION = "CREATE TABLE " + Connexion.TABLE_NAME
+                + "("
+                +Connexion.KEY_ID + " TEXT PRIMARY KEY,"
+                +Connexion.KEY_CONNEXION_TIME + " TEXT,"
+                +Connexion.KEY_NUMBER_DOWNLOADS + " INTEGER,"
+                +Connexion.KEY_NUMBER_UPLOADS + " INTEGER"
+                + ")";
+        db.execSQL(CREATE_TABLE_CONNEXION);
     }
 
 
@@ -57,10 +65,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.insert(User.TABLE_NAME, null, values);
         db.close();
+    }
 
 
+    public  void addConnexion(Connexion connexion){
+        SQLiteDatabase db=this.getWritableDatabase();
+        ContentValues values= new ContentValues();
+
+        values.put(Connexion.KEY_ID,connexion.getConnexionId());
+        values.put(Connexion.KEY_CONNEXION_TIME,connexion.getConnexionTime());
+        values.put(Connexion.KEY_NUMBER_DOWNLOADS, connexion.getNumberDownloads());
+        values.put(Connexion.KEY_NUMBER_UPLOADS, connexion.getNumberUploads());
 
 
+        db.insert(Connexion.TABLE_NAME,null,values);
+        db.close();
     }
 
 }
