@@ -75,6 +75,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(Connexion.KEY_ID,connexion.getConnexionId());
         values.put(Connexion.KEY_CONNEXION_TIME,connexion.getConnexionTime());
         values.put(Connexion.KEY_NUMBER_DOWNLOADS, connexion.getNumberDownloads());
+        values.put(Connexion.KEY_NUMBER_UPLOADS, connexion.getNumberUploads());
+
 
         db.insert(Connexion.TABLE_NAME,null,values);
         db.close();

@@ -19,6 +19,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.fst.myapplication.MainActivity;
 import com.fst.myapplication.R;
 import com.fst.myapplication.databinding.FragmentConnexionBinding;
+import com.fst.myapplication.db.Connexion;
 import com.fst.myapplication.db.DatabaseHelper;
 import com.fst.myapplication.db.User;
 import com.fst.myapplication.ui.Filetransfer.FiletransferFragment;
@@ -66,14 +67,14 @@ public class ConnexionFragment extends Fragment {
 
             @Override
             public void onClick(View view) {
-                /*NavHostFragment.findNavController(FirstFragment.this)
-                        .navigate(R.id.action_FirstFragment_to_SecondFragment);*/
-
+                String userid = binding.useridInput.getText().toString();
+                String password = binding.passwordInput.getText().toString();
 
                 Toast.makeText(ConnexionFragment.super.getContext(), "Button pressed", Toast.LENGTH_SHORT).show();
 
-                db.addUser(new User("user_id_3", "password_3", "date_3"));
-                db.addUser(new User("user_id_4", "password_4", "date_4"));
+                // request Verification of exsitence of USerID and password in DB
+                db.addConnexion(new Connexion(1,"current_date",0,0));
+
 
             }
         });
