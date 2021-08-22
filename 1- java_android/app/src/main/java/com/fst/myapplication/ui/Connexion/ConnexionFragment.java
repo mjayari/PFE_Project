@@ -37,8 +37,6 @@ public class ConnexionFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-
-
         connexionViewModel =
                 new ViewModelProvider(this).get(ConnexionViewModel.class);
 
@@ -87,7 +85,12 @@ public class ConnexionFragment extends Fragment {
                 String userid = binding.useridInput.getText().toString();
                 String password = binding.passwordInput.getText().toString();
 
-                Toast.makeText(ConnexionFragment.super.getContext(), "UserID = " + userid + " | Password = " + password, Toast.LENGTH_SHORT).show();
+                // UserID input verification
+                if(userid.equals(""))
+                    Toast.makeText(ConnexionFragment.super.getContext(), "Please enter UserID field", Toast.LENGTH_SHORT).show();
+
+
+                //Toast.makeText(ConnexionFragment.super.getContext(), "UserID = " + userid + " | Password = " + password, Toast.LENGTH_SHORT).show();
 
                 db.addUser(new User(userid, password, "current date"));
 
