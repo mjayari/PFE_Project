@@ -45,17 +45,6 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               /* NavHostFragment.findNavController(FirstFragment.this)
-                        .navigate(R.id.action_FirstFragment_to_SecondFragment);*/
-                Toast.makeText(HomeFragment.super.getContext(), "Button pressed", Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
-
     }
 
 
