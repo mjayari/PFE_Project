@@ -38,7 +38,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + "("
                 +Connexion.KEY_ID + " TEXT PRIMARY KEY,"
                 +Connexion.KEY_CONNEXION_TIME + " TEXT,"
-                +Connexion.KEY_NUMBER_DOWNLOADS + " TEXT"
+                +Connexion.KEY_NUMBER_DOWNLOADS + " INTEGER,"
+                +Connexion.KEY_NUMBER_UPLOADS + " INTEGER"
                 + ")";
         db.execSQL(CREATE_TABLE_CONNEXION);
     }
