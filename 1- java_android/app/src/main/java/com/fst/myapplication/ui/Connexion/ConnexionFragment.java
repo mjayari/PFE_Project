@@ -89,6 +89,10 @@ public class ConnexionFragment extends Fragment {
                 if(userid.equals(""))
                     Toast.makeText(ConnexionFragment.super.getContext(), "Please enter UserID field", Toast.LENGTH_SHORT).show();
 
+                // Password input verification
+                if(password.equals(""))
+                    Toast.makeText(ConnexionFragment.super.getContext(), "Please enter Password field", Toast.LENGTH_SHORT).show();
+
 
                 //Toast.makeText(ConnexionFragment.super.getContext(), "UserID = " + userid + " | Password = " + password, Toast.LENGTH_SHORT).show();
 
