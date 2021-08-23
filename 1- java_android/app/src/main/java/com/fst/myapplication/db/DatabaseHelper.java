@@ -59,7 +59,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
 
 
-        values.put(User.KEY_ID, user.getUser_id());
+        values.put(User.KEY_ID, user.getUserId());
         values.put(User.KEY_PASSWORD, user.getPassword());
         values.put(User.KEY_SIGNUP_DATE, user.getSignupDate());
 

@@ -7,10 +7,18 @@ public class User {
     public static final String KEY_PASSWORD = "password";
     public static final String KEY_SIGNUP_DATE  = "signup_date";
 
+
     String user_id;
     String password;
     String signup_date;
-    public String getUser_id() {
+
+    public User(String user_id, String password, String signup_date) {
+        this.user_id = user_id;
+        this.password = password;
+        this.signup_date = signup_date;
+    }
+
+    public String getUserId() {
         return user_id;
     }
 
@@ -34,15 +42,7 @@ public class User {
         this.signup_date = signup_date;
     }
 
-    public User(String user_id, String password, String signup_date) {
-        this.user_id = user_id;
-        this.password = password;
-        this.signup_date = signup_date;
 
-
-
-
-    }
 }
 
 
