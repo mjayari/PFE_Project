@@ -1,0 +1,54 @@
+com/fst/myapplication/databinding/AppBarMainBinding.java
+ com.fst.myapplication.databinding.AppBarMainBinding
+com/fst/myapplication/databinding/ContentMainBinding.java
+ com.fst.myapplication.databinding.ContentMainBinding
+com/fst/myapplication/ui/Configuration/ConfigurationFragment.java
+ com.fst.myapplication.ui.Configuration.ConfigurationFragment
+ com.fst.myapplication.ui.Configuration.ConfigurationFragment$1
+ com.fst.myapplication.ui.Configuration.ConfigurationFragment$2
+com/fst/myapplication/ui/home/HomeViewModel.java
+ com.fst.myapplication.ui.home.HomeViewModel
+com/fst/myapplication/ui/Connexion/ConnexionViewModel.java
+ com.fst.myapplication.ui.Connexion.ConnexionViewModel
+com/fst/myapplication/ui/Configuration/ConfigurationViewModel.java
+ com.fst.myapplication.ui.Configuration.ConfigurationViewModel
+com/fst/myapplication/databinding/FragmentFiletransferBinding.java
+ com.fst.myapplication.databinding.FragmentFiletransferBinding
+com/fst/myapplication/BuildConfig.java
+ com.fst.myapplication.BuildConfig
+com/fst/myapplication/ui/Connexion/ConnexionFragment.java
+ com.fst.myapplication.ui.Connexion.ConnexionFragment
+ com.fst.myapplication.ui.Connexion.ConnexionFragment$1
+ com.fst.myapplication.ui.Connexion.ConnexionFragment$2
+com/fst/myapplication/ui/Filetransfer/FiletransferViewModel.java
+ com.fst.myapplication.ui.Filetransfer.FiletransferViewModel
+com/fst/myapplication/databinding/ActivityMainBinding.java
+ com.fst.myapplication.databinding.ActivityMainBinding
+com/fst/myapplication/databinding/FragmentConfigurationBinding.java
+ com.fst.myapplication.databinding.FragmentConfigurationBinding
+com/fst/myapplication/databinding/AdministartionFragmentBinding.java
+ com.fst.myapplication.databinding.AdministartionFragmentBinding
+com/fst/myapplication/ui/home/HomeFragment.java
+ com.fst.myapplication.ui.home.HomeFragment
+ com.fst.myapplication.ui.home.HomeFragment$1
+com/fst/myapplication/ui/Filetransfer/FiletransferFragment.java
+ com.fst.myapplication.ui.Filetransfer.FiletransferFragment
+ com.fst.myapplication.ui.Filetransfer.FiletransferFragment$1
+ com.fst.myapplication.ui.Filetransfer.FiletransferFragment$2
+com/fst/myapplication/databinding/FragmentHomeBinding.java
+ com.fst.myapplication.databinding.FragmentHomeBinding
+com/fst/myapplication/db/User.java
+ com.fst.myapplication.db.User
+com/fst/myapplication/databinding/NavHeaderMainBinding.java
+ com.fst.myapplication.databinding.NavHeaderMainBinding
+com/fst/myapplication/MainActivity.java
+ com.fst.myapplication.MainActivity
+ com.fst.myapplication.MainActivity$1
+com/fst/myapplication/db/DatabaseHelper.java
+ com.fst.myapplication.db.DatabaseHelper
+com/fst/myapplication/db/Connexion.java
+ com.fst.myapplication.db.Connexion
+com/fst/myapplication/databinding/FragmentAdministrationBinding.java
+ com.fst.myapplication.databinding.FragmentAdministrationBinding
+com/fst/myapplication/databinding/FragmentConnexionBinding.java
+ com.fst.myapplication.databinding.FragmentConnexionBinding
