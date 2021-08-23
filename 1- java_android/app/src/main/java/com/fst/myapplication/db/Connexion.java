@@ -3,27 +3,22 @@ package com.fst.myapplication.db;
 public class Connexion {
 
     public static final String TABLE_NAME  = "Connexion";
+
     public static final String KEY_ID = "connexion_id";
     public static final String KEY_CONNEXION_TIME = "connexion_time";
     public static final String KEY_NUMBER_DOWNLOADS  = "number_downloads";
     public static final String KEY_NUMBER_UPLOADS  = "number_uploads";
-
-
 
     int connexion_id;
     String connexion_time;
     int number_downloads;
     int number_uploads;
 
-
-
     public Connexion(int connexion_id, String connexion_time, int number_downloads, int number_uploads) {
         this.connexion_id = connexion_id;
         this.connexion_time = connexion_time;
         this.number_downloads = number_downloads;
         this.number_uploads = number_uploads;
-
-
     }
 
     public int getConnexionId() {
