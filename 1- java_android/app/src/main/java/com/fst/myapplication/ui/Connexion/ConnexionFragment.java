@@ -89,7 +89,7 @@ public class ConnexionFragment extends Fragment {
                 }
 
                 // request Verification of exsitence of USerID and password in DB
-                db.addConnexion(new Connexion(1,"current_date",0,0));
+                db.addConnexion(new Connexion(1,"current_date",0,0,userid));
 
 
             }

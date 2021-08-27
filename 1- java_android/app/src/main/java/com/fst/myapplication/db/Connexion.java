@@ -7,17 +7,21 @@ public class Connexion {
     public static final String KEY_CONNEXION_TIME = "connexion_time";
     public static final String KEY_NUMBER_DOWNLOADS  = "number_downloads";
     public static final String KEY_NUMBER_UPLOADS  = "number_uploads";
+    public static final String KEY_USER_ID = "user_id";
 
     int connexion_id;
     String connexion_time;
     int number_downloads;
     int number_uploads;
+    String user_id;
 
-    public Connexion(int connexion_id, String connexion_time, int number_downloads, int number_uploads) {
+    public Connexion(int connexion_id, String connexion_time, int number_downloads, int number_uploads,String user_id) {
         this.connexion_id = connexion_id;
         this.connexion_time = connexion_time;
         this.number_downloads = number_downloads;
         this.number_uploads = number_uploads;
+        this.user_id = user_id;
+
     }
 
     public int getConnexionId() {

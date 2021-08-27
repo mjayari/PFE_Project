@@ -12,7 +12,7 @@ import com.fst.myapplication.ui.Connexion.ConnexionFragment;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME  = "MyDatabase1.db";
+    private static final String DATABASE_NAME  = "MyDatabase2.db";
 
 
 
@@ -40,7 +40,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 +Connexion.KEY_ID + " TEXT PRIMARY KEY,"
                 +Connexion.KEY_CONNEXION_TIME + " TEXT,"
                 +Connexion.KEY_NUMBER_DOWNLOADS + " INTEGER,"
-                +Connexion.KEY_NUMBER_UPLOADS + " INTEGER"
+                +Connexion.KEY_NUMBER_UPLOADS + " INTEGER,"
+                +Connexion.KEY_USER_ID + " TEXT"
                 + ")";
         db.execSQL(CREATE_TABLE_CONNEXION);
     }
@@ -59,7 +60,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        values.put(User.KEY_ID, user.getUser_id());
+        values.put(User.KEY_ID, user.getUserId());
         values.put(User.KEY_PASSWORD, user.getPassword());
         values.put(User.KEY_SIGNUP_DATE, user.getSignupDate());
 
