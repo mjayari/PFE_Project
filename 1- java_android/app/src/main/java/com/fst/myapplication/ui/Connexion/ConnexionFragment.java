@@ -89,7 +89,12 @@ public class ConnexionFragment extends Fragment {
                 }
 
                 // request Verification of exsitence of USerID and password in DB
-                db.addConnexion(new Connexion(1,"current_date",0,0,userid));
+                int pk = db.getConnexionRowsNumber() + 1;
+                db.addConnexion(new Connexion(pk,"current_date",0,0,userid));
+                Toast.makeText(ConnexionFragment.super.getContext(), "UserID = " + userid , Toast.LENGTH_SHORT).show();
+                Toast.makeText(ConnexionFragment.super.getContext(), "ConnexionRowsNumber = " + db.getConnexionRowsNumber() , Toast.LENGTH_SHORT).show();
+
+
 
 
             }

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -77,9 +78,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(Connexion.KEY_CONNEXION_TIME,connexion.getConnexionTime());
         values.put(Connexion.KEY_NUMBER_DOWNLOADS, connexion.getNumberDownloads());
         values.put(Connexion.KEY_NUMBER_UPLOADS, connexion.getNumberUploads());
+        values.put(Connexion.KEY_USER_ID, connexion.getUserId());
+
 
         db.insert(Connexion.TABLE_NAME,null,values);
         db.close();
+    }
+    public int getConnexionRowsNumber(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM CONNEXION" , null);
+        return cursor.getCount();
     }
 
     // request of check UserID  and password  in DB

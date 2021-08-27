@@ -54,4 +54,13 @@ public class Connexion {
     public void setNumberUploads(int number_uploads) {
         this.number_uploads = number_uploads;
     }
+
+    public String getUserId() {
+        return user_id;
+    }
+
+    public void setUserId(String user_id) {
+        this.user_id = user_id;
+    }
+
 }
