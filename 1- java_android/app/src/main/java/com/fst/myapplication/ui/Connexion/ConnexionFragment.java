@@ -35,7 +35,6 @@ public class ConnexionFragment extends Fragment {
     Button login_button, signup_button;
 
 
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         connexionViewModel =
@@ -55,7 +54,6 @@ public class ConnexionFragment extends Fragment {
     }
 
 
-
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
@@ -70,35 +68,42 @@ public class ConnexionFragment extends Fragment {
                 String userid = binding.useridInput.getText().toString();
                 String password = binding.passwordInput.getText().toString();
 
-               // Toast.makeText(ConnexionFragment.super.getContext(), "Button pressed", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(ConnexionFragment.super.getContext(), "Button pressed", Toast.LENGTH_SHORT).show();
 
                 // UserID input verification
-                if(userid.equals(""))
+                if (userid.equals(""))
                     Toast.makeText(ConnexionFragment.super.getContext(), "Please enter UserID field", Toast.LENGTH_SHORT).show();
 
                 // Password input verification
-                if(password.equals(""))
+                if (password.equals(""))
                     Toast.makeText(ConnexionFragment.super.getContext(), "Please enter Password field", Toast.LENGTH_SHORT).show();
 
                 // request Verification of exsitence of USerID and password in DB
                 Boolean checkuserpass = db.checkusernamepassword(userid, password);
-                if(checkuserpass==true){
+                if (checkuserpass == true) {
                     Toast.makeText(ConnexionFragment.super.getContext(), "Sign in successfull", Toast.LENGTH_SHORT).show();
-                }else{
+                } else {
                     Toast.makeText(ConnexionFragment.super.getContext(), "Invalid Credentials", Toast.LENGTH_SHORT).show();
                 }
 
                 // request Verification of exsitence of USerID and password in DB
                 int pk = db.getConnexionRowsNumber() + 1;
-                db.addConnexion(new Connexion(pk,"current_date",0,0,userid));
+                db.addConnexion(new Connexion(pk, "current_date", 0, 0, userid));
                 //Toast.makeText(ConnexionFragment.super.getContext(), "UserID = " + userid , Toast.LENGTH_SHORT).show();
                 //Toast.makeText(ConnexionFragment.super.getContext(), "ConnexionRowsNumber = " + db.getConnexionRowsNumber() , Toast.LENGTH_SHORT).show();
 
-
-
-
+                // Function for validate UserID
+                boolean check= validateinfo(userid);
+                 //boolean check=true;
+                if(check==true) {
+                    Toast.makeText(ConnexionFragment.super.getContext(), "Valid ", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(ConnexionFragment.super.getContext(), "Invalid ", Toast.LENGTH_SHORT).show();
+                }
             }
         });
+
 
         // SignUp Button onclicklistener
         binding.signupButton.setOnClickListener(new View.OnClickListener() {
@@ -108,11 +113,11 @@ public class ConnexionFragment extends Fragment {
                 String password = binding.passwordInput.getText().toString();
 
                 // UserID input verification
-                if(userid.equals(""))
+                if (userid.equals(""))
                     Toast.makeText(ConnexionFragment.super.getContext(), "Please enter UserID field", Toast.LENGTH_SHORT).show();
 
                 // Password input verification
-                if(password.equals(""))
+                if (password.equals(""))
                     Toast.makeText(ConnexionFragment.super.getContext(), "Please enter Password field", Toast.LENGTH_SHORT).show();
 
                 // request of UserID and password input verification
@@ -124,6 +129,33 @@ public class ConnexionFragment extends Fragment {
         });
     }
 
+
+
+    private boolean validateinfo(String userid) {
+       if (userid.length()==0){
+           binding.useridInput.requestFocus();
+           binding.useridInput.setError("Field can't be Empty");
+           return false;
+       }
+       /*else if (!userid.matches("[a-zA-Z]+")){
+            userid_input.requestFocus();
+            userid_input.setError("At least 10 characters");
+            return false;
+       }
+       else if (!userid.matches("[a-zA-Z]+")){
+           userid_input.requestFocus();
+           userid_input.setError("only letters and numbers");
+           return false;
+       }
+       else if (!userid.matches("[a-zA-Z]+")){
+           userid_input.requestFocus();
+           userid_input.setError("No symbols");
+           return false;
+       }*/
+       else
+           return true;
+
+    }
 
 
     @Override
