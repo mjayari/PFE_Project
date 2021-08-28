@@ -129,8 +129,6 @@ public class ConnexionFragment extends Fragment {
         });
     }
 
-
-
     private boolean validateinfo(String userid) {
        if (userid.length()==0){
            binding.useridInput.requestFocus();
@@ -142,12 +140,12 @@ public class ConnexionFragment extends Fragment {
            binding.useridInput.setError("At least 10 characters");
             return false;
        }
-       /*else if (!userid.matches("[a-zA-Z]+")){
-           userid_input.requestFocus();
-           userid_input.setError("only letters and numbers");
+       else if (userid.matches("[A-Za-z0-9]+")){
+           binding.useridInput.requestFocus();
+           binding.useridInput.setError("only letters and numbers");
            return false;
        }
-       else if (!userid.matches("[a-zA-Z]+")){
+       /*else if (!userid.matches("[a-zA-Z]+")){
            userid_input.requestFocus();
            userid_input.setError("No symbols");
            return false;
