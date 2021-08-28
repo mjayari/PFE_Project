@@ -144,18 +144,18 @@ public class ConnexionFragment extends Fragment {
            binding.useridInput.requestFocus();
            binding.useridInput.setError("only letters and numbers");
            return false;
-       }*/
+       }
        else if (userid.matches("[^a!c][@#$%^&+=]+")){
            binding.useridInput.requestFocus();
            binding.useridInput.setError("No symbols");
            return false;
-       }
+       }*/
 
-        /*if (password.length()==0){
+          if (password.length()==0){
            binding.passwordInput.requestFocus();
            binding.passwordInput.setError("Field can't be Empty");
            return false;
-       }*/
+       }
 
        else
          return true;
