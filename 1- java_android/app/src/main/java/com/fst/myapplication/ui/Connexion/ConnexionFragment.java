@@ -137,12 +137,12 @@ public class ConnexionFragment extends Fragment {
            binding.useridInput.setError("Field can't be Empty");
            return false;
        }
-       /*else if (!userid.matches("[a-zA-Z]+")){
-            userid_input.requestFocus();
-            userid_input.setError("At least 10 characters");
+       else if (userid.length()<10){
+           binding.useridInput.requestFocus();
+           binding.useridInput.setError("At least 10 characters");
             return false;
        }
-       else if (!userid.matches("[a-zA-Z]+")){
+       /*else if (!userid.matches("[a-zA-Z]+")){
            userid_input.requestFocus();
            userid_input.setError("only letters and numbers");
            return false;
