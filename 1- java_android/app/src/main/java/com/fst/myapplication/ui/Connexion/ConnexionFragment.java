@@ -135,7 +135,7 @@ public class ConnexionFragment extends Fragment {
            binding.useridInput.setError("Field can't be Empty");
            return false;
        }
-       else if (userid.length()<10){
+      /* else if (userid.length()<10){
            binding.useridInput.requestFocus();
            binding.useridInput.setError("At least 10 characters");
             return false;
@@ -144,12 +144,12 @@ public class ConnexionFragment extends Fragment {
            binding.useridInput.requestFocus();
            binding.useridInput.setError("only letters and numbers");
            return false;
-       }
-       /*else if (!userid.matches("[a-zA-Z]+")){
-           userid_input.requestFocus();
-           userid_input.setError("No symbols");
-           return false;
        }*/
+       else if (!userid.matches("[^a!c][@#$%^&+=]+")){
+           binding.useridInput.requestFocus();
+           binding.useridInput.setError("No symbols");
+           return false;
+       }
        else
            return true;
 
