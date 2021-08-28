@@ -93,7 +93,7 @@ public class ConnexionFragment extends Fragment {
                 //Toast.makeText(ConnexionFragment.super.getContext(), "ConnexionRowsNumber = " + db.getConnexionRowsNumber() , Toast.LENGTH_SHORT).show();
 
                 // Function for validate UserID
-                boolean check= validateinfo(userid);
+                boolean check= validateinfo(userid,password);
                  //boolean check=true;
                 if(check==true) {
                     Toast.makeText(ConnexionFragment.super.getContext(), "Valid ", Toast.LENGTH_SHORT).show();
@@ -129,13 +129,13 @@ public class ConnexionFragment extends Fragment {
         });
     }
 
-    private boolean validateinfo(String userid) {
-       if (userid.length()==0){
+    private boolean validateinfo(String userid,String password) {
+       /*if (userid.length()==0){
            binding.useridInput.requestFocus();
            binding.useridInput.setError("Field can't be Empty");
            return false;
        }
-      /* else if (userid.length()<10){
+       else if (userid.length()<10){
            binding.useridInput.requestFocus();
            binding.useridInput.setError("At least 10 characters");
             return false;
@@ -144,14 +144,21 @@ public class ConnexionFragment extends Fragment {
            binding.useridInput.requestFocus();
            binding.useridInput.setError("only letters and numbers");
            return false;
-       }*/
-       else if (!userid.matches("[^a!c][@#$%^&+=]+")){
+       }
+       else if (userid.matches("[^a!c][@#$%^&+=]+")){
            binding.useridInput.requestFocus();
            binding.useridInput.setError("No symbols");
            return false;
+       }*/
+
+        if (password.length()==0){
+           binding.passwordInput.requestFocus();
+           binding.passwordInput.setError("Field can't be Empty");
+           return false;
        }
+
        else
-           return true;
+         return true;
 
     }
 
