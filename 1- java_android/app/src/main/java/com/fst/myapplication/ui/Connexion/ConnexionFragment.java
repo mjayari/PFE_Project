@@ -130,7 +130,7 @@ public class ConnexionFragment extends Fragment {
     }
 
     private boolean validateinfo(String userid,String password) {
-       /*if (userid.length()==0){
+       if (userid.length()==0){
            binding.useridInput.requestFocus();
            binding.useridInput.setError("Field can't be Empty");
            return false;
@@ -149,13 +149,18 @@ public class ConnexionFragment extends Fragment {
            binding.useridInput.requestFocus();
            binding.useridInput.setError("No symbols");
            return false;
-       }*/
+       }
 
           if (password.length()==0){
            binding.passwordInput.requestFocus();
            binding.passwordInput.setError("Field can't be Empty");
            return false;
        }
+          else if (userid.length()<10){
+              binding.useridInput.requestFocus();
+              binding.useridInput.setError("At least 10 characters");
+              return false;
+          }
 
        else
          return true;
