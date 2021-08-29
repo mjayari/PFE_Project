@@ -166,6 +166,11 @@ public class ConnexionFragment extends Fragment {
               binding.useridInput.setError("only letters and numbers");
               return false;
           }
+          else if (userid.matches("[^a!c][@#$%^&+=]+")){
+              binding.useridInput.requestFocus();
+              binding.useridInput.setError("No symbols");
+              return false;
+          }
 
        else
          return true;
