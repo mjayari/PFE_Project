@@ -151,28 +151,32 @@ public class ConnexionFragment extends Fragment {
            return false;
        }
 
-          if (password.length()==0){
-           binding.passwordInput.requestFocus();
-           binding.passwordInput.setError("Field can't be Empty");
-           return false;
-       }
-          else if (userid.length()<10){
-              binding.useridInput.requestFocus();
-              binding.useridInput.setError("At least 10 characters");
-              return false;
-          }
-          else if (userid.matches("[A-Za-z0-9]+")){
-              binding.useridInput.requestFocus();
-              binding.useridInput.setError("only letters and numbers");
-              return false;
-          }
-          else if (userid.matches("[^a!c][@#$%^&+=]+")){
-              binding.useridInput.requestFocus();
-              binding.useridInput.setError("No symbols");
-              return false;
-          }
-
-       else
+        if (password.length()==0){
+            binding.passwordInput.requestFocus();
+            binding.passwordInput.setError("Field can't be Empty");
+            return false;
+        }
+        else if (password.length()<10){
+            binding.passwordInput.requestFocus();
+            binding.passwordInput.setError("At least 10 characters");
+            return false;
+        }
+        else if (password.matches(".*[A-Z]+")){
+            binding.passwordInput.requestFocus();
+            binding.passwordInput.setError("Minimum one upperace");
+            return false;
+        }
+        else if (password.matches(".*[0-9]+")){
+            binding.passwordInput.requestFocus();
+            binding.passwordInput.setError("Minimum one number");
+            return false;
+        }
+        else if (password.matches(".*[@#$%^&+=]+")){
+            binding.passwordInput.requestFocus();
+            binding.passwordInput.setError("Minimum one Symbol");
+            return false;
+        }
+        else
          return true;
 
     }
