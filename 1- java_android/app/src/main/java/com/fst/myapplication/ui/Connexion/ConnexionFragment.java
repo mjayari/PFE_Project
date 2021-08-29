@@ -161,6 +161,11 @@ public class ConnexionFragment extends Fragment {
               binding.useridInput.setError("At least 10 characters");
               return false;
           }
+          else if (userid.matches("[A-Za-z0-9]+")){
+              binding.useridInput.requestFocus();
+              binding.useridInput.setError("only letters and numbers");
+              return false;
+          }
 
        else
          return true;
