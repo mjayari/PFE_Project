@@ -28,7 +28,7 @@
     <fragment
         android:id="@+id/nav_Administration"
         android:name="com.fst.myapplication.ui.Administration.AdministrationFragment"
-        android:label="@string/menu_configuration"
+        android:label="@string/menu_Administration"
         tools:layout="@layout/fragment_administration" />
     <fragment
         android:id="@+id/nav_Filetranfer"
