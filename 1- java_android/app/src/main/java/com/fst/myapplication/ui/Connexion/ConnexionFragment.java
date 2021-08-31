@@ -140,7 +140,7 @@ public class ConnexionFragment extends Fragment {
 
     private boolean validateinfo(String userId,String password) {
         String userIdREGEX = "^" +
-                "(?=.+[0-9])" +         //at least 1 digit
+                "(?=.*[0-9])" +         //at least 1 digit
                 "(?=.*[a-z])" +         //at least 1 lower case letter
                 "(?=.*[a-z0-9])" +      //only lower case letters and numbers
                 "(?=\\S+$)" +           //no white spaces
@@ -179,6 +179,15 @@ public class ConnexionFragment extends Fragment {
             Toast.makeText(ConnexionFragment.super.getContext(), "Password not  Valid", Toast.LENGTH_SHORT).show();
         }
 
+
+        Pattern p11 = Pattern.compile("^(?=.*[0-9])$");
+        Matcher m11 = p11.matcher(password);
+        boolean b11 = m11.matches();
+        if (!m11.matches()) {
+            binding.useridInput.requestFocus();
+            binding.useridInput.setError("At least one digit ");
+            return false;
+        }
 
 
 
