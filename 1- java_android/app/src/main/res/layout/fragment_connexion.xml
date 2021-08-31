@@ -13,8 +13,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="62dp"
-        android:layout_marginTop="550dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="527dp"
+        android:layout_marginEnd="253dp"
+        android:layout_marginBottom="28dp"
         android:text="Login" />
 
     <Button
@@ -110,16 +114,6 @@
         android:text="-at least 1 upper case letter" />
 
     <TextView
-        android:id="@+id/textView17"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="246dp"
-        android:layout_marginBottom="120dp"
-        android:text="-any letter" />
-
-    <TextView
         android:id="@+id/textView18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -157,7 +151,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="244dp"
         android:layout_marginBottom="215dp"
-        android:text="-at least 1 special character" />
+        android:text="-at least 1 symbol" />
 
     <TextView
         android:id="@+id/textView7"
@@ -197,5 +191,19 @@
         android:layout_centerVertical="true"
         android:layout_marginEnd="68dp"
         android:text="+Password must be :" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="295dp"
+        android:layout_marginEnd="327dp"
+        android:layout_marginBottom="289dp"
+        android:text="UserID must be: " />
 
 </RelativeLayout>
