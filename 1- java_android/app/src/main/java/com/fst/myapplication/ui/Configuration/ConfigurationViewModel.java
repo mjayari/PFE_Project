@@ -12,7 +12,7 @@ public class ConfigurationViewModel extends ViewModel {
 
     public ConfigurationViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is slideshow fragment");
+        mText.setValue("This is Configuration  fragment");
     }
 
     public LiveData<String> getText() {

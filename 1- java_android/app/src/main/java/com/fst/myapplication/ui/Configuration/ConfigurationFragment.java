@@ -43,15 +43,15 @@ public class ConfigurationFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+      // binding.button2.setOnClickListener(new View.OnClickListener() {
+        //    @Override
+          //  public void onClick(View view) {
                /* NavHostFragment.findNavController(FirstFragment.this)
                         .navigate(R.id.action_FirstFragment_to_SecondFragment);*/
-                Toast.makeText(ConfigurationFragment.super.getContext(), "Button pressed", Toast.LENGTH_SHORT).show();
+            //    Toast.makeText(ConfigurationFragment.super.getContext(), "Button pressed", Toast.LENGTH_SHORT).show();
 
-            }
-        });
+            //}
+        //});
 
 
     }

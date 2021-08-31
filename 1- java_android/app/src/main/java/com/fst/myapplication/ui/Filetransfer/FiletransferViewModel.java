@@ -10,7 +10,7 @@ public class FiletransferViewModel extends ViewModel {
 
     public FiletransferViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+        mText.setValue("This is File Transfer fragment");
     }
 
     public LiveData<String> getText() {
