@@ -139,10 +139,43 @@ public class ConnexionFragment extends Fragment {
     }
 
     private boolean validateinfo(String userId,String password) {
-        String userIdREGEX = "^" +
+
+        if (!userId.matches("^.{8,15}.*$")) {
+            binding.useridInput.requestFocus();
+            binding.useridInput.setError("size between 8 and 15 characters ");
+            return false;
+          } else
+            // At least one digit
+             if (!userId.matches("^.*[0-9]+.*$")) {
+                binding.useridInput.requestFocus();
+                binding.useridInput.setError("At least one digit ");
+                return false;
+            } else
+                // at least 1 lower case letter
+                 if (!userId.matches("^.*[a-z]+.*$")) {
+                    binding.useridInput.requestFocus();
+                    binding.useridInput.setError("at least 1 lower case letter ");
+                    return false;
+                } else
+                    //no white spaces
+                    if (!userId.matches("^\\S+$")) {
+                        binding.useridInput.requestFocus();
+                        binding.useridInput.setError("no white spaces ");
+                        return false;
+                    } else
+                      // Only letters and numbers
+                         if (!userId.matches("^[a-z0-9]+$")) {
+                            binding.useridInput.requestFocus();
+                            binding.useridInput.setError("Only letters and numbers  ");
+                            return false;
+                        }
+
+
+
+       /* String userIdREGEX = "^" +
                 "(?=.*[0-9])" +         //at least 1 digit
                 "(?=.*[a-z])" +         //at least 1 lower case letter
-                "(?=.*[a-z0-9])" +      //only lower case letters and numbers
+                "(?=.*[a-z0-9])" +      //only  letters and numbers
                 "(?=\\S+$)" +           //no white spaces
                 ".{8,15}" +               //size between 8 and 15 characters
                 "$";
@@ -155,7 +188,17 @@ public class ConnexionFragment extends Fragment {
             binding.useridInput.requestFocus();
             binding.useridInput.setError("UserId not Valid");
             Toast.makeText(ConnexionFragment.super.getContext(), "UserId not  Valid", Toast.LENGTH_SHORT).show();
-        }
+        }*/
+
+
+        /*At least one Symbol
+        if (!userId.matches("^.*[@#$%^&+=]+.*$")) {
+            binding.useridInput.requestFocus();
+            binding.useridInput.setError("At least one symbol ");
+            return false;*/
+
+
+
 
 
         String  passwordREGEX = "^" +
@@ -180,14 +223,6 @@ public class ConnexionFragment extends Fragment {
         }
 
 
-        Pattern p11 = Pattern.compile("^(?=.*[0-9])$");
-        Matcher m11 = p11.matcher(password);
-        boolean b11 = m11.matches();
-        if (!m11.matches()) {
-            binding.useridInput.requestFocus();
-            binding.useridInput.setError("At least one digit ");
-            return false;
-        }
 
 
 
