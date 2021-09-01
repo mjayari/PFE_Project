@@ -86,7 +86,9 @@ public class ConnexionFragment extends Fragment {
                 // Function for validate UserID
                 //binding.passwordInput.setTransformationMethod(PasswordTransformationMethod.getInstance());
                 boolean check= validateinfo(userid,password);
-                Log.d("password", password);
+               // boolean check1= validateinfo1(password);
+
+                //Log.d("password", password);
                 //boolean check=true;
                 //if(check==true) {
                 //  Toast.makeText(ConnexionFragment.super.getContext(), "Valid ", Toast.LENGTH_SHORT).show();
@@ -139,20 +141,25 @@ public class ConnexionFragment extends Fragment {
     }
 
     private boolean validateinfo(String userId,String password) {
-
+        // Validation Regex for UserID
+        if (userId.equals("")) {
+            binding.useridInput.requestFocus();
+            binding.useridInput.setError("Please enter UserID field");
+            return false;
+        }else
         if (!userId.matches("^.{8,15}.*$")) {
             binding.useridInput.requestFocus();
             binding.useridInput.setError("size between 8 and 15 characters ");
             return false;
-          } else
+        } else
             // At least one digit
-             if (!userId.matches("^.*[0-9]+.*$")) {
+            if (!userId.matches("^.*[0-9]+.*$")) {
                 binding.useridInput.requestFocus();
                 binding.useridInput.setError("At least one digit ");
                 return false;
             } else
                 // at least 1 lower case letter
-                 if (!userId.matches("^.*[a-z]+.*$")) {
+                if (!userId.matches("^.*[a-z]+.*$")) {
                     binding.useridInput.requestFocus();
                     binding.useridInput.setError("at least 1 lower case letter ");
                     return false;
@@ -163,12 +170,63 @@ public class ConnexionFragment extends Fragment {
                         binding.useridInput.setError("no white spaces ");
                         return false;
                     } else
-                      // Only letters and numbers
-                         if (!userId.matches("^[a-z0-9]+$")) {
+                        // Only letters and numbers
+                        if (!userId.matches("^[a-z0-9]+$")) {
                             binding.useridInput.requestFocus();
                             binding.useridInput.setError("Only letters and numbers  ");
                             return false;
                         }
+
+
+        // Validation Regex for password
+        if (password.equals("")) {
+            binding.passwordInput.requestFocus();
+            binding.passwordInput.setError("Please enter Password field");
+            return false;
+        }else
+          if (!password.matches("^.{8,15}.*$")) {
+              binding.passwordInput.requestFocus();
+              binding.passwordInput.setError("size between 8 and 15 characters");
+              return false;
+          } else
+
+          if (!password.matches("^.*[0-9]+.*$")) {
+             binding.passwordInput.requestFocus();
+             binding.passwordInput.setError("At least one digit ");
+             return false;
+             } else
+          if (!password.matches("^.*[a-z]+.*$")) {
+            binding.passwordInput.requestFocus();
+            binding.passwordInput.setError("At least 1 lower case letter");
+            return false;
+        } else
+         if (!password.matches("^.*[@#$%^&+=]+.*$")) {
+            binding.passwordInput.requestFocus();
+            binding.passwordInput.setError("At least one symbol");
+            return false;
+        } else
+         if (!password.matches("^.*[A-Z]+.*$")) {
+            binding.passwordInput.requestFocus();
+            binding.passwordInput.setError("At least one upper case letter");
+            return false;
+        }
+         if (!password.matches("^\\S+$")) {
+             binding.passwordInput.requestFocus();
+             binding.passwordInput.setError("no white spaces ");
+             return false;
+         }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -201,7 +259,7 @@ public class ConnexionFragment extends Fragment {
 
 
 
-        String  passwordREGEX = "^" +
+     /*  String  passwordREGEX = "^" +
                 "(?=.*[0-9])" +         //at least 1 digit
                 "(?=.*[a-z])" +         //at least 1 lower case letter
                 "(?=.*[A-Z])" +         //at least 1 upper case letter
@@ -210,9 +268,12 @@ public class ConnexionFragment extends Fragment {
                 "(?=\\S+$)" +           //no white spaces
                 ".{8,15}" +               //size between 8 and 15 characters
                 "$";
-        Pattern p1 = Pattern.compile(passwordREGEX);
+
+       Pattern p1 = Pattern.compile(passwordREGEX);
         Matcher m1 = p1.matcher(password);
         boolean b1 = m1.matches();
+
+
         if (b1)
             Toast.makeText(ConnexionFragment.super.getContext(), "Password Valid", Toast.LENGTH_SHORT).show();
         else{
@@ -220,7 +281,7 @@ public class ConnexionFragment extends Fragment {
             binding.passwordInput.setError("Password not Valid");
             binding.passwordInput.setCursorVisible(true);
             Toast.makeText(ConnexionFragment.super.getContext(), "Password not  Valid", Toast.LENGTH_SHORT).show();
-        }
+        }*/
 
 
 
@@ -280,9 +341,28 @@ public class ConnexionFragment extends Fragment {
             return false;
         }
         else*/
-         return true;
 
+        return true;
     }
+
+   /* private boolean validateinfo1(String password) {
+
+        if (!password.matches("^.{8,15}.*$")) {
+            binding.passwordInput.requestFocus();
+            binding.passwordInput.setError("size between 8 and 15 characters ");
+            return false;
+        } else
+            // At least one digit
+            if (!password.matches("^.*[0-9]+.*$")) {
+                binding.passwordInput.requestFocus();
+                binding.passwordInput.setError("At least one digit ");
+                return false;
+            }
+
+                return true;
+            }*/
+
+
 
 
     @Override
