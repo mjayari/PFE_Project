@@ -9,26 +9,26 @@
 
     <Button
         android:id="@+id/login_button"
-        android:layout_width="wrap_content"
+        android:layout_width="118dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="527dp"
-        android:layout_marginEnd="253dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginStart="58dp"
+        android:layout_marginEnd="235dp"
+        android:layout_marginBottom="294dp"
         android:text="Login" />
 
     <Button
         android:id="@+id/signup_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_width="121dp"
+        android:layout_height="47dp"
+        android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="551dp"
-        android:layout_marginEnd="70dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="230dp"
+        android:layout_marginEnd="58dp"
+        android:layout_marginBottom="296dp"
         android:text="SignUp" />
 
     <EditText
@@ -48,19 +48,21 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="224dp"
+        android:layout_marginTop="207dp"
+        android:layout_marginEnd="153dp"
         android:ems="10"
         android:inputType="textPassword" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="wrap_content"
+        android:layout_width="60dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="309dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="46dp"
         android:text="User ID:" />
 
     <TextView
@@ -79,8 +81,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="15dp"
-        android:layout_marginBottom="262dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginBottom="208dp"
         android:text="-at least 1 digit" />
 
     <TextView
@@ -89,8 +91,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="246dp"
-        android:layout_marginBottom="256dp"
+        android:layout_marginStart="231dp"
+        android:layout_marginBottom="210dp"
         android:text="-at least 1 digit" />
 
     <TextView
@@ -99,8 +101,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="244dp"
-        android:layout_marginBottom="152dp"
+        android:layout_marginStart="231dp"
+        android:layout_marginBottom="99dp"
         android:text="-size between 8 and 15 characters" />
 
     <TextView
@@ -109,8 +111,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="244dp"
-        android:layout_marginBottom="185dp"
+        android:layout_marginStart="230dp"
+        android:layout_marginBottom="135dp"
         android:text="-at least 1 upper case letter" />
 
     <TextView
@@ -119,8 +121,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="244dp"
-        android:layout_marginBottom="134dp"
+        android:layout_marginStart="229dp"
+        android:layout_marginBottom="79dp"
         android:text="-no white spaces" />
 
     <TextView
@@ -129,8 +131,8 @@
         android:layout_height="32dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="15dp"
-        android:layout_marginBottom="225dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginBottom="179dp"
         android:text="-at least 1 lower case letter" />
 
     <TextView
@@ -139,8 +141,8 @@
         android:layout_height="22dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="244dp"
-        android:layout_marginBottom="236dp"
+        android:layout_marginStart="232dp"
+        android:layout_marginBottom="189dp"
         android:text="-at least 1 lower case letter" />
 
     <TextView
@@ -149,8 +151,8 @@
         android:layout_height="22dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="244dp"
-        android:layout_marginBottom="215dp"
+        android:layout_marginStart="232dp"
+        android:layout_marginBottom="168dp"
         android:text="-at least 1 symbol" />
 
     <TextView
@@ -159,8 +161,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="13dp"
-        android:layout_marginBottom="136dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginBottom="103dp"
         android:text="-size between 8 and 15 characters" />
 
     <TextView
@@ -169,8 +171,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="15dp"
-        android:layout_marginBottom="156dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginBottom="122dp"
         android:text="-no white spaces" />
 
     <TextView
@@ -179,31 +181,32 @@
         android:layout_height="46dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="14dp"
-        android:layout_marginBottom="172dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="132dp"
         android:text="-only lower case letters and numbers" />
 
     <TextView
         android:id="@+id/textView10"
-        android:layout_width="wrap_content"
+        android:layout_width="165dp"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/textView11"
+        android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_marginEnd="68dp"
+        android:layout_marginStart="230dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
         android:text="+Password must be :" />
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="wrap_content"
+        android:layout_width="147dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="295dp"
-        android:layout_marginEnd="327dp"
-        android:layout_marginBottom="289dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginEnd="257dp"
+        android:layout_marginBottom="241dp"
         android:text="UserID must be: " />
 
 </RelativeLayout>
