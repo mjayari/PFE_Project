@@ -86,6 +86,7 @@ public class ConnexionFragment extends Fragment {
                 // Function for validate UserID
                 //binding.passwordInput.setTransformationMethod(PasswordTransformationMethod.getInstance());
                 boolean check= validateinfo(userid,password);
+
                // boolean check1= validateinfo1(password);
 
                 //Log.d("password", password);
@@ -96,18 +97,20 @@ public class ConnexionFragment extends Fragment {
                 //else {
                 //  Toast.makeText(ConnexionFragment.super.getContext(), "Invalid ", Toast.LENGTH_SHORT).show();
                 //}
+                if (check) {
+                    // request Verification of exsitence of USerID and password in DB
+                    Boolean checkuserpass = db.checkusernamepassword(userid, password);
+                    if (checkuserpass == true) {
+                        Toast.makeText(ConnexionFragment.super.getContext(), "Sign in successfull", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(ConnexionFragment.super.getContext(), "Invalid Credentials", Toast.LENGTH_SHORT).show();
+                    }
 
-                // request Verification of exsitence of USerID and password in DB
-                Boolean checkuserpass = db.checkusernamepassword(userid, password);
-                if (checkuserpass == true) {
-                    Toast.makeText(ConnexionFragment.super.getContext(), "Sign in successfull", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(ConnexionFragment.super.getContext(), "Invalid Credentials", Toast.LENGTH_SHORT).show();
+                    // request Verification of exsitence of USerID and password in DB
+                    int pk = db.getConnexionRowsNumber() + 1;
+                    db.addConnexion(new Connexion(pk, "current_date", 0, 0, userid));
                 }
 
-                // request Verification of exsitence of USerID and password in DB
-                int pk = db.getConnexionRowsNumber() + 1;
-                db.addConnexion(new Connexion(pk, "current_date", 0, 0, userid));
                 //Toast.makeText(ConnexionFragment.super.getContext(), "UserID = " + userid , Toast.LENGTH_SHORT).show();
                 //Toast.makeText(ConnexionFragment.super.getContext(), "ConnexionRowsNumber = " + db.getConnexionRowsNumber() , Toast.LENGTH_SHORT).show();
 
@@ -141,85 +144,101 @@ public class ConnexionFragment extends Fragment {
     }
 
     private boolean validateinfo(String userId,String password) {
+        boolean result=true;
+        Log.d("log","userId=" + userId);
+        Log.d("log","password=" +  password);
+
+
         // Validation Regex for UserID
         if (userId.equals("")) {
             binding.useridInput.requestFocus();
             binding.useridInput.setError("Please enter UserID field");
+            result=false;
             return false;
         }else
-        if (!userId.matches("^.{8,15}.*$")) {
+        if (!userId.matches("^.{8,15}$")) {
             binding.useridInput.requestFocus();
             binding.useridInput.setError("size between 8 and 15 characters ");
+            result=false;
             return false;
         } else
-            // At least one digit
-            if (!userId.matches("^.*[0-9]+.*$")) {
-                binding.useridInput.requestFocus();
-                binding.useridInput.setError("At least one digit ");
-                return false;
-            } else
-                // at least 1 lower case letter
-                if (!userId.matches("^.*[a-z]+.*$")) {
-                    binding.useridInput.requestFocus();
-                    binding.useridInput.setError("at least 1 lower case letter ");
-                    return false;
-                } else
-                    //no white spaces
-                    if (!userId.matches("^\\S+$")) {
-                        binding.useridInput.requestFocus();
-                        binding.useridInput.setError("no white spaces ");
-                        return false;
-                    } else
-                        // Only letters and numbers
-                        if (!userId.matches("^[a-z0-9]+$")) {
-                            binding.useridInput.requestFocus();
-                            binding.useridInput.setError("Only letters and numbers  ");
-                            return false;
-                        }
+        // At least one digit
+        if (!userId.matches("^.*[0-9]+.*$")) {
+            binding.useridInput.requestFocus();
+            binding.useridInput.setError("At least one digit ");
+            result=false;
+            return false;
+        } else
+        // at least 1 lower case letter
+        if (!userId.matches("^.*[a-z]+.*$")) {
+             binding.useridInput.requestFocus();
+             binding.useridInput.setError("at least 1 lower case letter ");
+            result=false;
+            return false;
+        } else
+        //no white spaces
+        if (!userId.matches("^\\S+$")) {
+             binding.useridInput.requestFocus();
+             binding.useridInput.setError("no white spaces ");
+            result=false;
+            return false;
+        } else
+        // Only letters and numbers
+        if (!userId.matches("^[a-z0-9]+$")) {
+             binding.useridInput.requestFocus();
+             binding.useridInput.setError("Only letters and numbers  ");
+            result=false;
+            return false;
+        }
 
+
+
+         //if (result=false) return result;
 
         // Validation Regex for password
         if (password.equals("")) {
             binding.passwordInput.requestFocus();
             binding.passwordInput.setError("Please enter Password field");
+            result=false;
             return false;
         }else
-          if (!password.matches("^.{8,15}.*$")) {
-              binding.passwordInput.requestFocus();
-              binding.passwordInput.setError("size between 8 and 15 characters");
-              return false;
-          } else
+        if (!password.matches("^.{8,15}$")) {
+            binding.passwordInput.requestFocus();
+            binding.passwordInput.setError("size between 8 and 15 characters");
+            result=false;
+            return false;
+        } else
 
-          if (!password.matches("^.*[0-9]+.*$")) {
+        if (!password.matches("^.*[0-9]+.*$")) {
              binding.passwordInput.requestFocus();
              binding.passwordInput.setError("At least one digit ");
-             return false;
-             } else
-          if (!password.matches("^.*[a-z]+.*$")) {
+            result=false;
+            return false;
+        } else
+        if (!password.matches("^.*[a-z]+.*$")) {
             binding.passwordInput.requestFocus();
             binding.passwordInput.setError("At least 1 lower case letter");
+            result=false;
             return false;
         } else
-         if (!password.matches("^.*[@#$%^&+=]+.*$")) {
-            binding.passwordInput.requestFocus();
-            binding.passwordInput.setError("At least one symbol");
-            return false;
-        } else
-         if (!password.matches("^.*[A-Z]+.*$")) {
+        if (!password.matches("^.*[A-Z]+.*$")) {
             binding.passwordInput.requestFocus();
             binding.passwordInput.setError("At least one upper case letter");
+            result=false;
+            return false;
+        } else
+        if (!password.matches("^.*[@#$%^&+=]+.*$")) {
+            binding.passwordInput.requestFocus();
+            binding.passwordInput.setError("At least one symbol");
+            result=false;
+            return false;
+        } else
+        if (!password.matches("^\\S+$")) {
+            binding.passwordInput.requestFocus();
+            binding.passwordInput.setError("no white spaces ");
+            result=false;
             return false;
         }
-         if (!password.matches("^\\S+$")) {
-             binding.passwordInput.requestFocus();
-             binding.passwordInput.setError("no white spaces ");
-             return false;
-         }
-
-
-
-
-
 
 
 
@@ -342,7 +361,7 @@ public class ConnexionFragment extends Fragment {
         }
         else*/
 
-        return true;
+        return result;
     }
 
    /* private boolean validateinfo1(String password) {

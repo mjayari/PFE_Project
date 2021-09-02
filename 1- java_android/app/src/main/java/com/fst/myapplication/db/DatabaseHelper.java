@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import com.fst.myapplication.ui.Configuration.ConfigurationFragment;
 import com.fst.myapplication.ui.Connexion.ConnexionFragment;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -18,6 +19,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     public DatabaseHelper(@Nullable ConnexionFragment context) {
+        super(context.getContext(),DATABASE_NAME,null,DATABASE_VERSION);
+    }
+
+    public DatabaseHelper(@Nullable ConfigurationFragment context) {
         super(context.getContext(),DATABASE_NAME,null,DATABASE_VERSION);
     }
 
@@ -45,6 +50,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 +Connexion.KEY_USER_ID + " TEXT"
                 + ")";
         db.execSQL(CREATE_TABLE_CONNEXION);
+
+        // Sql request for the creation of table Configuration
+        String CREATE_TABLE_CONFIGURATION = "CREATE TABLE " + Configuration.TABLE_NAME
+                + "("
+                +Configuration.KEY_ID + " TEXT PRIMARY KEY,"
+                +Configuration.KEY_PORT_NUMBER + " TEXT,"
+                +Configuration.KEY_UPLOAD_PATH + " TEXT,"
+                +Configuration.KEY_DOWNLOAD_PATH + " TEXT"
+                + ")";
+        db.execSQL(CREATE_TABLE_CONFIGURATION);
     }
 
 
@@ -82,6 +97,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
         db.insert(Connexion.TABLE_NAME,null,values);
+        db.close();
+    }
+    public  void addConfiguration(Configuration configuration){
+        SQLiteDatabase db=this.getWritableDatabase();
+        ContentValues values= new ContentValues();
+
+        values.put(Configuration.KEY_ID,configuration.getConfigId());
+        values.put(Configuration.KEY_PORT_NUMBER,configuration.getPortNumber());
+        values.put(Configuration.KEY_UPLOAD_PATH, configuration.getUploadsPath());
+        values.put(Configuration.KEY_DOWNLOAD_PATH, configuration.getDownloadPath());
+
+        db.insert(Configuration.TABLE_NAME,null,values);
         db.close();
     }
     public int getConnexionRowsNumber(){
