@@ -5,14 +5,16 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import com.fst.myapplication.ui.Configuration.ConfigurationFragment;
 import com.fst.myapplication.ui.Connexion.ConnexionFragment;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME  = "MyDatabase1.db";
+    private static final String DATABASE_NAME  = "MyDatabase2.db";
 
 
 
@@ -20,9 +22,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         super(context.getContext(),DATABASE_NAME,null,DATABASE_VERSION);
     }
 
+    public DatabaseHelper(@Nullable ConfigurationFragment context) {
+        super(context.getContext(),DATABASE_NAME,null,DATABASE_VERSION);
+    }
+
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
 
         // Sql request for the creation of table USer
         String CREATE_TABLE_USER = "CREATE TABLE " + User.TABLE_NAME
@@ -39,9 +46,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 +Connexion.KEY_ID + " TEXT PRIMARY KEY,"
                 +Connexion.KEY_CONNEXION_TIME + " TEXT,"
                 +Connexion.KEY_NUMBER_DOWNLOADS + " INTEGER,"
-                +Connexion.KEY_NUMBER_UPLOADS + " INTEGER"
+                +Connexion.KEY_NUMBER_UPLOADS + " INTEGER,"
+                +Connexion.KEY_USER_ID + " TEXT"
                 + ")";
         db.execSQL(CREATE_TABLE_CONNEXION);
+
+        // Sql request for the creation of table Configuration
+        String CREATE_TABLE_CONFIGURATION = "CREATE TABLE " + Configuration.TABLE_NAME
+                + "("
+                +Configuration.KEY_ID + " TEXT PRIMARY KEY,"
+                +Configuration.KEY_PORT_NUMBER + " TEXT,"
+                +Configuration.KEY_UPLOAD_PATH + " TEXT,"
+                +Configuration.KEY_DOWNLOAD_PATH + " TEXT"
+                + ")";
+        db.execSQL(CREATE_TABLE_CONFIGURATION);
     }
 
 
@@ -58,8 +76,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-
-        values.put(User.KEY_ID, user.getUser_id());
+        values.put(User.KEY_ID, user.getUserId());
         values.put(User.KEY_PASSWORD, user.getPassword());
         values.put(User.KEY_SIGNUP_DATE, user.getSignupDate());
 
@@ -76,10 +93,49 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(Connexion.KEY_CONNEXION_TIME,connexion.getConnexionTime());
         values.put(Connexion.KEY_NUMBER_DOWNLOADS, connexion.getNumberDownloads());
         values.put(Connexion.KEY_NUMBER_UPLOADS, connexion.getNumberUploads());
+        values.put(Connexion.KEY_USER_ID, connexion.getUserId());
 
 
         db.insert(Connexion.TABLE_NAME,null,values);
         db.close();
     }
+    public  void addConfiguration(Configuration configuration){
+        SQLiteDatabase db=this.getWritableDatabase();
+        ContentValues values= new ContentValues();
+
+        values.put(Configuration.KEY_ID,configuration.getConfigId());
+        values.put(Configuration.KEY_PORT_NUMBER,configuration.getPortNumber());
+        values.put(Configuration.KEY_UPLOAD_PATH, configuration.getUploadsPath());
+        values.put(Configuration.KEY_DOWNLOAD_PATH, configuration.getDownloadPath());
+
+        db.insert(Configuration.TABLE_NAME,null,values);
+        db.close();
+    }
+    public int getConnexionRowsNumber(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM CONNEXION" , null);
+        return cursor.getCount();
+    }
+
+    // request of check UserID  and password  in DB
+    public Boolean checkusernamepassword(String user_id, String password){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("Select * from User where user_id = ? and password = ?", new String[] {user_id,password});
+        if(cursor.getCount()>0)
+            return true;
+        else
+            return false;
+    }
+
+    // request of check UserID in DB
+    public Boolean checkusername(String user_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("Select * from User where user_id = ?", new String[]{user_id});
+        if (cursor.getCount() > 0)
+            return true;
+        else
+            return false;
+    }
+
 
 }

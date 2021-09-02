@@ -1,23 +1,21 @@
-package com.fst.myapplication.ui.Configuration;
+package com.fst.myapplication.ui.Administration;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class ConfigurationViewModel extends ViewModel {
+public class AdministrationViewModel extends ViewModel {
 
 
 
     private MutableLiveData<String> mText;
 
-    public ConfigurationViewModel() {
+    public AdministrationViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is Configuration  fragment");
+        mText.setValue("This is Administration fragment");
     }
 
     public LiveData<String> getText() {
         return mText;
     }
 }
-
-
