@@ -1,6 +1,8 @@
 package com.fst.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 
@@ -20,6 +22,15 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
+
+    /*protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        String Fpath = data.getDataString();
+        Log.d("log","Fpath=" + Fpath);
+
+        //TODO handle your request here
+        super.onActivityResult(requestCode, resultCode, data);
+    }*/
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

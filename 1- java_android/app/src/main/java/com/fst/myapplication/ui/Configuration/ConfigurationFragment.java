@@ -1,6 +1,10 @@
 package com.fst.myapplication.ui.Configuration;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +31,8 @@ public class ConfigurationFragment extends Fragment {
     private FragmentConfigurationBinding binding;
 
     DatabaseHelper db;
-    Button btnnsave;
+    Button find_upload_button ,find_download_button;
+    EditText TextEditUploadPath,TextEditDownloadPath;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -53,12 +58,15 @@ public class ConfigurationFragment extends Fragment {
 
         DatabaseHelper db = new DatabaseHelper(this);
 
+        binding.TextEditUploadPath.setText("/storage/upload");
+        binding.TextEditDownloadPath.setText("/storage/download");
 
 
 
         binding.btnnsave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                /*NavHostFragment.findNavController(FirstFragment.this)
                         .navigate(R.id.action_FirstFragment_to_SecondFragment);*/
                 Toast.makeText(ConfigurationFragment.super.getContext(), "Button pressed", Toast.LENGTH_SHORT).show();
@@ -69,6 +77,31 @@ public class ConfigurationFragment extends Fragment {
         });
 
 
+        binding.findUploadButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                /*String path = Environment.getExternalStorageDirectory() + "/" + "Directory" + "/";
+                Uri uri = Uri.parse(path);
+                Intent intent = new Intent(Intent.ACTION_PICK);*/
+                //intent.setDataAndType(uri, "*/*");
+                //startActivity(intent);
+                /*int PICKFILE_REQUEST_CODE = 100;
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("file/*");
+                startActivityForResult(intent, PICKFILE_REQUEST_CODE);
+                //String FilePath = intent.getData().getPath();
+                startActivity(intent);*/
+                //Log.d("log","FilePath=" + FilePath);
+            }
+        });
+                /*protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+                if (requestCode == 100) {
+                String folderPath = intent.getDataString();
+                //TODO
+                return;
+                }
+                super.onActivityResult(requestCode, resultCode, data);}*/
     }
 
 

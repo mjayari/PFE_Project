@@ -46,6 +46,9 @@
         android:inputType="textPassword"
         app:passwordToggleEnabled="true" />
 
+
+
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="60dp"
