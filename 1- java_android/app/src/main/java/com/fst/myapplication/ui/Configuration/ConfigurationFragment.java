@@ -31,7 +31,7 @@ public class ConfigurationFragment extends Fragment {
     private FragmentConfigurationBinding binding;
 
     DatabaseHelper db;
-    Button find_upload_button ,find_download_button;
+    Button SaveSettingButton,find_upload_button ,find_download_button;
     EditText TextEditUploadPath,TextEditDownloadPath;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -63,7 +63,7 @@ public class ConfigurationFragment extends Fragment {
 
 
 
-        binding.btnnsave.setOnClickListener(new View.OnClickListener() {
+        binding.SaveSettingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 

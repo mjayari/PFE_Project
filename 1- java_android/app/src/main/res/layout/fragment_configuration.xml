@@ -76,7 +76,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btnnsave"
+        android:id="@+id/SaveSettingButton"
         android:layout_width="149dp"
         android:layout_height="58dp"
         android:layout_marginStart="60dp"
