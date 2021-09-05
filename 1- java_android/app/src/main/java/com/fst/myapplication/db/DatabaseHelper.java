@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -124,7 +125,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // on below line we are calling a update method to update our database and passing our values.
         // and we are comparing it with name of our course which is stored in original name variable.
-        db.update(Configuration.TABLE_NAME, values, "config_id=?", new String[]{"config1"});
+        Log.d("log","portNumber = " + portNumber);
+        db.update(Configuration.TABLE_NAME, values, "config_id=?", new String[]{"1"});
         db.close();
     }
 

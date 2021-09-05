@@ -87,7 +87,7 @@ public class ConfigurationFragment extends Fragment {
                         .navigate(R.id.action_FirstFragment_to_SecondFragment);*/
                     Toast.makeText(ConfigurationFragment.super.getContext(), "Button pressed", Toast.LENGTH_SHORT).show();
 
-                    db.addConfiguration(new Configuration(1, 8080, "/storage/uploadPath", "/storage/downloadPath"));
+                    //db.addConfiguration(new Configuration(1, 8080, "/storage/uploadPath", "/storage/downloadPath"));
 
                     db.updateConfiguration(portNumber, uploadPath, downloadPath);
                 }
