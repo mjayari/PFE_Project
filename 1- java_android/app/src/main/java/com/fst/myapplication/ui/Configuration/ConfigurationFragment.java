@@ -58,6 +58,7 @@ public class ConfigurationFragment extends Fragment {
 
         DatabaseHelper db = new DatabaseHelper(this);
 
+        binding.editTextPortNumber.setText("8080");
         binding.TextEditUploadPath.setText("/storage/upload");
         binding.TextEditDownloadPath.setText("/storage/download");
 
@@ -71,20 +72,25 @@ public class ConfigurationFragment extends Fragment {
                 String downloadPath;
 
                 Log.d("log", "portNumber =" + binding.editTextPortNumber.getText());
-                portNumber = Integer.parseInt(binding.editTextPortNumber.getText().toString());
-                //portNumber =binding.editTextPortNumber.getText().toString();
-                //portNumber = binding.editTextPortNumber.getText().length();
-                uploadPath = binding.TextEditUploadPath.getText().toString();
-                downloadPath = binding.TextEditDownloadPath.getText().toString();
-                Log.d("log", "portNumber =" + portNumber);
+                if (binding.editTextPortNumber.getText() == null) {
+                    Toast.makeText(ConfigurationFragment.super.getContext(), "port Number must be specified", Toast.LENGTH_SHORT).show();
+                    return;
+                } else {
+                    portNumber = Integer.parseInt(binding.editTextPortNumber.getText().toString());
+                    //portNumber =binding.editTextPortNumber.getText().toString();
+                    //portNumber = binding.editTextPortNumber.getText().length();
+                    uploadPath = binding.TextEditUploadPath.getText().toString();
+                    downloadPath = binding.TextEditDownloadPath.getText().toString();
+                    Log.d("log", "portNumber =" + portNumber);
 
-               /*NavHostFragment.findNavController(FirstFragment.this)
+                     /*NavHostFragment.findNavController(FirstFragment.this)
                         .navigate(R.id.action_FirstFragment_to_SecondFragment);*/
-                Toast.makeText(ConfigurationFragment.super.getContext(), "Button pressed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ConfigurationFragment.super.getContext(), "Button pressed", Toast.LENGTH_SHORT).show();
 
-                db.addConfiguration(new Configuration(1,8080,"/storage/uploadPath","/storage/downloadPath"));
+                    db.addConfiguration(new Configuration(1, 8080, "/storage/uploadPath", "/storage/downloadPath"));
 
-                db.updateConfiguration(portNumber,uploadPath,downloadPath);
+                    db.updateConfiguration(portNumber, uploadPath, downloadPath);
+                }
             }
         });
 
