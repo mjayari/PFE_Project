@@ -66,18 +66,32 @@ public class ConfigurationFragment extends Fragment {
         binding.SaveSettingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                int portNumber;
+                String uploadPath;
+                String downloadPath;
+
+                Log.d("log", "portNumber =" + binding.editTextPortNumber.getText());
+                portNumber = Integer.parseInt(binding.editTextPortNumber.getText().toString());
+                //portNumber =binding.editTextPortNumber.getText().toString();
+                //portNumber = binding.editTextPortNumber.getText().length();
+                uploadPath = binding.TextEditUploadPath.getText().toString();
+                downloadPath = binding.TextEditDownloadPath.getText().toString();
+                Log.d("log", "portNumber =" + portNumber);
 
                /*NavHostFragment.findNavController(FirstFragment.this)
                         .navigate(R.id.action_FirstFragment_to_SecondFragment);*/
                 Toast.makeText(ConfigurationFragment.super.getContext(), "Button pressed", Toast.LENGTH_SHORT).show();
 
-                db.addConfiguration(new Configuration("user1","8080","FIle1","File2"));
+                db.addConfiguration(new Configuration(1,8080,"/storage/uploadPath","/storage/downloadPath"));
 
+                db.updateConfiguration(portNumber,uploadPath,downloadPath);
             }
         });
 
 
         binding.findUploadButton.setOnClickListener(new View.OnClickListener() {
+            private static final int SELECT_FILE = 0;
+
             @Override
             public void onClick(View v) {
 
@@ -93,6 +107,19 @@ public class ConfigurationFragment extends Fragment {
                 //String FilePath = intent.getData().getPath();
                 startActivity(intent);*/
                 //Log.d("log","FilePath=" + FilePath);
+                Intent chooser = new Intent(Intent.ACTION_GET_CONTENT);
+                Uri uri = Uri.parse(Environment.getDownloadCacheDirectory().getPath().toString());
+                chooser.addCategory(Intent.CATEGORY_OPENABLE);
+                chooser.setDataAndType(uri, "*/*");
+// startActivity(chooser);
+                try {
+                    startActivityForResult(chooser, SELECT_FILE);
+                }
+                catch (android.content.ActivityNotFoundException ex)
+                {
+                    Toast.makeText(ConfigurationFragment.super.getContext(), "Please install a File Manager", Toast.LENGTH_SHORT).show();
+                    
+                }
             }
         });
                 /*protected void onActivityResult(int requestCode, int resultCode, Intent data) {

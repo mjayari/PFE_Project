@@ -9,31 +9,31 @@ public class Configuration {
         public static final String KEY_DOWNLOAD_PATH  = "download_path";
 
 
-        String config_id;
-        String port_number;
+        int config_id;
+        int port_number;
         String uploads_path;
         String download_path;
 
-public Configuration(String config_id, String port_number, String uploads_path, String download_path) {
+public Configuration(int config_id, int port_number, String uploads_path, String download_path) {
         this.config_id = config_id;
         this.port_number = port_number;
         this.uploads_path = uploads_path;
         this.download_path = download_path;
         }
 
-        public String getConfigId() {
+        public int getConfigId() {
         return config_id;
     }
 
-        public void setConfigId(String config_id) {
+        public void setConfigId(int config_id) {
         this.config_id = config_id;
     }
 
-        public String getPortNumber() {
+        public int getPortNumber() {
         return port_number;
     }
 
-        public void setPortNumber(String port_number) {
+        public void setPortNumber(int port_number) {
         this.port_number = port_number;
     }
 

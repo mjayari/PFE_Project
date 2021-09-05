@@ -14,7 +14,7 @@ import com.fst.myapplication.ui.Connexion.ConnexionFragment;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME  = "MyDatabase2.db";
+    private static final String DATABASE_NAME  = "MyDatabase5.db";
 
 
 
@@ -54,15 +54,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // Sql request for the creation of table Configuration
         String CREATE_TABLE_CONFIGURATION = "CREATE TABLE " + Configuration.TABLE_NAME
                 + "("
-                +Configuration.KEY_ID + " TEXT PRIMARY KEY,"
-                +Configuration.KEY_PORT_NUMBER + " TEXT,"
+                +Configuration.KEY_ID + " INTEGER PRIMARY KEY,"
+                +Configuration.KEY_PORT_NUMBER + " INTEGER,"
                 +Configuration.KEY_UPLOAD_PATH + " TEXT,"
                 +Configuration.KEY_DOWNLOAD_PATH + " TEXT"
                 + ")";
         db.execSQL(CREATE_TABLE_CONFIGURATION);
     }
-
-
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -110,6 +108,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.insert(Configuration.TABLE_NAME,null,values);
         db.close();
     }
+
+    // below is the method for updating our courses
+    public void updateConfiguration(int portNumber,String uploadPath,String downloadPath) {
+
+        // calling a method to get writable database.
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        // on below line we are passing all values
+        // along with its key and value pair.
+        values.put(Configuration.KEY_PORT_NUMBER, portNumber);
+        values.put(Configuration.KEY_UPLOAD_PATH, uploadPath);
+        values.put(Configuration.KEY_DOWNLOAD_PATH, downloadPath);
+
+        // on below line we are calling a update method to update our database and passing our values.
+        // and we are comparing it with name of our course which is stored in original name variable.
+        db.update(Configuration.TABLE_NAME, values, "config_id=?", new String[]{"config1"});
+        db.close();
+    }
+
+
+
     public int getConnexionRowsNumber(){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM CONNEXION" , null);
