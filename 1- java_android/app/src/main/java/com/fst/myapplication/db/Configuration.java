@@ -14,12 +14,14 @@ public class Configuration {
         String uploads_path;
         String download_path;
 
-public Configuration(int config_id, int port_number, String uploads_path, String download_path) {
-        this.config_id = config_id;
-        this.port_number = port_number;
-        this.uploads_path = uploads_path;
-        this.download_path = download_path;
+        public Configuration(int config_id, int port_number, String uploads_path, String download_path) {
+            this.config_id = config_id;
+            this.port_number = port_number;
+            this.uploads_path = uploads_path;
+            this.download_path = download_path;
         }
+
+        public Configuration() {}
 
         public int getConfigId() {
         return config_id;

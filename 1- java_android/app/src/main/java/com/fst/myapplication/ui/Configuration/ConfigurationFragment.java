@@ -19,6 +19,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.fst.myapplication.HttpServer;
 import com.fst.myapplication.databinding.FragmentConfigurationBinding;
 import com.fst.myapplication.databinding.FragmentConfigurationBinding;
 import com.fst.myapplication.db.Configuration;
@@ -57,6 +58,8 @@ public class ConfigurationFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         DatabaseHelper db = new DatabaseHelper(this);
+        HttpServer server = new HttpServer(this);
+
 
         binding.editTextPortNumber.setText("8080");
         binding.TextEditUploadPath.setText("/storage/upload");
@@ -101,6 +104,9 @@ public class ConfigurationFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+
+
+
                 /*String path = Environment.getExternalStorageDirectory() + "/" + "Directory" + "/";
                 Uri uri = Uri.parse(path);
                 Intent intent = new Intent(Intent.ACTION_PICK);*/
@@ -126,6 +132,15 @@ public class ConfigurationFragment extends Fragment {
                     Toast.makeText(ConfigurationFragment.super.getContext(), "Please install a File Manager", Toast.LENGTH_SHORT).show();
                     
                 }
+
+            }
+
+        });
+        binding.StartServerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                server.startServer();
+
             }
         });
                 /*protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -136,6 +151,7 @@ public class ConfigurationFragment extends Fragment {
                 }
                 super.onActivityResult(requestCode, resultCode, data);}*/
     }
+
 
 
     @Override

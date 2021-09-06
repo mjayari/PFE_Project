@@ -9,7 +9,10 @@ import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
+import com.fst.myapplication.HttpServer;
+import com.fst.myapplication.MainActivity;
 import com.fst.myapplication.ui.Configuration.ConfigurationFragment;
 import com.fst.myapplication.ui.Connexion.ConnexionFragment;
 
@@ -17,15 +20,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME  = "MyDatabase5.db";
 
+    public DatabaseHelper(@Nullable Fragment fragment) {
+        super(fragment.getContext(),DATABASE_NAME,null,DATABASE_VERSION);
+    }
 
-
-    public DatabaseHelper(@Nullable ConnexionFragment context) {
+    /*public DatabaseHelper(@Nullable ConnexionFragment context) {
         super(context.getContext(),DATABASE_NAME,null,DATABASE_VERSION);
     }
 
     public DatabaseHelper(@Nullable ConfigurationFragment context) {
         super(context.getContext(),DATABASE_NAME,null,DATABASE_VERSION);
-    }
+    }*/
+
+
+    /*public DatabaseHelper(@Nullable HttpServer context) {
+        super(context.getContext(),DATABASE_NAME,null,DATABASE_VERSION);
+    }*/
+
+
 
 
     @Override
@@ -156,6 +168,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
         else
             return false;
+    }
+
+    /*public Cursor alldata() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("select * from User ",null);
+        return cursor;
+    }*/
+
+    public Configuration getConfiguration(int config_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        try {
+            Cursor cursor = db.rawQuery("Select * from Configuration where config_id = ?", new String[]{String.valueOf(config_id)});
+            //Boolean b = cur.moveToFirst();
+            if (cursor.moveToFirst() == true) {
+                String portNumber = cursor.getString(cursor.getColumnIndex(Configuration.KEY_PORT_NUMBER));
+
+                Configuration config = new Configuration();
+                config.setPortNumber(Integer.parseInt(portNumber));
+
+                return config;
+            } else
+                return null;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
 
