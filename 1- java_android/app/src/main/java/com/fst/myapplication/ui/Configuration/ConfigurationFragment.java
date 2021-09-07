@@ -141,6 +141,12 @@ public class ConfigurationFragment extends Fragment {
             public void onClick(View v) {
                 server.startServer();
 
+                /*Thread bgThread = new Thread() {
+                    public void run() {
+                        server.startServer();
+                    }
+                };
+                bgThread.start();*/
             }
         });
                 /*protected void onActivityResult(int requestCode, int resultCode, Intent data) {

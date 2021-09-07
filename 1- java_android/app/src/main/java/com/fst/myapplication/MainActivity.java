@@ -19,6 +19,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.fst.myapplication.databinding.ActivityMainBinding;
 
+import java.io.IOException;
+import java.net.ServerSocket;
+
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
@@ -62,6 +65,17 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        int port = 12345;
+        Thread bgThread = new Thread() {
+            public void run() {
+            }
+        };
+        //bgThread.start();
+
+        Runnable runnable = new MyRunnable();
+        Thread thread = new Thread(runnable);
+        //thread.start();
     }
 
     @Override
@@ -76,5 +90,25 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    public class MyRunnable implements Runnable {
+        public void run() {
+            int port = 12345;
+                    try {
+                        ServerSocket serverSocket = new ServerSocket(port);
+                        //Socket socket = serverSocket.accept();
+                        Log.d("log","Server is running on port:" + port);
+
+                        serverSocket.close();
+
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        Log.d("log","Exception:" + e.getMessage());
+
+                    }
+
+        }
     }
 }
