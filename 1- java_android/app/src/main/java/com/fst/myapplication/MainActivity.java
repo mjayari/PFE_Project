@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
 
         //DatabaseHelper db = new DatabaseHelper(this);
 
-
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 

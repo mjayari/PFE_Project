@@ -26,6 +26,8 @@ import com.fst.myapplication.db.Configuration;
 import com.fst.myapplication.db.DatabaseHelper;
 import com.fst.myapplication.db.User;
 
+import java.io.IOException;
+
 public class ConfigurationFragment extends Fragment {
 
     private ConfigurationViewModel configurationViewModel;
@@ -140,6 +142,12 @@ public class ConfigurationFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 server.startServer();
+                if(server.status){
+                    binding.ServerStatusText.setText("Server Status: Running!");
+
+                } else
+                    binding.ServerStatusText.setText("Server Status: Closed!");
+
 
                 /*Thread bgThread = new Thread() {
                     public void run() {
@@ -156,6 +164,26 @@ public class ConfigurationFragment extends Fragment {
                 return;
                 }
                 super.onActivityResult(requestCode, resultCode, data);}*/
+
+        binding.StopServerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                server.serverSocket.isClosed();
+                if(! server.serverSocket.isClosed()){
+                    try {
+                        server.serverSocket.close();
+                        binding.ServerStatusText.setText("Server Status: Closed!");
+
+                    } catch (IOException ioException) {
+                        ioException.printStackTrace();
+                        Log.d("log","Exception: " +ioException.getMessage());
+                    }
+                }
+
+
+            }
+        });
+
     }
 
 

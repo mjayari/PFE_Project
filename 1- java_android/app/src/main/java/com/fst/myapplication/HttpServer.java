@@ -2,6 +2,7 @@ package com.fst.myapplication;
 import android.database.Cursor;
 import android.util.Log;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -23,7 +24,8 @@ public class HttpServer {
     static int portNumber;
 
     private Fragment fragment;
-    private ServerSocket serverSocket;
+    public ServerSocket serverSocket;
+    public boolean status = false;
 
     public HttpServer(Fragment fragment) {
         this.fragment = fragment;
@@ -44,7 +46,7 @@ public class HttpServer {
 
         Configuration config = db.getConfiguration(1);
         //int port = config.getPortNumber();
-        int port = 123457;
+        int port = 12345;
         Toast.makeText(this.fragment.getContext(), "portNumber = " + port, Toast.LENGTH_SHORT).show();
         Log.d("log","portNumber:" + port);
 
@@ -67,6 +69,7 @@ public class HttpServer {
         try {
             ServerListenerThread serverListener = new ServerListenerThread(port);
             serverListener.start();
+
 
         } catch (IOException ex) {
             System.out.println("Server exception: " + ex.getMessage());
@@ -102,6 +105,7 @@ public class HttpServer {
             this.port=port;
             serverSocket = new ServerSocket(port) ;
             Log.d("log", "Server is running on port: " + port);
+            status = true;
         }
         public void run() {
             try {
@@ -150,7 +154,7 @@ public class HttpServer {
                         "</title></head>" +
                         "<body>" +
                         "<h1>" +
-                        "This page was served using my Simple Java HTTP Server" +
+                        "This page was served using my Simple Java HTTP Server 1-DEV" +
                         "</h1>" +
                         "</body>" +
                         "</html>";
