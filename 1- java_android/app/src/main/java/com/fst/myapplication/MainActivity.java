@@ -1,7 +1,11 @@
 package com.fst.myapplication;
 
+import static androidx.core.content.ContextCompat.getSystemService;
+
 import android.content.Intent;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
+import android.text.format.Formatter;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
@@ -26,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
+    public String ipAdress = null;
 
     /*protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         String Fpath = data.getDataString();
@@ -75,6 +80,12 @@ public class MainActivity extends AppCompatActivity {
         Runnable runnable = new MyRunnable();
         Thread thread = new Thread(runnable);
         //thread.start();
+
+       /* WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+        String ipAddress = Formatter.formatIpAddress(wifiManager.getConnectionInfo().getIpAddress());
+        //.setText("Your Device IP Address: " + ipAddress);
+        Log.d("log","Ip Address = " +ipAddress);
+        this.ipAdress = ipAddress;*/
     }
 
     @Override

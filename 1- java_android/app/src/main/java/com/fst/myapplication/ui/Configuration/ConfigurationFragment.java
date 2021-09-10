@@ -1,9 +1,15 @@
 package com.fst.myapplication.ui.Configuration;
 
+import static android.content.Context.WIFI_SERVICE;
+import static androidx.core.content.ContextCompat.getSystemService;
+
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Environment;
+import android.text.format.Formatter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +26,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.fst.myapplication.HttpServer;
+import com.fst.myapplication.MainActivity;
 import com.fst.myapplication.databinding.FragmentConfigurationBinding;
 import com.fst.myapplication.databinding.FragmentConfigurationBinding;
 import com.fst.myapplication.db.Configuration;
@@ -66,6 +73,16 @@ public class ConfigurationFragment extends Fragment {
         binding.editTextPortNumber.setText("8080");
         binding.TextEditUploadPath.setText("/storage/upload");
         binding.TextEditDownloadPath.setText("/storage/download");
+
+        Context context = ConfigurationFragment.super.getContext();
+        /*WifiManager wifiManager = (WifiManager) context.getSystemService(WIFI_SERVICE);
+        String ipAddress = Formatter.formatIpAddress(wifiManager.getConnectionInfo().getIpAddress());
+        .setText("Your Device IP Address: " + ipAddress);
+        Log.d("log","Ip Address = " +ipAddress);*/
+
+        String ipAdress = server.wifiIpAddress(context);
+        Log.d("log","Ip Address: " +ipAdress);
+        binding.LocalIpAddressText.setText("http://" + ipAdress +":"+ server.port);
 
 
 
@@ -147,6 +164,11 @@ public class ConfigurationFragment extends Fragment {
 
                 } else
                     binding.ServerStatusText.setText("Server Status: Closed!");
+
+                /*textView = (TextView) findViewById(R.id.android_device_ip_address);
+                WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
+                String ipAddress = Formatter.formatIpAddress(wifiManager.getConnectionInfo().getIpAddress());
+                textView.setText("Your Device IP Address: " + ipAddress);*/
 
 
                 /*Thread bgThread = new Thread() {

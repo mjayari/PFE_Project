@@ -1,5 +1,10 @@
 package com.fst.myapplication;
+import static android.content.Context.WIFI_SERVICE;
+
+import android.content.Context;
 import android.database.Cursor;
+import android.net.wifi.WifiManager;
+import android.text.format.Formatter;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -26,6 +31,7 @@ public class HttpServer {
     private Fragment fragment;
     public ServerSocket serverSocket;
     public boolean status = false;
+    public int port = 12345;
 
     public HttpServer(Fragment fragment) {
         this.fragment = fragment;
@@ -195,8 +201,12 @@ public class HttpServer {
         }
     }
 
+    public String wifiIpAddress(Context context) {
+        WifiManager wifiManager = (WifiManager) context.getSystemService(WIFI_SERVICE);
+        int ipAddress = wifiManager.getConnectionInfo().getIpAddress();
 
-
+        return Formatter.formatIpAddress(ipAddress);
+    }
 }
 
 
