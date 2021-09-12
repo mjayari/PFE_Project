@@ -30,6 +30,7 @@ import com.fst.myapplication.MainActivity;
 import com.fst.myapplication.databinding.FragmentConfigurationBinding;
 import com.fst.myapplication.databinding.FragmentConfigurationBinding;
 import com.fst.myapplication.db.Configuration;
+import com.fst.myapplication.db.Connexion;
 import com.fst.myapplication.db.DatabaseHelper;
 import com.fst.myapplication.db.User;
 
@@ -103,15 +104,17 @@ public class ConfigurationFragment extends Fragment {
                     //portNumber = binding.editTextPortNumber.getText().length();
                     uploadPath = binding.TextEditUploadPath.getText().toString();
                     downloadPath = binding.TextEditDownloadPath.getText().toString();
-                    Log.d("log", "portNumber =" + portNumber);
+                    //Log.d("log", "portNumber =" + portNumber);
+
 
                      /*NavHostFragment.findNavController(FirstFragment.this)
                         .navigate(R.id.action_FirstFragment_to_SecondFragment);*/
                     Toast.makeText(ConfigurationFragment.super.getContext(), "Button pressed", Toast.LENGTH_SHORT).show();
-
-                    //db.addConfiguration(new Configuration(1, 8080, "/storage/uploadPath", "/storage/downloadPath"));
-
-                    db.updateConfiguration(portNumber, uploadPath, downloadPath);
+                    if (db.getConfigurationRowsNumber() > 0) {
+                        db.updateConfiguration(portNumber, uploadPath, downloadPath);
+                    } else
+                        db.addConfiguration(new Configuration(1, portNumber, uploadPath, downloadPath));
+                    Log.d("log","RowsNumber:" + db.getConfigurationRowsNumber());
                 }
             }
         });

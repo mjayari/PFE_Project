@@ -18,7 +18,7 @@ import com.fst.myapplication.ui.Connexion.ConnexionFragment;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME  = "MyDatabase5.db";
+    private static final String DATABASE_NAME  = "MyDatabase6.db";
 
     public DatabaseHelper(@Nullable Fragment fragment) {
         super(fragment.getContext(),DATABASE_NAME,null,DATABASE_VERSION);
@@ -147,6 +147,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public int getConnexionRowsNumber(){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM CONNEXION" , null);
+        return cursor.getCount();
+    }
+
+    public int getConfigurationRowsNumber(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM CONFIGURATION" , null);
         return cursor.getCount();
     }
 
