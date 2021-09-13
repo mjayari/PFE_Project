@@ -93,7 +93,6 @@ public class ConfigurationFragment extends Fragment {
                 int portNumber;
                 String uploadPath;
                 String downloadPath;
-
                 Log.d("log", "portNumber =" + binding.editTextPortNumber.getText());
                 if (binding.editTextPortNumber.getText() == null) {
                     Toast.makeText(ConfigurationFragment.super.getContext(), "port Number must be specified", Toast.LENGTH_SHORT).show();
@@ -109,7 +108,7 @@ public class ConfigurationFragment extends Fragment {
 
                      /*NavHostFragment.findNavController(FirstFragment.this)
                         .navigate(R.id.action_FirstFragment_to_SecondFragment);*/
-                    Toast.makeText(ConfigurationFragment.super.getContext(), "Button pressed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ConfigurationFragment.super.getContext(), "Port Number : " + binding.editTextPortNumber.getText() , Toast.LENGTH_SHORT).show();
                     if (db.getConfigurationRowsNumber() > 0) {
                         db.updateConfiguration(portNumber, uploadPath, downloadPath);
                     } else
@@ -197,7 +196,7 @@ public class ConfigurationFragment extends Fragment {
                 if(! server.serverSocket.isClosed()){
                     try {
                         server.serverSocket.close();
-                        binding.ServerStatusText.setText("Server Status: Closed!");
+                        binding.ServerStatusText.setText("Server Status: Stoped!");
 
                     } catch (IOException ioException) {
                         ioException.printStackTrace();
