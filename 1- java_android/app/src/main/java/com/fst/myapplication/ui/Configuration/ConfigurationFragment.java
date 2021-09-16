@@ -176,9 +176,16 @@ public class ConfigurationFragment extends Fragment {
                 } else
                     binding.ServerStatusText.setText("Server Status: Closed!");*/
 
+
                 if ( ConfigurationFragment.super.getActivity().checkCallingOrSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
                         != PackageManager.PERMISSION_GRANTED ) {
                     requestPermissions(new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+
+                }
+
+                if ( ConfigurationFragment.super.getActivity().checkCallingOrSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                        != PackageManager.PERMISSION_GRANTED ) {
+                    requestPermissions(new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
 
                 }
 
@@ -187,7 +194,7 @@ public class ConfigurationFragment extends Fragment {
                 //int port = Integer.parseInt(binding.editTextPortNumber.getText().toString());
 
                 //File wwwroot = new File("C:\\+Backup\\Journal").getAbsoluteFile();
-                File wwwroot = new File("/storage/emulated/0/").getAbsoluteFile();
+                File wwwroot = new File("/storage/emulated/0/DCIM").getAbsoluteFile();
                 //File wwwroot = new File("/storage/101F-3807/").getAbsoluteFile();
                 Log.d("log","port:" + port);
                 Log.d("log","root:" + wwwroot.getAbsolutePath());

@@ -5,18 +5,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LifecycleObserver;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.fst.myapplication.HttpServer;
 import com.fst.myapplication.databinding.FragmentFiletransferBinding;
+import com.fst.myapplication.http.HttpFileDownloader;
 import com.fst.myapplication.http.HttpUrlOpener;
 
 public class FiletransferFragment extends Fragment {
@@ -60,7 +56,11 @@ public class FiletransferFragment extends Fragment {
                 //url = "http://192.168.1.23:12345";
                 Log.d("log","url:" + url);
 
-                new HttpUrlOpener().urlConnect(url);
+                new Thread(){
+                    public void run(){
+                        new HttpUrlOpener().urlConnect(url);
+                    }
+                }.start();
 
 
 
@@ -70,6 +70,22 @@ public class FiletransferFragment extends Fragment {
         binding.downloadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String fileURL = "http://192.168.1.3:12345/Camera/20210915_160855.mp4";
+
+                String saveDir = "/storage/emulated/0/DCIM/Download";
+
+                new Thread() {
+                    public void run() {
+                        try {
+                            //sleep(5000);
+                            new HttpFileDownloader().downloadFile(fileURL, saveDir);
+                        } catch (Exception e1) {
+                            // TODO Auto-generated catch block
+                            e1.printStackTrace();
+                            Log.d("log","Exception" + e1.getMessage());
+                        }
+                    }
+                }.start();
 
             }
         });
