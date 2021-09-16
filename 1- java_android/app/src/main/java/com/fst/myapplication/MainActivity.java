@@ -3,12 +3,14 @@ package com.fst.myapplication;
 import static androidx.core.content.ContextCompat.getSystemService;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.text.format.Formatter;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Toast;
 
 import com.fst.myapplication.db.DatabaseHelper;
 import com.google.android.material.snackbar.Snackbar;
@@ -131,4 +133,17 @@ public class MainActivity extends AppCompatActivity {
         public void execute() {
         }
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if(requestCode == 1) {
+            if(grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                Toast.makeText(MainActivity.this, "permission granted", Toast.LENGTH_SHORT).show();
+            else
+                Toast.makeText(MainActivity.this, "permission denied", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 }

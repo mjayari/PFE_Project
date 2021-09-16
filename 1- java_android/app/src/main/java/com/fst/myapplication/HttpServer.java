@@ -47,7 +47,8 @@ public class HttpServer {
     private Fragment fragment;
     public ServerSocket serverSocket;
     public boolean status = false;
-    public int port = 12345;
+    public int   port = 12345;
+    //public String port = editTextPortNumber.getText().toString();
 
     public HttpServer(Fragment fragment) {
         this.fragment = fragment;
@@ -66,9 +67,10 @@ public class HttpServer {
         //System.out.println("Using webroot " + conf.getwebroot());
         //portNumber = Integer.parseInt (editTextPortNumber.getText().toString());
 
-        Configuration config = db.getConfiguration(1);
+        //Configuration config = db.getConfiguration(1);
         //int port = config.getPortNumber();
         int port = 12345;
+
         Toast.makeText(this.fragment.getContext(), "portNumber = " +port , Toast.LENGTH_SHORT).show();
         Log.d("log","portNumber:" + port);
 
@@ -335,6 +337,7 @@ public class HttpServer {
                 return null;
             }
         }*/
+
 
     }
 

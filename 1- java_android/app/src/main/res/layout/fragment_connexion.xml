@@ -9,17 +9,14 @@
 
     <Button
         android:id="@+id/login_button"
-        android:layout_width="121dp"
-        android:layout_height="47dp"
+        android:layout_width="118dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="282dp"
-        android:layout_marginEnd="243dp"
-        android:layout_marginBottom="276dp"
+        android:layout_marginStart="58dp"
+        android:layout_marginEnd="235dp"
+        android:layout_marginBottom="294dp"
         android:text="Login" />
 
     <Button
@@ -27,15 +24,13 @@
         android:layout_width="121dp"
         android:layout_height="47dp"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="231dp"
-        android:layout_marginTop="280dp"
-        android:layout_marginEnd="57dp"
-        android:layout_marginBottom="277dp"
+        android:layout_marginStart="230dp"
+        android:layout_marginEnd="58dp"
+        android:layout_marginBottom="296dp"
         android:text="SignUp" />
+
 
     <EditText
         android:id="@+id/password_input"
@@ -217,19 +212,22 @@
         android:ems="10"
         android:inputType="textPersonName" />
 
-    <View
+
+
+    <EditText
+        android:id="@+id/editTextTime"
         android:layout_width="wrap_content"
-        android:layout_height="3dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="76dp"
-        android:layout_marginTop="460dp"
-        android:layout_marginEnd="87dp"
-        android:layout_marginBottom="141dp"
-        android:background="#151414"
+        android:layout_marginStart="110dp"
+        android:layout_marginBottom="139dp"
+        android:ems="10"
+        android:inputType="time"
         android:rotation="90" />
+
+
+    />
 
 </RelativeLayout>

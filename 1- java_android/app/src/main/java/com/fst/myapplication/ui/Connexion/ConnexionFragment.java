@@ -40,6 +40,7 @@ public class ConnexionFragment extends Fragment {
     Button login_button, signup_button;
 
 
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         connexionViewModel =

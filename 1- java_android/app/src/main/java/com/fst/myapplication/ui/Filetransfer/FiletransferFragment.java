@@ -1,6 +1,7 @@
 package com.fst.myapplication.ui.Filetransfer;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,11 +11,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.fst.myapplication.HttpServer;
 import com.fst.myapplication.databinding.FragmentFiletransferBinding;
+import com.fst.myapplication.http.HttpUrlOpener;
 
 public class FiletransferFragment extends Fragment {
 
@@ -53,12 +56,25 @@ public class FiletransferFragment extends Fragment {
             public void onClick(View v) {
                 String url = binding.editTextUrl.getText().toString();
 
-                server.urlConnect(url);
+                //server.urlConnect(url);
+                //url = "http://192.168.1.23:12345";
+                Log.d("log","url:" + url);
+
+                new HttpUrlOpener().urlConnect(url);
+
+
 
             }
         });
 
-     /*  binding.button.setOnClickListener(new View.OnClickListener() {
+        binding.downloadButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+                /*  binding.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(FirstFragment.this)

@@ -3,8 +3,10 @@ package com.fst.myapplication.ui.Configuration;
 import static android.content.Context.WIFI_SERVICE;
 import static androidx.core.content.ContextCompat.getSystemService;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
@@ -33,7 +35,9 @@ import com.fst.myapplication.db.Configuration;
 import com.fst.myapplication.db.Connexion;
 import com.fst.myapplication.db.DatabaseHelper;
 import com.fst.myapplication.db.User;
+import com.fst.myapplication.http.NanoHTTPD;
 
+import java.io.File;
 import java.io.IOException;
 
 public class ConfigurationFragment extends Fragment {
@@ -42,8 +46,12 @@ public class ConfigurationFragment extends Fragment {
     private FragmentConfigurationBinding binding;
 
     DatabaseHelper db;
+    NanoHTTPD server2;
     Button SaveSettingButton,find_upload_button ,find_download_button;
     EditText TextEditUploadPath,TextEditDownloadPath;
+
+
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -157,15 +165,51 @@ public class ConfigurationFragment extends Fragment {
             }
 
         });
+
         binding.StartServerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                server.startServer();
+                /*server.startServer();
                 if(server.status){
                     binding.ServerStatusText.setText("Server Status: Running!");
 
                 } else
-                    binding.ServerStatusText.setText("Server Status: Closed!");
+                    binding.ServerStatusText.setText("Server Status: Closed!");*/
+
+                if ( ConfigurationFragment.super.getActivity().checkCallingOrSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+                        != PackageManager.PERMISSION_GRANTED ) {
+                    requestPermissions(new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+
+                }
+
+                //NanoHTTPD.startServer(new String[]{});
+                int port = 12345;
+                //int port = Integer.parseInt(binding.editTextPortNumber.getText().toString());
+
+                //File wwwroot = new File("C:\\+Backup\\Journal").getAbsoluteFile();
+                File wwwroot = new File("/storage/emulated/0/").getAbsoluteFile();
+                //File wwwroot = new File("/storage/101F-3807/").getAbsoluteFile();
+                Log.d("log","port:" + port);
+                Log.d("log","root:" + wwwroot.getAbsolutePath());
+
+                try
+                {
+                    server2 = new NanoHTTPD( port, wwwroot );
+                    server2.status=true;
+                    binding.ServerStatusText.setText("Server Status: Running!");
+
+                }
+                catch( IOException ioe )
+                {
+                    System.err.println( "Couldn't start server:\n" + ioe );
+                    System.exit( -1 );
+                    server2.status=false;
+                    binding.ServerStatusText.setText("Server Status: Stopped!");
+                }
+
+                System.out.println( "Now serving files in port " + port + " from \"" + wwwroot + "\"" );
+                Log.d("log", "Now serving files in port " + port + " from \"" + wwwroot + "\""  );
+
 
                 /*textView = (TextView) findViewById(R.id.android_device_ip_address);
                 WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
@@ -192,7 +236,7 @@ public class ConfigurationFragment extends Fragment {
         binding.StopServerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                server.serverSocket.isClosed();
+                /*server.serverSocket.isClosed();
                 if(! server.serverSocket.isClosed()){
                     try {
                         server.serverSocket.close();
@@ -202,7 +246,14 @@ public class ConfigurationFragment extends Fragment {
                         ioException.printStackTrace();
                         Log.d("log","Exception: " +ioException.getMessage());
                     }
-                }
+                }*/
+                server2.stop();
+                if(server2.status)
+                    binding.ServerStatusText.setText("Server Status: Running!");
+                else
+                    binding.ServerStatusText.setText("Server Status: Stopped!");
+
+
 
 
             }
