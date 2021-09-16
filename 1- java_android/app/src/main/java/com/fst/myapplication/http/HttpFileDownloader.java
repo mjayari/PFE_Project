@@ -125,6 +125,8 @@ public class HttpFileDownloader {
                         + String.format("%.2f", prog) + " % | "
                         + getFileSize(writtenBytes) );
 
+
+
             }
             
  

@@ -15,6 +15,8 @@ import com.fst.myapplication.databinding.FragmentFiletransferBinding;
 import com.fst.myapplication.http.HttpFileDownloader;
 import com.fst.myapplication.http.HttpUrlOpener;
 
+import java.io.OutputStream;
+
 public class FiletransferFragment extends Fragment {
 
     private FiletransferViewModel filetransferViewModel;
@@ -72,7 +74,7 @@ public class FiletransferFragment extends Fragment {
             public void onClick(View v) {
                 String fileURL = "http://192.168.1.3:12345/Camera/20210915_160855.mp4";
 
-                String saveDir = "/storage/emulated/0/DCIM/Download";
+                String saveDir = "/storage/emulated/0/DCIM/";
 
                 new Thread() {
                     public void run() {
@@ -84,8 +86,15 @@ public class FiletransferFragment extends Fragment {
                             e1.printStackTrace();
                             Log.d("log","Exception" + e1.getMessage());
                         }
+                        binding.progresstextview.setText(" progress:" +
+                                        writtenBytes
+                                        + " | " + contentLength + " | "
+                                        + String.format("%.2f", prog) + " % | "
+                                        + getFileSize(writtenBytes)
+                                );
                     }
                 }.start();
+
 
             }
         });
