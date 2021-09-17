@@ -1,6 +1,9 @@
 package com.fst.myapplication.http;
 
+import android.app.Dialog;
 import android.util.Log;
+
+import com.fst.myapplication.databinding.FragmentFiletransferBinding;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -17,10 +20,17 @@ import java.text.DecimalFormat;
  * @author www.codejava.net
  *
  */
+
 public class HttpFileDownloader {
     private static final int BUFFER_SIZE = 4096;
-    
-    
+    //private FragmentFiletransferBinding binding;
+    FragmentFiletransferBinding binding = null;
+
+    public HttpFileDownloader ( FragmentFiletransferBinding binding) {
+        this.binding = binding;
+    }
+
+
     public static void main(String[] args) {    	
     	//String fileURL = "http://localhost:12345/toSave/Projects/BlueStacks_4.32.90.1001_x64.zip";
     	//String fileURL = "http://localhost:12345/toSave/Projects/Detective.Chinatown.3.2021.1080p.BluRay.x264.AAC5.1-[YTS.MX].mp4";
@@ -35,7 +45,7 @@ public class HttpFileDownloader {
     		public void run() {
     			try {
     				//sleep(5000);
-    	    		new HttpFileDownloader().downloadFile(fileURL, saveDir);
+    	    		//new HttpFileDownloader().downloadFile(fileURL, saveDir);
     	    	} catch (Exception e) {
     				// TODO Auto-generated catch block
     				e.printStackTrace();
@@ -58,6 +68,7 @@ public class HttpFileDownloader {
         HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
         int responseCode = httpConn.getResponseCode();
         Log.d("log", "responseCode = " + responseCode);
+        //binding.progressTextView.setText("Text view");
 
         // always check HTTP response code first
         if (responseCode == HttpURLConnection.HTTP_OK) {
@@ -125,8 +136,10 @@ public class HttpFileDownloader {
                         + String.format("%.2f", prog) + " % | "
                         + getFileSize(writtenBytes) );
 
-
-
+                binding.progressTextView.setText(writtenBytes
+                        + " | " + contentLength + " | "
+                        + String.format("%.2f", prog) + " % | "
+                        + getFileSize(writtenBytes));
             }
             
  
@@ -139,6 +152,22 @@ public class HttpFileDownloader {
         }
         httpConn.disconnect();
     }
+
+    /*public Dialog onCreateDialog(int id) {
+        switch (id) {
+            case DIALOG_DOWNLOAD_PROGRESS: //we set this to 0
+                mProgressDialog = new ProgressDialog(this);
+                mProgressDialog.setMessage("Downloading file...");
+                mProgressDialog.setIndeterminate(false);
+                mProgressDialog.setMax(100);
+                mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+                mProgressDialog.setCancelable(true);
+                mProgressDialog.show();
+                return mProgressDialog;
+            default:
+                return null;
+        }
+    }*/
     
     public String getFileSize(long sizeInBytes) {
     	if ( sizeInBytes < 1024 )
@@ -148,6 +177,6 @@ public class HttpFileDownloader {
 		else
 			return sizeInBytes/(1024*1024) + "." + sizeInBytes%(1024*1024)/10%100 + " MB";
     }
-    
-    
+
+
 }	

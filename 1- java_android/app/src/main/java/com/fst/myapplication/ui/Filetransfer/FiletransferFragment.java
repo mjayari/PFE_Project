@@ -72,26 +72,22 @@ public class FiletransferFragment extends Fragment {
         binding.downloadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String fileURL = "http://192.168.1.3:12345/Camera/20210915_160855.mp4";
+                String fileURL = "http://192.168.1.2:12345/Camera/20210915_160855.mp4";
 
-                String saveDir = "/storage/emulated/0/DCIM/";
+                String saveDir = "/storage/emulated/0/Download/";
 
                 new Thread() {
                     public void run() {
                         try {
                             //sleep(5000);
-                            new HttpFileDownloader().downloadFile(fileURL, saveDir);
+                            new HttpFileDownloader(binding).downloadFile(fileURL, saveDir);
+
                         } catch (Exception e1) {
                             // TODO Auto-generated catch block
                             e1.printStackTrace();
                             Log.d("log","Exception" + e1.getMessage());
                         }
-                        binding.progresstextview.setText(" progress:" +
-                                        writtenBytes
-                                        + " | " + contentLength + " | "
-                                        + String.format("%.2f", prog) + " % | "
-                                        + getFileSize(writtenBytes)
-                                );
+
                     }
                 }.start();
 
