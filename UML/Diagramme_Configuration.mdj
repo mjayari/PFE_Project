@@ -5775,7 +5775,7 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": -48,
+											"left": -80,
 											"top": -128,
 											"height": 13
 										},
@@ -5786,9 +5786,9 @@
 												"$ref": "AAAAAAF7jWA+WLLkk+E="
 											},
 											"font": "Arial;13;1",
-											"left": 293,
+											"left": 277,
 											"top": 39,
-											"width": 175,
+											"width": 407,
 											"height": 13,
 											"text": "Configuration"
 										},
@@ -5800,7 +5800,7 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": -48,
+											"left": -80,
 											"top": -128,
 											"width": 80.9072265625,
 											"height": 13,
@@ -5814,16 +5814,16 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": -48,
+											"left": -80,
 											"top": -128,
 											"height": 13,
 											"horizontalAlignment": 1
 										}
 									],
 									"font": "Arial;13;0",
-									"left": 288,
+									"left": 272,
 									"top": 32,
-									"width": 185,
+									"width": 417,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAF7jWA+WLLlFH0="
@@ -5840,9 +5840,9 @@
 								}
 							],
 							"font": "Arial;13;0",
-							"left": 288,
+							"left": 272,
 							"top": 32,
-							"width": 185,
+							"width": 417,
 							"height": 305,
 							"nameCompartment": {
 								"$ref": "AAAAAAF7jWA+WLLkk+E="

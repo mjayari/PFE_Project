@@ -5788,7 +5788,7 @@
 											"font": "Arial;13;1",
 											"left": 293,
 											"top": 39,
-											"width": 175,
+											"width": 391,
 											"height": 13,
 											"text": "Connexion"
 										},
@@ -5823,7 +5823,7 @@
 									"font": "Arial;13;0",
 									"left": 288,
 									"top": 32,
-									"width": 185,
+									"width": 401,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAF7jWA+WLLlFH0="
@@ -5842,8 +5842,8 @@
 							"font": "Arial;13;0",
 							"left": 288,
 							"top": 32,
-							"width": 185,
-							"height": 305,
+							"width": 401,
+							"height": 337,
 							"nameCompartment": {
 								"$ref": "AAAAAAF7jWA+WLLkk+E="
 							}
