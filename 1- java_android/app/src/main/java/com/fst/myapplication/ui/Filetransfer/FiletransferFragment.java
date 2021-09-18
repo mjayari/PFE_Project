@@ -12,9 +12,12 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.fst.myapplication.HttpServer;
 import com.fst.myapplication.databinding.FragmentFiletransferBinding;
+import com.fst.myapplication.db.Configuration;
+import com.fst.myapplication.db.DatabaseHelper;
 import com.fst.myapplication.http.HttpFileDownloader;
 import com.fst.myapplication.http.HttpUrlOpener;
 
+import java.io.File;
 import java.io.OutputStream;
 
 public class FiletransferFragment extends Fragment {
@@ -47,6 +50,7 @@ public class FiletransferFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         HttpServer server = new HttpServer(this);
+        DatabaseHelper db = new DatabaseHelper(this);
 
 
         binding.ConnectButton.setOnClickListener(new View.OnClickListener() {
@@ -75,7 +79,6 @@ public class FiletransferFragment extends Fragment {
                 //String fileURL = "http://192.168.1.2:12345/Camera/20210915_160855.mp4";
                 String fileURL = "http://10.0.2.16:12345/InterfacePrincipale.mp4";
 
-
                 String saveDir = "/storage/emulated/0/Download";
 
                 new Thread() {
@@ -94,6 +97,32 @@ public class FiletransferFragment extends Fragment {
                 }.start();
 
 
+            }
+        });
+
+        binding.refrechDownloadLocalButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Configuration configuration = db.getConfiguration(1);
+                String downloadPath = configuration.getDownloadPath();
+                //String downloadPath = "/storage/emulated/0/DCIM";
+
+                File folder = new File(downloadPath);
+                File[] listOfFiles = folder.listFiles();
+
+                String fileList = "";
+                for (int i = 0; i < listOfFiles.length; i++) {
+                    if (listOfFiles[i].isFile()) {
+                        System.out.println("File " + listOfFiles[i].getName());
+                        Log.d("log","File" + listOfFiles[i].getName());
+                        fileList += listOfFiles[i].getName() + "\n";
+                    } else if (listOfFiles[i].isDirectory()) {
+                        System.out.println("Directory " + listOfFiles[i].getName());
+                        Log.d("log","Directory" + listOfFiles[i].getName());
+
+                    }
+                }
+                binding.downloadPathLocalText.setText(fileList);
             }
         });
 

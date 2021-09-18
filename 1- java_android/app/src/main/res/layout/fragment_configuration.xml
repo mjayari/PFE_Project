@@ -184,31 +184,30 @@
 
     <EditText
         android:id="@+id/TextEditUploadPath"
-        android:layout_width="402dp"
-        android:layout_height="35dp"
+        android:layout_width="344dp"
+        android:layout_height="33dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.089"
+        app:layout_constraintHorizontal_bias="0.238"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.173" />
+        app:layout_constraintVertical_bias="0.184" />
 
     <EditText
         android:id="@+id/TextEditDownloadPath"
-        android:layout_width="403dp"
-        android:layout_height="32dp"
+        android:layout_width="373dp"
+        android:layout_height="36dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.089"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.311" />
+        app:layout_constraintVertical_bias="0.316" />
 
     <EditText
         android:id="@+id/editTextPortNumber"

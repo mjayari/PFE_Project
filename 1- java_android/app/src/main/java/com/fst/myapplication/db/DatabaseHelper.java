@@ -189,9 +189,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             //Boolean b = cur.moveToFirst();
             if (cursor.moveToFirst() == true) {
                 String portNumber = cursor.getString(cursor.getColumnIndex(Configuration.KEY_PORT_NUMBER));
+                String downloadPath = cursor.getString(cursor.getColumnIndex(Configuration.KEY_DOWNLOAD_PATH));
+                String uploadPath = cursor.getString(cursor.getColumnIndex(Configuration.KEY_UPLOAD_PATH));
 
                 Configuration config = new Configuration();
                 config.setPortNumber(Integer.parseInt(portNumber));
+                config.setDownloadPath(downloadPath);
+                config.setUploadsPath(uploadPath);
 
                 return config;
             } else

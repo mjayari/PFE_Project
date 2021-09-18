@@ -78,10 +78,18 @@ public class ConfigurationFragment extends Fragment {
         DatabaseHelper db = new DatabaseHelper(this);
         HttpServer server = new HttpServer(this);
 
+        //binding.editTextPortNumber.setText("8080");
+        //binding.TextEditUploadPath.setText("/storage/upload");
+        //binding.TextEditDownloadPath.setText("/storage/download");
 
-        binding.editTextPortNumber.setText("8080");
-        binding.TextEditUploadPath.setText("/storage/upload");
-        binding.TextEditDownloadPath.setText("/storage/download");
+        Configuration configuration = db.getConfiguration(1);
+        int portNumber = configuration.getPortNumber();
+        String downloadPath = configuration.getDownloadPath();
+        String uploadPath = configuration.getUploadsPath();
+
+        binding.editTextPortNumber.setText(String.valueOf(portNumber));
+        binding.TextEditUploadPath.setText(uploadPath);
+        binding.TextEditDownloadPath.setText(downloadPath);
 
         Context context = ConfigurationFragment.super.getContext();
         /*WifiManager wifiManager = (WifiManager) context.getSystemService(WIFI_SERVICE);

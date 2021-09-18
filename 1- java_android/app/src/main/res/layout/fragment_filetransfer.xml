@@ -41,7 +41,7 @@
         app:layout_constraintVertical_bias="0.275" />
 
     <Button
-        android:id="@+id/refrechButton1"
+        android:id="@+id/refrechUploadRemoteButton"
         android:layout_width="110dp"
         android:layout_height="38dp"
         android:text="Refrech"
@@ -53,7 +53,7 @@
         app:layout_constraintVertical_bias="0.61" />
 
     <Button
-        android:id="@+id/refrechButton2"
+        android:id="@+id/refrechDownloadLocalButton"
         android:layout_width="110dp"
         android:layout_height="38dp"
         android:text="Refrech"
@@ -136,14 +136,14 @@
         android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/textView26"
+        app:layout_constraintEnd_toStartOf="@+id/downloadPathLocalText"
         app:layout_constraintHorizontal_bias="0.427"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.825" />
 
     <TextView
-        android:id="@+id/textView26"
+        android:id="@+id/downloadPathLocalText"
         android:layout_width="138dp"
         android:layout_height="123dp"
         android:text="       file url1"
