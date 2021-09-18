@@ -136,9 +136,8 @@ public class HttpFileDownloader {
                         + String.format("%.2f", prog) + " % | "
                         + getFileSize(writtenBytes) );
 
-                binding.progressTextView.setText(writtenBytes
-                        + " | " + contentLength + " | "
-                        + String.format("%.2f", prog) + " % | "
+                binding.progressTextView.setText(
+                        String.format("%.2f", prog) + " % | "
                         + getFileSize(writtenBytes));
             }
             

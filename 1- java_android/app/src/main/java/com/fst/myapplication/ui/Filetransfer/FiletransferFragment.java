@@ -72,9 +72,11 @@ public class FiletransferFragment extends Fragment {
         binding.downloadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String fileURL = "http://192.168.1.2:12345/Camera/20210915_160855.mp4";
+                //String fileURL = "http://192.168.1.2:12345/Camera/20210915_160855.mp4";
+                String fileURL = "http://10.0.2.16:12345/InterfacePrincipale.mp4";
 
-                String saveDir = "/storage/emulated/0/Download/";
+
+                String saveDir = "/storage/emulated/0/Download";
 
                 new Thread() {
                     public void run() {
