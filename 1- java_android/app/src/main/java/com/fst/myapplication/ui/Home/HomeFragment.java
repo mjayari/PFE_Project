@@ -29,6 +29,7 @@ public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
 
     private List<String> itemList;
+    private Integer selectedItemIndex = null;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -84,7 +85,7 @@ public class HomeFragment extends Fragment {
             public void onItemClick(AdapterView<?> arg0, View v,int position, long arg3)
             {
                 int itemPosition = position;
-                // ListView Clicked item value
+                // ListView Clicked item value    public void changeItemBackgroundColor(int itemPosition) {
                 String itemValue = (String) listView.getItemAtPosition(position);
                 changeItemBackgroundColor(itemPosition);
 
@@ -97,26 +98,36 @@ public class HomeFragment extends Fragment {
     public void changeItemBackgroundColor(int itemPosition) {
         ListView listView = binding.listView;
 
-        for (int i=0 ; i<itemList.size() ; i++){
+        /*for (int i=0 ; i<itemList.size() ; i++){
             if (i == itemPosition) {
-                //listView.getChildAt(itemPosition).setBackgroundColor(Color.BLUE);
+                listView.getChildAt(itemPosition).setBackgroundColor(Color.BLUE);
+                selectedItemIndex = i ;
                 Log.d("log", "BLUE = " + i + " | " + itemList.get(i));
             } else {
-                listView.getChildAt(itemPosition).setBackgroundColor(Color.GRAY);
+                //listView.getChildAt(itemPosition).setBackgroundColor(Color.GRAY);
                 Log.d("log", "Gray = " + i + " | " + itemList.get(i));
             }
 
+        }*/
+
+        Log.d("log", "selectedItemIndex 1 = " + selectedItemIndex);
+
+        if(selectedItemIndex == itemPosition) { // same selection
+            Log.d("log", "selectedItemIndex 2 = " + selectedItemIndex);
+            listView.getChildAt(itemPosition).setBackgroundColor(Color.WHITE);
+            selectedItemIndex = null ;
+        } else {
+            if(selectedItemIndex == null) { // no selection
+                Log.d("log", "selectedItemIndex 3 = " + selectedItemIndex);
+                listView.getChildAt(itemPosition).setBackgroundColor(Color.BLUE);
+                selectedItemIndex = itemPosition ;
+            } else if(selectedItemIndex != null){ // already selected
+                Log.d("log", "selectedItemIndex = 4 " + selectedItemIndex);
+                Toast.makeText(HomeFragment.super.getContext(), "Multiselection forbidden",Toast.LENGTH_LONG).show();
+            }
         }
 
     }
-
-
-
-
-
-
-
-
 
 
     @Override
