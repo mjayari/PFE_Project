@@ -1,4 +1,4 @@
-package com.fst.myapplication.ui.home;
+package com.fst.myapplication.ui.Home;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

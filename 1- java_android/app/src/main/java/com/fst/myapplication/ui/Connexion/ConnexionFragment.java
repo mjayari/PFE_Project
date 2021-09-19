@@ -1,34 +1,22 @@
 package com.fst.myapplication.ui.Connexion;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.fst.myapplication.MainActivity;
-import com.fst.myapplication.R;
 import com.fst.myapplication.databinding.FragmentConnexionBinding;
 import com.fst.myapplication.db.Connexion;
 import com.fst.myapplication.db.DatabaseHelper;
 import com.fst.myapplication.db.User;
-import com.fst.myapplication.ui.Filetransfer.FiletransferFragment;
-import com.fst.myapplication.ui.home.HomeFragment;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class ConnexionFragment extends Fragment {
 

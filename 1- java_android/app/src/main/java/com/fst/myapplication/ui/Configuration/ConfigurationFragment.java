@@ -99,7 +99,8 @@ public class ConfigurationFragment extends Fragment {
 
         String ipAdress = server.wifiIpAddress(context);
         Log.d("log","Ip Address: " +ipAdress);
-        binding.LocalIpAddressText.setText("http://" + ipAdress +":"+ server.port);
+        binding.LocalIpAddressText.setText("http://" + ipAdress +":"+ portNumber);
+        Log.d("log","http:// " + ipAdress + ":" + portNumber);
 
 
 
@@ -198,7 +199,10 @@ public class ConfigurationFragment extends Fragment {
                 }
 
                 //NanoHTTPD.startServer(new String[]{});
-                int port = 12345;
+                //int port = 12345;
+                Configuration configuration = db.getConfiguration(1);
+
+                int port = configuration.getPortNumber();
                 //int port = Integer.parseInt(binding.editTextPortNumber.getText().toString());
 
                 //File wwwroot = new File("C:\\+Backup\\Journal").getAbsoluteFile();

@@ -1,0 +1,127 @@
+package com.fst.myapplication.ui.Home;
+
+import android.graphics.Color;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.fst.myapplication.databinding.FragmentHomeBinding;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class HomeFragment extends Fragment {
+
+    private HomeViewModel homeViewModel;
+    private FragmentHomeBinding binding;
+
+    private List<String> itemList;
+
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
+
+        homeViewModel =
+                new ViewModelProvider(this).get(HomeViewModel.class);
+
+        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
+
+        /*final TextView textView = binding.textHome;
+        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(@Nullable String s) {
+                textView.setText(s);
+            }
+        });*/
+
+        return root;
+    }
+
+
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        //lv = (ListView) findViewById(R.id.your_list_view_id);
+        ListView listView = binding.listView;
+
+        // Instanciating an array list (you don't need to do this,
+        // you already have yours).
+        itemList = new ArrayList<String>();
+        itemList.add("fookledha dzauehazu eh azuh azuh uoho.mp3");
+        itemList.add("barqklqdh ehr ioehrioeh rio ehro ehzoihzroe.apk");
+        itemList.add("list3eziehz zeijzei zienziez eziejzi.mp4");
+        itemList.add("bdsddzejz ezieuzie uzeuzpie uzieuz.mp3");
+        itemList.add("dslddzdizd zeijzie izejzoiej eziejzo.mp4");
+        itemList.add("paledsf hdklfh kldfjkdjf jfhdkjfd.apk");
+
+
+        // This is the array adapter, it takes the context of the activity as a
+        // first parameter, the type of list view as a second parameter and your
+        // array as a third parameter.
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+                HomeFragment.super.getContext(),
+                android.R.layout.simple_list_item_1,
+                itemList );
+
+        listView.setAdapter(arrayAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            // argument position gives the index of item which is clicked
+            public void onItemClick(AdapterView<?> arg0, View v,int position, long arg3)
+            {
+                int itemPosition = position;
+                // ListView Clicked item value
+                String itemValue = (String) listView.getItemAtPosition(position);
+                changeItemBackgroundColor(itemPosition);
+
+                Toast.makeText(HomeFragment.super.getContext(), "Item Selected : "+itemValue,   Toast.LENGTH_LONG).show();
+            }
+        });
+
+    }
+
+    public void changeItemBackgroundColor(int itemPosition) {
+        ListView listView = binding.listView;
+
+        for (int i=0 ; i<itemList.size() ; i++){
+            if (i == itemPosition) {
+                //listView.getChildAt(itemPosition).setBackgroundColor(Color.BLUE);
+                Log.d("log", "BLUE = " + i + " | " + itemList.get(i));
+            } else {
+                listView.getChildAt(itemPosition).setBackgroundColor(Color.GRAY);
+                Log.d("log", "Gray = " + i + " | " + itemList.get(i));
+            }
+
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
+}
