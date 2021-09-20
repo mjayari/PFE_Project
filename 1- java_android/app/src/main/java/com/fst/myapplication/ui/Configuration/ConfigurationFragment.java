@@ -78,18 +78,25 @@ public class ConfigurationFragment extends Fragment {
         DatabaseHelper db = new DatabaseHelper(this);
         HttpServer server = new HttpServer(this);
 
-        //binding.editTextPortNumber.setText("8080");
-        //binding.TextEditUploadPath.setText("/storage/upload");
-        //binding.TextEditDownloadPath.setText("/storage/download");
-
-        Configuration configuration = db.getConfiguration(1);
-        int portNumber = configuration.getPortNumber();
-        String downloadPath = configuration.getDownloadPath();
-        String uploadPath = configuration.getUploadsPath();
+        int portNumber = 8080;
+        String downloadPath = "/storage/emulated/0/Upload";
+        String uploadPath = "/storage/emulated/0/Download";
 
         binding.editTextPortNumber.setText(String.valueOf(portNumber));
-        binding.TextEditUploadPath.setText(uploadPath);
-        binding.TextEditDownloadPath.setText(downloadPath);
+        binding.TextEditUploadPath.setText(downloadPath);
+        binding.TextEditDownloadPath.setText(uploadPath);
+
+        Configuration configuration = db.getConfiguration(1);
+        if (configuration != null) {
+            portNumber = configuration.getPortNumber();
+            downloadPath = configuration.getDownloadPath();
+            uploadPath = configuration.getUploadsPath();
+
+            binding.editTextPortNumber.setText(String.valueOf(portNumber));
+            binding.TextEditUploadPath.setText(uploadPath);
+            binding.TextEditDownloadPath.setText(downloadPath);
+        }
+
 
         Context context = ConfigurationFragment.super.getContext();
         /*WifiManager wifiManager = (WifiManager) context.getSystemService(WIFI_SERVICE);
@@ -122,6 +129,7 @@ public class ConfigurationFragment extends Fragment {
                     downloadPath = binding.TextEditDownloadPath.getText().toString();
                     //Log.d("log", "portNumber =" + portNumber);
 
+                    binding.LocalIpAddressText.setText("http://" + ipAdress +":"+ portNumber);
 
                      /*NavHostFragment.findNavController(FirstFragment.this)
                         .navigate(R.id.action_FirstFragment_to_SecondFragment);*/
@@ -206,7 +214,7 @@ public class ConfigurationFragment extends Fragment {
                 //int port = Integer.parseInt(binding.editTextPortNumber.getText().toString());
 
                 //File wwwroot = new File("C:\\+Backup\\Journal").getAbsoluteFile();
-                File wwwroot = new File("/storage/emulated/0/DCIM").getAbsoluteFile();
+                File wwwroot = new File("/storage/emulated/0/").getAbsoluteFile();
                 //File wwwroot = new File("/storage/101F-3807/").getAbsoluteFile();
                 Log.d("log","port:" + port);
                 Log.d("log","root:" + wwwroot.getAbsolutePath());

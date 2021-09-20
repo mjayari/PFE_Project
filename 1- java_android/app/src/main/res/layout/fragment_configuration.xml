@@ -42,10 +42,10 @@
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.126"
+        app:layout_constraintHorizontal_bias="0.112"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.208" />
+        app:layout_constraintVertical_bias="0.242" />
 
     <Button
         android:id="@+id/find_upload_button"
@@ -55,10 +55,10 @@
         android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.977"
+        app:layout_constraintHorizontal_bias="0.974"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.112" />
+        app:layout_constraintVertical_bias="0.154" />
 
     <Button
         android:id="@+id/find_download_button"
@@ -68,45 +68,43 @@
         android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.703"
+        app:layout_constraintHorizontal_bias="0.724"
         app:layout_constraintStart_toEndOf="@+id/textView12"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.244" />
+        app:layout_constraintVertical_bias="0.279" />
 
     <Button
         android:id="@+id/StartServerButton"
         android:layout_width="149dp"
         android:layout_height="58dp"
-        android:layout_marginEnd="64dp"
+        android:layout_marginEnd="68dp"
         android:text="Start Server "
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/StopServerButton"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
+        app:layout_constraintVertical_bias="0.55" />
 
     <Button
         android:id="@+id/SaveSettingButton"
         android:layout_width="149dp"
         android:layout_height="58dp"
-        android:layout_marginStart="60dp"
         android:layout_marginEnd="124dp"
         android:text="Save setting "
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.392" />
+        app:layout_constraintVertical_bias="0.429" />
 
     <Button
         android:id="@+id/StopServerButton"
         android:layout_width="149dp"
         android:layout_height="58dp"
-        android:layout_marginStart="188dp"
         android:layout_marginEnd="8dp"
         android:text="Stop Server "
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.493" />
+        app:layout_constraintVertical_bias="0.55" />
 
     <TextView
         android:id="@+id/ServerStatusText"
@@ -135,13 +133,13 @@
         app:layout_constraintHorizontal_bias="0.131"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.667" />
+        app:layout_constraintVertical_bias="0.721" />
 
     <TextView
         android:id="@+id/textView18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="56dp"
         android:text="Public IP Adress (Internet):"
         android:textSize="20dp"
         android:textStyle="bold"
@@ -150,20 +148,21 @@
         app:layout_constraintHorizontal_bias="0.212"
         app:layout_constraintStart_toStartOf="parent" />
 
+
     <TextView
         android:id="@+id/LocalIpAddressText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:text="http://192.168.0.x:[port number]"
+        android:textIsSelectable="true"
         android:textSize="20dp"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.231"
+        app:layout_constraintHorizontal_bias="0.153"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView15"
-        app:layout_constraintVertical_bias="0.111" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.812" />
 
     <TextView
         android:id="@+id/textView19"
@@ -173,19 +172,19 @@
         android:layout_marginTop="20dp"
         android:text="http://:[internet_ip_adress]:[port_number"
         android:textSize="20dp"
+        android:textIsSelectable="true"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView18"
         app:layout_constraintTop_toBottomOf="@+id/textView18"
-        app:layout_constraintVertical_bias="0.135" />
-
+        app:layout_constraintVertical_bias="0.529" />
 
     <EditText
         android:id="@+id/TextEditUploadPath"
-        android:layout_width="344dp"
-        android:layout_height="33dp"
+        android:layout_width="354dp"
+        android:layout_height="42dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text=""
@@ -194,12 +193,12 @@
         app:layout_constraintHorizontal_bias="0.238"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.184" />
+        app:layout_constraintVertical_bias="0.221" />
 
     <EditText
         android:id="@+id/TextEditDownloadPath"
         android:layout_width="373dp"
-        android:layout_height="36dp"
+        android:layout_height="46dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text=""
@@ -207,7 +206,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.316" />
+        app:layout_constraintVertical_bias="0.347" />
 
     <EditText
         android:id="@+id/editTextPortNumber"

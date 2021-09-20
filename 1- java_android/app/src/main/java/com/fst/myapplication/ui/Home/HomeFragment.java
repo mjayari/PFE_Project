@@ -21,6 +21,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.fst.myapplication.databinding.FragmentHomeBinding;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
@@ -29,7 +30,7 @@ public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
 
     private List<String> itemList;
-    private Integer selectedItemIndex = null;
+    private Integer selectedItemIndex = -1 ;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -67,6 +68,18 @@ public class HomeFragment extends Fragment {
         itemList.add("bdsddzejz ezieuzie uzeuzpie uzieuz.mp3");
         itemList.add("dslddzdizd zeijzie izejzoiej eziejzo.mp4");
         itemList.add("paledsf hdklfh kldfjkdjf jfhdkjfd.apk");
+        itemList.add("fookledha dzauehazu eh azuh azuh uoho.mp3");
+        itemList.add("barqklqdh ehr ioehrioeh rio ehro ehzoihzroe.apk");
+        itemList.add("list3eziehz zeijzei zienziez eziejzi.mp4");
+        itemList.add("bdsddzejz ezieuzie uzeuzpie uzieuz.mp3");
+        itemList.add("dslddzdizd zeijzie izejzoiej eziejzo.mp4");
+        itemList.add("paledsf hdklfh kldfjkdjf jfhdkjfd.apk");
+
+        Hashtable ht = new Hashtable <String,String>();
+        ht.put("fookledha dzauehazu eh azuh azuh uoho.mp3","http://localhost:12345/fookledha dzauehazu eh azuh azuh uoho.mp3");
+        ht.put("barqklqdh ehr ioehrioeh rio ehro ehzoihzroe.apk","http://localhost:12345/barqklqdh ehr ioehrioeh rio ehro ehzoihzroe.apk");
+        ht.put("list3eziehz zeijzei zienziez eziejzi.mp4","http://localhost:12345/list3eziehz zeijzei zienziez eziejzi.mp4");
+
 
 
         // This is the array adapter, it takes the context of the activity as a
@@ -87,16 +100,28 @@ public class HomeFragment extends Fragment {
                 int itemPosition = position;
                 // ListView Clicked item value    public void changeItemBackgroundColor(int itemPosition) {
                 String itemValue = (String) listView.getItemAtPosition(position);
-                changeItemBackgroundColor(itemPosition);
 
-                Toast.makeText(HomeFragment.super.getContext(), "Item Selected : "+itemValue,   Toast.LENGTH_LONG).show();
+                Toast.makeText(HomeFragment.super.getContext(), "Item Selected : "+itemValue
+                                + "File Url = " + ht.get(itemValue)
+                        ,   Toast.LENGTH_LONG).show();
+                Log.d("log","File Url : " + ht.get(itemValue));
+                changeItemBackgroundColor( v,itemPosition);
+
+
             }
         });
 
     }
 
-    public void changeItemBackgroundColor(int itemPosition) {
+    public void changeItemBackgroundColor(View v , int itemPosition) {
         ListView listView = binding.listView;
+
+
+        for (int i=0; i<listView.getChildCount() ; i++){
+            listView.getChildAt(i).setBackgroundColor(Color.WHITE);
+        }
+        v.setBackgroundColor(Color.BLUE);
+        selectedItemIndex = itemPosition ;
 
         /*for (int i=0 ; i<itemList.size() ; i++){
             if (i == itemPosition) {
@@ -110,22 +135,22 @@ public class HomeFragment extends Fragment {
 
         }*/
 
-        Log.d("log", "selectedItemIndex 1 = " + selectedItemIndex);
+        /*Log.d("log", "selectedItemIndex 1 = " + selectedItemIndex);
 
         if(selectedItemIndex == itemPosition) { // same selection
             Log.d("log", "selectedItemIndex 2 = " + selectedItemIndex);
             listView.getChildAt(itemPosition).setBackgroundColor(Color.WHITE);
-            selectedItemIndex = null ;
+            selectedItemIndex = -1 ;
         } else {
-            if(selectedItemIndex == null) { // no selection
+            if(selectedItemIndex == -1) { // no selection
                 Log.d("log", "selectedItemIndex 3 = " + selectedItemIndex);
                 listView.getChildAt(itemPosition).setBackgroundColor(Color.BLUE);
                 selectedItemIndex = itemPosition ;
-            } else if(selectedItemIndex != null){ // already selected
+            } else if(selectedItemIndex != -1){ // already selected
                 Log.d("log", "selectedItemIndex = 4 " + selectedItemIndex);
                 Toast.makeText(HomeFragment.super.getContext(), "Multiselection forbidden",Toast.LENGTH_LONG).show();
             }
-        }
+        }*/
 
     }
 
