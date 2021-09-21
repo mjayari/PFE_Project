@@ -252,6 +252,7 @@ public class ConfigurationFragment extends Fragment {
                 bgThread.start();*/
             }
         });
+        
                 /*protected void onActivityResult(int requestCode, int resultCode, Intent data) {
                 if (requestCode == 100) {
                 String folderPath = intent.getDataString();

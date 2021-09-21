@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:hapticFeedbackEnabled="false"
     tools:context=".ui.Connexion.ConnexionFragment">
 
 
@@ -34,18 +35,23 @@
 
     <EditText
         android:id="@+id/password_input"
-        android:layout_width="211dp"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="209dp"
-        android:layout_marginEnd="148dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="181dp"
+        android:layout_marginEnd="119dp"
+        android:layout_marginBottom="382dp"
+        android:background="@drawable/custom_input"
+        android:drawableStart="@drawable/ic_password"
+        android:drawablePadding="6dp"
         android:ems="10"
+        android:hint="Password"
         android:inputType="textPassword"
         app:passwordToggleEnabled="true" />
-
 
     <TextView
         android:id="@+id/textView2"
@@ -53,8 +59,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="46dp"
+        android:layout_marginStart="54dp"
+        android:layout_marginTop="37dp"
         android:text="User ID:" />
 
     <TextView
@@ -63,8 +69,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="67dp"
-        android:layout_marginTop="177dp"
+        android:layout_marginStart="53dp"
+        android:layout_marginTop="140dp"
         android:text="Password:" />
 
     <TextView
@@ -201,17 +207,26 @@
         android:layout_marginBottom="236dp"
         android:text="UserID must be: " />
 
+
     <EditText
         android:id="@+id/userid_input"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginStart="49dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="124dp"
+        android:layout_marginBottom="495dp"
+        android:background="@drawable/custom_input"
+        android:drawableStart="@drawable/ic_user"
+        android:drawablePadding="6dp"
         android:ems="10"
+        android:hint="User ID"
         android:inputType="textPersonName" />
-
 
     <View
         android:layout_width="229dp"

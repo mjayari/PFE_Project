@@ -1,6 +1,9 @@
 package com.fst.myapplication.ui.Connexion;
 
 import android.os.Bundle;
+import android.text.InputType;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -380,8 +383,6 @@ public class ConnexionFragment extends Fragment {
 
                 return true;
             }*/
-
-
 
 
     @Override

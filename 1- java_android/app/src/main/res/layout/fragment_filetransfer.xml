@@ -101,9 +101,11 @@
 
     <EditText
         android:id="@+id/editServerAddress"
-        android:layout_width="241dp"
-        android:layout_height="49dp"
+        android:layout_width="269dp"
+        android:layout_height="48dp"
         android:layout_marginStart="16dp"
+        android:background="@drawable/custom_input"
+        android:padding="10dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -171,6 +173,9 @@
         android:id="@+id/serverStatusTextView"
         android:layout_width="369dp"
         android:layout_height="29dp"
+        android:textAlignment="center"
+        android:textColor="#048C12"
+        android:textSize="17dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.38"
