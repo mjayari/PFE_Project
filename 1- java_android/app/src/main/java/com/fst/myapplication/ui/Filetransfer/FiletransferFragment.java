@@ -21,6 +21,7 @@ import com.fst.myapplication.db.Configuration;
 import com.fst.myapplication.db.DatabaseHelper;
 import com.fst.myapplication.http.HttpFileDownloader;
 import com.fst.myapplication.http.HttpUrlOpener;
+import com.fst.myapplication.ui.Configuration.ConfigurationFragment;
 import com.fst.myapplication.ui.Home.HomeFragment;
 
 import java.io.File;
@@ -34,9 +35,13 @@ public class FiletransferFragment extends Fragment {
     private FiletransferViewModel filetransferViewModel;
     private FragmentFiletransferBinding binding;
 
-    private List<String> downloadFileList;
+    private List<String> downloadFileList = new ArrayList<String>();
     private Hashtable <String,String> downloadFileUrlTable;
     private Integer selectedDownloadFileIndex = -1 ;
+
+    public List<String> uploadFileList = new ArrayList<String>();
+    public Hashtable <String,String> uploadFileUrlTable;
+    public Integer selectedUploadFileIndex = -1 ;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -66,7 +71,8 @@ public class FiletransferFragment extends Fragment {
         HttpServer server = new HttpServer(this);
         DatabaseHelper db = new DatabaseHelper(this);
 
-        ListView listView = binding.listView;
+        ListView downloadListView = binding.downloadListView;
+        ListView uploadListView = binding.uploadListView;
 
         downloadFileList = new ArrayList<String>();
         downloadFileUrlTable = new Hashtable<String,String>();
@@ -74,7 +80,7 @@ public class FiletransferFragment extends Fragment {
         binding.ConnectButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String url = binding.editServerAddress.getText().toString();
+                String url = binding.editServerAddress.getText().toString() + "?request=upload";
 
                 //server.urlConnect(url);
                 //url = "http://192.168.1.23:12345";
@@ -83,8 +89,9 @@ public class FiletransferFragment extends Fragment {
                 new Thread(){
                     public void run(){
 
-                        new HttpUrlOpener(binding).urlConnect(url);
-
+                        HttpUrlOpener huo = new HttpUrlOpener(binding);
+                        huo.setFileTransferFragment(FiletransferFragment.this);
+                        huo.urlConnect(url);
 
                     }
                 }.start();
@@ -100,10 +107,11 @@ public class FiletransferFragment extends Fragment {
                 //String fileURL = "http://192.168.1.2:12345/Camera/20210915_160855.mp4";
                 //String fileURL = "http://10.0.2.16:12345/InterfacePrincipale.mp4";
 
-                String selectedFileName = listView.getItemAtPosition(selectedDownloadFileIndex).toString();
-                String selectedFileUrl = downloadFileUrlTable.get(selectedFileName);
+                String selectedFileName = uploadListView.getItemAtPosition(selectedUploadFileIndex).toString();
+                String selectedFileUrl = uploadFileUrlTable.get(selectedFileName);
 
-                String saveDir = "/storage/emulated/0/DCIM";
+                //String saveDir = "/storage/emulated/0/DCIM";
+                String saveDir = ConfigurationFragment.config.getDownloadPath();
 
                 new Thread() {
                     public void run() {
@@ -157,21 +165,24 @@ public class FiletransferFragment extends Fragment {
 
                 //binding.downloadPathLocalText.setText(fileList);
 
-                listView.setAdapter(arrayAdapter);
+                downloadListView.setAdapter(arrayAdapter);
 
-                listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+                downloadListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
                 {
                     // argument position gives the index of item which is clicked
                     public void onItemClick(AdapterView<?> arg0, View v,int position, long arg3)
                     {
                         int itemPosition = position;
+                        selectedDownloadFileIndex = itemPosition;
+
                         // ListView Clicked item value    public void changeItemBackgroundColor(int itemPosition) {
-                        String itemValue = (String) listView.getItemAtPosition(position);
+                        String itemValue = (String) downloadListView.getItemAtPosition(position);
 
                         Toast.makeText(FiletransferFragment.super.getContext(),"File Selected : " + itemValue
                                         + "File Url = " + downloadFileUrlTable.get(itemValue)
                                 , Toast.LENGTH_LONG).show();
                         Log.d("log","File Url : " + downloadFileUrlTable.get(itemValue));
+
                         changeItemBackgroundColor( v,itemPosition);
 
 
@@ -182,29 +193,60 @@ public class FiletransferFragment extends Fragment {
         });
 
 
-
-                /*  binding.button.setOnClickListener(new View.OnClickListener() {
+        binding.refrechUploadRemoteButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(FirstFragment.this)
-                        .navigate(R.id.action_FirstFragment_to_SecondFragment);
-                Toast.makeText(FiletransferFragment.super.getContext(), "Button pressed", Toast.LENGTH_SHORT).show();
+            public void onClick(View v) {
+
+                /*uploadFileList = new ArrayList<String>();
+                uploadFileList.add("file 1");
+                uploadFileList.add("file 2");*/
+
+                Log.d("log","uploadFileList :" + uploadFileList);
+                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+                        FiletransferFragment.super.getContext(),
+                        android.R.layout.simple_list_item_1,
+                        uploadFileList );
+
+                uploadListView.setAdapter(arrayAdapter);
+
+                uploadListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+                {
+                    // argument position gives the index of item which is clicked
+                    public void onItemClick(AdapterView<?> arg0, View v,int position, long arg3)
+                    {
+                        int itemPosition = position;
+                        selectedUploadFileIndex = itemPosition;
+
+                        // ListView Clicked item value    public void changeItemBackgroundColor(int itemPosition) {
+                        String itemValue = (String) uploadListView.getItemAtPosition(position);
+
+                        Toast.makeText(FiletransferFragment.super.getContext(),
+                                    "File Selected : " + itemValue
+                                        + "File Url = " + uploadFileUrlTable.get(itemValue)
+                                                , Toast.LENGTH_LONG).show();
+
+                        Log.d("log","File Url : " + uploadFileUrlTable.get(itemValue));
+
+                        changeItemBackgroundColor( v,itemPosition);
+
+
+                    }
+                });
 
             }
-        });*/
+        });
 
 
     }
 
     public void changeItemBackgroundColor(View v , int itemPosition) {
-        ListView listView = binding.listView;
-
+        ListView listView = binding.downloadListView;
 
         for (int i = 0; i < listView.getChildCount(); i++) {
             listView.getChildAt(i).setBackgroundColor(Color.WHITE);
         }
         v.setBackgroundColor(Color.BLUE);
-        selectedDownloadFileIndex = itemPosition;
+
     }
 
 

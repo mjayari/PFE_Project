@@ -35,6 +35,7 @@ import com.fst.myapplication.db.Configuration;
 import com.fst.myapplication.db.Connexion;
 import com.fst.myapplication.db.DatabaseHelper;
 import com.fst.myapplication.db.User;
+import com.fst.myapplication.http.MyHttpServer;
 import com.fst.myapplication.http.NanoHTTPD;
 
 import java.io.File;
@@ -46,12 +47,12 @@ public class ConfigurationFragment extends Fragment {
     private FragmentConfigurationBinding binding;
 
     DatabaseHelper db;
-    NanoHTTPD server2;
+    MyHttpServer server2;
+    public static String ipAdress;
+    public static Configuration config;
+
     Button SaveSettingButton,find_upload_button ,find_download_button;
     EditText TextEditUploadPath,TextEditDownloadPath;
-
-
-
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -87,6 +88,8 @@ public class ConfigurationFragment extends Fragment {
         binding.TextEditDownloadPath.setText(uploadPath);
 
         Configuration configuration = db.getConfiguration(1);
+        ConfigurationFragment.config = configuration;
+
         if (configuration != null) {
             portNumber = configuration.getPortNumber();
             downloadPath = configuration.getDownloadPath();
@@ -104,8 +107,8 @@ public class ConfigurationFragment extends Fragment {
         .setText("Your Device IP Address: " + ipAddress);
         Log.d("log","Ip Address = " +ipAddress);*/
 
-        String ipAdress = server.wifiIpAddress(context);
-        Log.d("log","Ip Address: " +ipAdress);
+        ipAdress = server.wifiIpAddress(context);
+        Log.d("log","Ip Address: " + ipAdress);
         binding.LocalIpAddressText.setText("http://" + ipAdress +":"+ portNumber);
         Log.d("log","http:// " + ipAdress + ":" + portNumber);
 
@@ -221,7 +224,7 @@ public class ConfigurationFragment extends Fragment {
 
                 try
                 {
-                    server2 = new NanoHTTPD( port, wwwroot );
+                    server2 = new MyHttpServer( port, wwwroot );
                     server2.status=true;
                     binding.ServerStatusText.setText("Server Status: Running!");
 
@@ -275,7 +278,7 @@ public class ConfigurationFragment extends Fragment {
                         Log.d("log","Exception: " +ioException.getMessage());
                     }
                 }*/
-                server2.stop();
+                server2.stopServer();
                 if(server2.status)
                     binding.ServerStatusText.setText("Server Status: Running!");
                 else

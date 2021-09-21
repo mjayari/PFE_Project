@@ -7,7 +7,7 @@
     tools:context=".ui.Home.HomeFragment">
 
     <ListView
-        android:id="@+id/listView"
+        android:id="@+id/downloadListView"
         android:layout_width="189dp"
         android:layout_height="289dp"
         app:layout_constraintBottom_toBottomOf="parent"

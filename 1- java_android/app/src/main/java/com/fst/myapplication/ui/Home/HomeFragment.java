@@ -57,7 +57,7 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         //lv = (ListView) findViewById(R.id.your_list_view_id);
-        ListView listView = binding.listView;
+        ListView listView = binding.downloadListView;
 
         // Instanciating an array list (you don't need to do this,
         // you already have yours).
@@ -114,7 +114,7 @@ public class HomeFragment extends Fragment {
     }
 
     public void changeItemBackgroundColor(View v , int itemPosition) {
-        ListView listView = binding.listView;
+        ListView listView = binding.downloadListView;
 
 
         for (int i=0; i<listView.getChildCount() ; i++){
