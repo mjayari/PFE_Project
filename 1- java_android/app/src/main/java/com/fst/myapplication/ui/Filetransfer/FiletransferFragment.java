@@ -26,6 +26,8 @@ import com.fst.myapplication.ui.Home.HomeFragment;
 
 import java.io.File;
 import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
@@ -33,7 +35,7 @@ import java.util.List;
 public class FiletransferFragment extends Fragment {
 
     private FiletransferViewModel filetransferViewModel;
-    private FragmentFiletransferBinding binding;
+    public static FragmentFiletransferBinding binding;
 
     private List<String> downloadFileList = new ArrayList<String>();
     private Hashtable <String,String> downloadFileUrlTable;
@@ -132,6 +134,34 @@ public class FiletransferFragment extends Fragment {
             }
         });
 
+        binding.uploadButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String selectedFileName = downloadListView.getItemAtPosition(selectedDownloadFileIndex).toString();
+                String selectedFileUrl = downloadFileUrlTable.get(selectedFileName);
+
+                //String weburl = "http://10.0.2.16:8080/?request=upload&fileUrl=http://10.0.2.16:8080/Download/validatepassword.mp4";
+                //String weburl = "http://10.0.2.16:8080/?request=upload&fileUrl=" + selectedFileUrl;
+                String serverAddress = binding.editServerAddress.getText().toString();
+                String weburl = serverAddress + "/?request=upload&fileUrl=" + selectedFileUrl;
+
+                Log.d("log", "RequestWeburl = " + weburl);
+
+                new Thread(){
+                    public void run(){
+                        try {
+                            URL url = new URL(weburl);
+                            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                            urlConnection.getResponseCode();
+                        } catch (Exception e) {
+
+                        }
+                    }
+                }.start();
+
+            }
+        });
+
         binding.refrechDownloadLocalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -139,6 +169,8 @@ public class FiletransferFragment extends Fragment {
                 String downloadPath = configuration.getDownloadPath();
                 //String downloadPath = "/storage/emulated/0/DCIM";
 
+                downloadFileList = new ArrayList<String>();
+                downloadFileUrlTable = new Hashtable<String, String>();
 
                 File folder = new File(downloadPath);
                 File[] listOfFiles = folder.listFiles();
@@ -183,7 +215,7 @@ public class FiletransferFragment extends Fragment {
                                 , Toast.LENGTH_LONG).show();
                         Log.d("log","File Url : " + downloadFileUrlTable.get(itemValue));
 
-                        changeItemBackgroundColor( v,itemPosition);
+                        changeDownloadBackgroundColor( v,itemPosition);
 
 
                     }
@@ -227,7 +259,7 @@ public class FiletransferFragment extends Fragment {
 
                         Log.d("log","File Url : " + uploadFileUrlTable.get(itemValue));
 
-                        changeItemBackgroundColor( v,itemPosition);
+                        changeUploadBackgroundColor( v,itemPosition);
 
 
                     }
@@ -239,8 +271,18 @@ public class FiletransferFragment extends Fragment {
 
     }
 
-    public void changeItemBackgroundColor(View v , int itemPosition) {
+    public void changeDownloadBackgroundColor(View v , int itemPosition) {
         ListView listView = binding.downloadListView;
+
+        for (int i = 0; i < listView.getChildCount(); i++) {
+            listView.getChildAt(i).setBackgroundColor(Color.WHITE);
+        }
+        v.setBackgroundColor(Color.BLUE);
+
+    }
+
+    public void changeUploadBackgroundColor(View v , int itemPosition) {
+        ListView listView = binding.uploadListView;
 
         for (int i = 0; i < listView.getChildCount(); i++) {
             listView.getChildAt(i).setBackgroundColor(Color.WHITE);

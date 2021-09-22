@@ -80,8 +80,8 @@ public class ConfigurationFragment extends Fragment {
         HttpServer server = new HttpServer(this);
 
         int portNumber = 8080;
-        String downloadPath = "/storage/emulated/0/Upload";
-        String uploadPath = "/storage/emulated/0/Download";
+        String downloadPath = "/storage/emulated/0/Download";
+        String uploadPath = "/storage/emulated/0/DCIM";
 
         binding.editTextPortNumber.setText(String.valueOf(portNumber));
         binding.TextEditUploadPath.setText(downloadPath);

@@ -64,7 +64,7 @@
         app:layout_constraintVertical_bias="0.183" />
 
     <Button
-        android:id="@+id/uploadButton2"
+        android:id="@+id/uploadButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="upload"
@@ -116,7 +116,7 @@
         app:layout_constraintVertical_bias="0.028" />
 
     <TextView
-        android:id="@+id/progressTextView"
+        android:id="@+id/progressDownloadText"
         android:layout_width="145dp"
         android:layout_height="34dp"
         android:text=""
@@ -129,7 +129,7 @@
         app:layout_constraintVertical_bias="0.302" />
 
     <TextView
-        android:id="@+id/progressUploadTextView"
+        android:id="@+id/progressUploadText"
         android:layout_width="145dp"
         android:layout_height="34dp"
         android:text=""

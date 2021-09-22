@@ -1,6 +1,9 @@
 package com.fst.myapplication.http;
 
+import android.util.Log;
+
 import com.fst.myapplication.ui.Configuration.ConfigurationFragment;
+import com.fst.myapplication.ui.Filetransfer.FiletransferFragment;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -934,7 +937,10 @@ public class NanoHTTPD
 				
 				
 				String firstParam = parms.getProperty("request");
+				String fileUrlParam = parms.getProperty("fileUrl");
+				String progressParam = parms.getProperty("progress");
 				System.out.println("firstParam = " + firstParam);
+
 				if(firstParam != null && firstParam.equals("upload")) {
 					System.out.println("Request = True");
 					try {
@@ -943,8 +949,29 @@ public class NanoHTTPD
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+
+					if(fileUrlParam != null) { // file url to upload
+						try {
+							new HttpFileUploader().uploadFile(
+									fileUrlParam,
+									ConfigurationFragment.config.getUploadsPath()
+							);
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+
+					if(progressParam != null) { // File upload progress to show
+						System.out.println("progressParam = " + progressParam);
+						Log.d("log", "progressParam = " + progressParam);
+						FiletransferFragment.binding.progressUploadText.setText(progressParam);
+					}
+
 				} else
 					System.out.println("Request = False");
+
+
 
 				long size = 0x7FFFFFFFFFFFFFFFl;
 				String contentLength = header.getProperty("content-length");

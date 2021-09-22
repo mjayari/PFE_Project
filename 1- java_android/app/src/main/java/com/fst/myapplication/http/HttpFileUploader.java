@@ -1,75 +1,61 @@
 package com.fst.myapplication.http;
 
-import android.app.Dialog;
+import static java.net.URLEncoder.encode;
+
 import android.util.Log;
 
-import com.fst.myapplication.databinding.FragmentFiletransferBinding;
-
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.text.DecimalFormat;
- 
+import java.nio.charset.StandardCharsets;
+
 /**
  * A utility that downloads a file from a URL.
  * @author www.codejava.net
  *
  */
-
-public class HttpFileDownloader {
+public class HttpFileUploader {
     private static final int BUFFER_SIZE = 4096;
-    //private FragmentFiletransferBinding binding;
-    FragmentFiletransferBinding binding = null;
-
-    public HttpFileDownloader ( FragmentFiletransferBinding binding) {
-        this.binding = binding;
-    }
-
 
     public static void main(String[] args) {    	
-    	//String fileURL = "http://localhost:12345/toSave/Projects/BlueStacks_4.32.90.1001_x64.zip";
+    	String fileURL = "http://localhost:12345/toSave/Projects/BlueStacks_4.32.90.1001_x64.zip";
     	//String fileURL = "http://localhost:12345/toSave/Projects/Detective.Chinatown.3.2021.1080p.BluRay.x264.AAC5.1-[YTS.MX].mp4";
     	//String fileURL = "http://127.0.0.1/Detective.Chinatown.3.2021.1080p.BluRay.x264.AAC5.1-%5bYTS.MX%5d.mp4";
-        String fileURL = "http://192.168.1.3:12345/Camera/20210915_160855.mp4";
-
-
-
-        String saveDir = "/storage/emulated/0/DCIM/Download";
+    	
+    	
+    	String saveDir = "C:\\+Downloads";
         
     	new Thread() {
     		public void run() {
     			try {
     				//sleep(5000);
-    	    		//new HttpFileDownloader().downloadFile(fileURL, saveDir);
+    	    		new HttpFileUploader().uploadFile(fileURL, saveDir);
     	    	} catch (Exception e) {
     				// TODO Auto-generated catch block
     				e.printStackTrace();
     			}
     		}
     	}.start();
-    	System.out.println("test");
+    	//System.out.println("test");
          
     }
- 
+
     /**
      * Downloads a file from a URL
      * @param fileURL HTTP URL of the file to be downloaded
      * @param saveDir path of the directory to save the file
      * @throws IOException
      */
-    public void downloadFile(String fileURL, String saveDir)
+    public void uploadFile(String fileURL, String saveDir)
             throws IOException {
         URL url = new URL(fileURL);
         HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
         int responseCode = httpConn.getResponseCode();
-        Log.d("log", "responseCode = " + responseCode);
-        //binding.progressTextView.setText("Text view");
-
+ 
         // always check HTTP response code first
         if (responseCode == HttpURLConnection.HTTP_OK) {
             String fileName = "";
@@ -95,15 +81,7 @@ public class HttpFileDownloader {
             System.out.println("Content-Length = " + contentLength);
             System.out.println("File Size = " + getFileSize(contentLength));
             System.out.println("fileName = " + fileName);
-
-            Log.d("log", "Content-Type = " + contentType);
-            Log.d("log", "Content-Disposition = " + disposition);
-            Log.d("log", "Content-Length = " + contentLength);
-            Log.d("log", "File Size = " + getFileSize(contentLength));
-            Log.d("log", "fileName = " + fileName);
-
-
-
+ 
             // opens input stream from the HTTP connection
             InputStream inputStream = httpConn.getInputStream();
             String saveFilePath = saveDir + File.separator + fileName;
@@ -114,7 +92,7 @@ public class HttpFileDownloader {
             int bytesRead = -1;
             byte[] buffer = new byte[BUFFER_SIZE];
             int writtenBytes = 0 ;
-
+            
             while ((bytesRead = inputStream.read(buffer)) != -1) {        
 			    outputStream.write(buffer, 0, bytesRead);
 			    
@@ -125,21 +103,23 @@ public class HttpFileDownloader {
 			    //System.out.println("prog = " + new DecimalFormat("##.##").format(prog));
 			    //System.out.println("prog = " + String.format("%.2f", prog));
 			    
-			    System.out.println(
+			    /*System.out.println(
 			    		writtenBytes 
 			    		+ " | " + contentLength + " | " 
 			    		+ String.format("%.2f", prog) + " % | " 
-			    		+ getFileSize(writtenBytes));
-
-                Log.d("log",writtenBytes
-                        + " | " + contentLength + " | "
-                        + String.format("%.2f", prog) + " % | "
-                        + getFileSize(writtenBytes) );
-
-                binding.progressDownloadText.setText(
-                        String.format("%.2f", prog) + " % | "
+			    		+ getFileSize(writtenBytes));*/
+			    
+			    //System.out.println("prog = " + prog + " | isInteger= " + isInteger(String.format("%.2f", prog)));
+                Log.d("log", "Progress = " + String.format("%.2f", prog) + " % | "
                         + getFileSize(writtenBytes));
-            }
+			    
+			    if(isInteger(String.format("%.2f", prog)))
+			    	sendFileUploadProgress(
+					    		"http://localhost:8080",
+					    		String.format("%.2f", prog) + " % | " + getFileSize(writtenBytes)
+					    		);
+			    
+			}
             
  
             outputStream.close();
@@ -151,22 +131,6 @@ public class HttpFileDownloader {
         }
         httpConn.disconnect();
     }
-
-    /*public Dialog onCreateDialog(int id) {
-        switch (id) {
-            case DIALOG_DOWNLOAD_PROGRESS: //we set this to 0
-                mProgressDialog = new ProgressDialog(this);
-                mProgressDialog.setMessage("Downloading file...");
-                mProgressDialog.setIndeterminate(false);
-                mProgressDialog.setMax(100);
-                mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-                mProgressDialog.setCancelable(true);
-                mProgressDialog.show();
-                return mProgressDialog;
-            default:
-                return null;
-        }
-    }*/
     
     public String getFileSize(long sizeInBytes) {
     	if ( sizeInBytes < 1024 )
@@ -176,6 +140,39 @@ public class HttpFileDownloader {
 		else
 			return sizeInBytes/(1024*1024) + "." + sizeInBytes%(1024*1024)/10%100 + " MB";
     }
+    
+    public void sendFileUploadProgress(String serverAdress, String progressStatus) {
+        try {
+            progressStatus = encode(progressStatus, String.valueOf(StandardCharsets.UTF_8));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        String webUrl = serverAdress + "?request=upload&progress=" + progressStatus;
+        //System.out.println("webUrl: " + webUrl);
 
-
+        /*new Thread() {
+        	public void run() {
+        		
+        	}
+        }.start();*/
+    	try {
+            URL url = new URL(webUrl);
+            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.getResponseCode();
+            
+        } catch (Exception e) {
+        	e.printStackTrace();
+        }
+        
+        
+        
+    }
+    
+    boolean isInteger(String number) {
+    	float num = Float.valueOf(number);
+        // if the modulus(remainder of the division) of the argument(number) with 1 is 0 then return true otherwise false.
+    	return num % 1 == 0;
+    }
+    
+    
 }	
