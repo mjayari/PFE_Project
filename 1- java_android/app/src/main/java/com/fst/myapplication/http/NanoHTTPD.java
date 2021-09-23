@@ -2,7 +2,9 @@ package com.fst.myapplication.http;
 
 import android.util.Log;
 
+import com.fst.myapplication.db.FileTransfer;
 import com.fst.myapplication.ui.Configuration.ConfigurationFragment;
+import com.fst.myapplication.ui.Connexion.ConnexionFragment;
 import com.fst.myapplication.ui.Filetransfer.FiletransferFragment;
 
 import java.io.BufferedReader;
@@ -966,6 +968,17 @@ public class NanoHTTPD
 						System.out.println("progressParam = " + progressParam);
 						Log.d("log", "progressParam = " + progressParam);
 						FiletransferFragment.binding.progressUploadText.setText(progressParam);
+
+						String fileNameParam = parms.getProperty("fileName");
+
+						String progress = FiletransferFragment.binding.progressUploadText.getText().toString();
+						if(progress.startsWith("100.00 %")) {
+							Log.d("log", "Upload progress completed");
+
+							int pk = FiletransferFragment.db.getFileTransferRowsNumber() + 1 ;
+							FiletransferFragment.db.addFileTransfer(new FileTransfer(pk,fileNameParam,"upload","current_date", ConnexionFragment.connexionID));
+						}
+
 					}
 
 				} else

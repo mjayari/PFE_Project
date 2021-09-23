@@ -4,6 +4,9 @@ import android.app.Dialog;
 import android.util.Log;
 
 import com.fst.myapplication.databinding.FragmentFiletransferBinding;
+import com.fst.myapplication.db.FileTransfer;
+import com.fst.myapplication.ui.Connexion.ConnexionFragment;
+import com.fst.myapplication.ui.Filetransfer.FiletransferFragment;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -36,8 +39,6 @@ public class HttpFileDownloader {
     	//String fileURL = "http://localhost:12345/toSave/Projects/Detective.Chinatown.3.2021.1080p.BluRay.x264.AAC5.1-[YTS.MX].mp4";
     	//String fileURL = "http://127.0.0.1/Detective.Chinatown.3.2021.1080p.BluRay.x264.AAC5.1-%5bYTS.MX%5d.mp4";
         String fileURL = "http://192.168.1.3:12345/Camera/20210915_160855.mp4";
-
-
 
         String saveDir = "/storage/emulated/0/DCIM/Download";
         
@@ -140,6 +141,19 @@ public class HttpFileDownloader {
                         String.format("%.2f", prog) + " % | "
                         + getFileSize(writtenBytes));
             }
+
+            String progress = binding.progressDownloadText.getText().toString();
+            if(progress.startsWith("100.00 %")) {
+                Log.d("log", "Download progress completed");
+
+                String fn = fileURL.substring( fileURL.lastIndexOf('/')+1, fileURL.length() );
+                Log.d("log","File Name : " + fn);
+
+                int pk = FiletransferFragment.db.getFileTransferRowsNumber() + 1 ;
+                FiletransferFragment.db.addFileTransfer(new FileTransfer(pk,fn,"download","current_date", ConnexionFragment.connexionID));
+            }
+
+
             
  
             outputStream.close();

@@ -112,12 +112,17 @@ public class HttpFileUploader {
 			    //System.out.println("prog = " + prog + " | isInteger= " + isInteger(String.format("%.2f", prog)));
                 Log.d("log", "Progress = " + String.format("%.2f", prog) + " % | "
                         + getFileSize(writtenBytes));
+
+                String fn = fileURL.substring( fileURL.lastIndexOf('/')+1, fileURL.length() );
+                Log.d("log","File Name upload : " + fn);
 			    
 			    if(isInteger(String.format("%.2f", prog)))
-			    	sendFileUploadProgress(
-					    		"http://localhost:8080",
-					    		String.format("%.2f", prog) + " % | " + getFileSize(writtenBytes)
-					    		);
+                    sendFileUploadProgress(
+                            "http://localhost:8080",
+                            String.format("%.2f", prog) + " % | " + getFileSize(writtenBytes),
+                                    fn
+                            );
+
 			    
 			}
             
@@ -141,13 +146,16 @@ public class HttpFileUploader {
 			return sizeInBytes/(1024*1024) + "." + sizeInBytes%(1024*1024)/10%100 + " MB";
     }
     
-    public void sendFileUploadProgress(String serverAdress, String progressStatus) {
+    public void sendFileUploadProgress(String serverAdress, String progressStatus, String filename) {
         try {
             progressStatus = encode(progressStatus, String.valueOf(StandardCharsets.UTF_8));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        String webUrl = serverAdress + "?request=upload&progress=" + progressStatus;
+        String webUrl = serverAdress +
+                            "?request=upload" +
+                            "&progress=" + progressStatus +
+                            "&fileName=" + filename;
         //System.out.println("webUrl: " + webUrl);
 
         /*new Thread() {

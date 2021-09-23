@@ -1,24 +1,17 @@
 package com.fst.myapplication.db;
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.fst.myapplication.HttpServer;
-import com.fst.myapplication.MainActivity;
-import com.fst.myapplication.ui.Configuration.ConfigurationFragment;
-import com.fst.myapplication.ui.Connexion.ConnexionFragment;
-
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME  = "MyDatabase6.db";
+    private static final String DATABASE_NAME  = "MyDatabase8.db";
 
     public DatabaseHelper(@Nullable Fragment fragment) {
         super(fragment.getContext(),DATABASE_NAME,null,DATABASE_VERSION);
@@ -73,6 +66,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 +Configuration.KEY_DOWNLOAD_PATH + " TEXT"
                 + ")";
         db.execSQL(CREATE_TABLE_CONFIGURATION);
+
+
+        // Sql request for the creation of table FileTransfer
+        String CREATE_TABLE_FILE_TRANSFER = "CREATE TABLE " + FileTransfer.TABLE_NAME
+                + "("
+                +FileTransfer.KEY_ID + " TEXT PRIMARY KEY,"
+                +FileTransfer.KEY_FILE_NAME + " TEXT,"
+                +FileTransfer.KEY_TRANSFER_TYPE+ " TEXT,"
+                +FileTransfer.KEY_TRANSFER_TIME + " TEXT,"
+                +FileTransfer.KEY_CONNEXION_ID + " TEXT"
+                + ")";
+        db.execSQL(CREATE_TABLE_FILE_TRANSFER);
+
     }
 
     @Override
@@ -85,6 +91,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void addUser(User user) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
+        Log.d("log","password:" + user.getPassword());
 
         values.put(User.KEY_ID, user.getUserId());
         values.put(User.KEY_PASSWORD, user.getPassword());
@@ -122,6 +129,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    public  void addFileTransfer(FileTransfer fileTransfer){
+        SQLiteDatabase db=this.getWritableDatabase();
+        ContentValues values= new ContentValues();
+
+        values.put(FileTransfer.KEY_ID,fileTransfer.getFileTransferId());
+        values.put(FileTransfer.KEY_FILE_NAME, fileTransfer.getFileName());
+        values.put(FileTransfer.KEY_TRANSFER_TYPE,fileTransfer.getTransferType());
+        values.put(FileTransfer.KEY_TRANSFER_TIME, fileTransfer.getTransferTime());
+        values.put(FileTransfer.KEY_CONNEXION_ID, fileTransfer.getConnexionId());
+
+
+        db.insert(FileTransfer.TABLE_NAME,null,values);
+        db.close();
+    }
+
     // below is the method for updating our courses
     public void updateConfiguration(int portNumber,String uploadPath,String downloadPath) {
 
@@ -155,6 +177,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("SELECT * FROM CONFIGURATION" , null);
         return cursor.getCount();
     }
+
+
+    public int getFileTransferRowsNumber(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM FILE_TRANSFER" , null);
+        return cursor.getCount();
+    }
+
+
 
     // request of check UserID  and password  in DB
     public Boolean checkusernamepassword(String user_id, String password){

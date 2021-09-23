@@ -14,12 +14,24 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.fst.myapplication.databinding.FragmentAdministrationBinding;
+import com.fst.myapplication.db.Configuration;
+import com.fst.myapplication.db.Connexion;
+import com.fst.myapplication.db.DatabaseHelper;
+import com.fst.myapplication.db.FileTransfer;
 import com.fst.myapplication.ui.Administration.AdministrationViewModel;
+import com.fst.myapplication.ui.Configuration.ConfigurationFragment;
+import com.fst.myapplication.ui.Filetransfer.FiletransferFragment;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class AdministrationFragment extends Fragment {
 
     private AdministrationViewModel administrationViewModel;
     private FragmentAdministrationBinding binding;
+
+    public static Configuration config;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -29,19 +41,28 @@ public class AdministrationFragment extends Fragment {
         binding = FragmentAdministrationBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textSlideshow;
+        /*final TextView textView = binding.textSlideshow;
         administrationViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
             }
-        });
+        });*/
         return root;
     }
 
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        DatabaseHelper db = new DatabaseHelper(this);
+
+        Configuration configuration = db.getConfiguration(1);
+
+        String downloadPath = configuration.getDownloadPath();
+
+
+        binding.connexionIDText.setText(downloadPath);
 
         // binding.button2.setOnClickListener(new View.OnClickListener() {
         //    @Override
@@ -54,6 +75,14 @@ public class AdministrationFragment extends Fragment {
         //});
 
 
+    }
+
+    public String giveDate() {
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("EEE, MMM d, yyyy");
+        return sdf.format(cal.getTime());
+
+       // binding.connexionIDText.setText(giveDate());
     }
 
 

@@ -87,6 +87,7 @@ public class ConfigurationFragment extends Fragment {
         binding.TextEditUploadPath.setText(downloadPath);
         binding.TextEditDownloadPath.setText(uploadPath);
 
+
         Configuration configuration = db.getConfiguration(1);
         ConfigurationFragment.config = configuration;
 

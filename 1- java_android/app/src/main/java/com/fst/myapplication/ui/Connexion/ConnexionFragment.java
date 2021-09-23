@@ -30,6 +30,7 @@ public class ConnexionFragment extends Fragment {
     EditText userid_input, password_input;
     Button login_button, signup_button;
 
+    public static int connexionID;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -104,7 +105,9 @@ public class ConnexionFragment extends Fragment {
                     // request Verification of exsitence of USerID and password in DB
                     int pk = db.getConnexionRowsNumber() + 1;
                     db.addConnexion(new Connexion(pk, "current_date", 0, 0, userid));
+                    ConnexionFragment.connexionID = pk;
                 }
+
 
                 //Toast.makeText(ConnexionFragment.super.getContext(), "UserID = " + userid , Toast.LENGTH_SHORT).show();
                 //Toast.makeText(ConnexionFragment.super.getContext(), "ConnexionRowsNumber = " + db.getConnexionRowsNumber() , Toast.LENGTH_SHORT).show();
@@ -120,27 +123,17 @@ public class ConnexionFragment extends Fragment {
             public void onClick(View view) {
                 String userid = binding.useridInput.getText().toString();
                 String password = binding.passwordInput.getText().toString();
+
                 boolean check= validateinfo(userid,password);
+                //Log.d("log","password : " + password);
 
                 if(check ==true) {
+
+                    db.addUser(new User(userid, password, "current date"));
                     Toast.makeText(ConnexionFragment.super.getContext(), "Registration Successful!", Toast.LENGTH_SHORT).show();
 
                 }
 
-
-                // UserID input verification
-               /* if (userid.equals(""))
-                    Toast.makeText(ConnexionFragment.super.getContext(), "Please enter UserID field", Toast.LENGTH_SHORT).show();
-
-                // Password input verification
-                if (password.equals(""))
-                    Toast.makeText(ConnexionFragment.super.getContext(), "Please enter Password field", Toast.LENGTH_SHORT).show();*/
-
-
-                // request of UserID and password input verification
-                //Toast.makeText(ConnexionFragment.super.getContext(), "Registration Successful!", Toast.LENGTH_SHORT).show();
-
-                db.addUser(new User(userid, password, "current date"));
 
             }
         });

@@ -45,6 +45,8 @@ public class FiletransferFragment extends Fragment {
     public Hashtable <String,String> uploadFileUrlTable;
     public Integer selectedUploadFileIndex = -1 ;
 
+    public static DatabaseHelper db;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -71,7 +73,7 @@ public class FiletransferFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         HttpServer server = new HttpServer(this);
-        DatabaseHelper db = new DatabaseHelper(this);
+        db = new DatabaseHelper(this);
 
         ListView downloadListView = binding.downloadListView;
         ListView uploadListView = binding.uploadListView;
