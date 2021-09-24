@@ -184,7 +184,8 @@ public class FiletransferFragment extends Fragment {
                         Log.d("log","File" + listOfFiles[i].getName());
                         fileList += listOfFiles[i].getName() + "\n";
                         downloadFileList.add(listOfFiles[i].getName());
-                        downloadFileUrlTable.put(listOfFiles[i].getName(),"http://localhost:8080/Download/" + listOfFiles[i].getName());
+                        downloadFileUrlTable.put(listOfFiles[i].getName(),
+                                "http://" + ConfigurationFragment.ipAdress + ":8080/Download/" + listOfFiles[i].getName());
                     } else if (listOfFiles[i].isDirectory()) {
                         System.out.println("Directory " + listOfFiles[i].getName());
                         Log.d("log","Directory" + listOfFiles[i].getName());

@@ -84,8 +84,8 @@ public class ConfigurationFragment extends Fragment {
         String uploadPath = "/storage/emulated/0/DCIM";
 
         binding.editTextPortNumber.setText(String.valueOf(portNumber));
-        binding.TextEditUploadPath.setText(downloadPath);
-        binding.TextEditDownloadPath.setText(uploadPath);
+        binding.TextEditUploadPath.setText(uploadPath);
+        binding.TextEditDownloadPath.setText(downloadPath);
 
 
         Configuration configuration = db.getConfiguration(1);

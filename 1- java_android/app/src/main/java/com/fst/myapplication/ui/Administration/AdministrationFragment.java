@@ -1,9 +1,12 @@
 package com.fst.myapplication.ui.Administration;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -61,8 +64,10 @@ public class AdministrationFragment extends Fragment {
 
         String downloadPath = configuration.getDownloadPath();
 
+        showTableData();
 
-        binding.connexionIDText.setText(downloadPath);
+
+        //binding.connexionIDText.setText(downloadPath);
 
         // binding.button2.setOnClickListener(new View.OnClickListener() {
         //    @Override
@@ -83,6 +88,46 @@ public class AdministrationFragment extends Fragment {
         return sdf.format(cal.getTime());
 
        // binding.connexionIDText.setText(giveDate());
+    }
+
+    public void showTableData() {
+        TableLayout stk = binding.tableLayout;
+        TableRow tr0 = new TableRow(AdministrationFragment.super.getContext());
+        tr0.setBackgroundColor(Color.GRAY);
+
+        TextView tv1 = new TextView(AdministrationFragment.super.getContext());
+        tv1.setText("Name");
+        tr0.addView(tv1);
+
+        TextView tv2 = new TextView(AdministrationFragment.super.getContext());
+        tv2.setText("Contact");
+        tr0.addView(tv2);
+
+        TextView tv3 = new TextView(AdministrationFragment.super.getContext());
+        tv3.setText("Address");
+        tr0.addView(tv3);
+
+        stk.addView(tr0);
+
+        for (int i = 0; i<5; i++){
+            TableRow tr1 = new TableRow(AdministrationFragment.super.getContext());
+
+            TextView t1v = new TextView(AdministrationFragment.super.getContext());
+            t1v.setText("Name " + (i+1));
+            tr1.addView(t1v);
+
+            TextView t2v = new TextView(AdministrationFragment.super.getContext());
+            t2v.setText("connexion " + (i+1));
+            tr1.addView(t2v);
+
+            TextView t3v = new TextView(AdministrationFragment.super.getContext());
+            t3v.setText("id " + (i+1));
+            tr1.addView(t3v);
+
+
+            stk.addView(tr1);
+        }
+
     }
 
 

@@ -151,7 +151,20 @@ public class HttpFileDownloader {
 
                 int pk = FiletransferFragment.db.getFileTransferRowsNumber() + 1 ;
                 FiletransferFragment.db.addFileTransfer(new FileTransfer(pk,fn,"download","current_date", ConnexionFragment.connexionID));
+
+                ConnexionFragment.numberDownloads++;
+                FiletransferFragment.db.updateConnexion(
+                        ConnexionFragment.connexionID,
+                        ConnexionFragment.numberDownloads,
+                        ConnexionFragment.numberUploads
+                );
+
+
             }
+
+
+
+
 
 
             

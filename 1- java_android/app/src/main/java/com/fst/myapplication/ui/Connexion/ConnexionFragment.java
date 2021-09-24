@@ -31,6 +31,8 @@ public class ConnexionFragment extends Fragment {
     Button login_button, signup_button;
 
     public static int connexionID;
+    public static int numberUploads = 0;
+    public static int numberDownloads = 0;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,

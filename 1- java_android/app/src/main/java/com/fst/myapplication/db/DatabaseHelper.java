@@ -164,6 +164,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    // below is the method for updating our courses
+    public void updateConnexion(int connexionID,int numberDownloads,int numberUploads) {
+
+        // calling a method to get writable database.
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        // on below line we are passing all values
+        // along with its key and value pair.
+        values.put(Connexion.KEY_ID, connexionID);
+        values.put(Connexion.KEY_NUMBER_DOWNLOADS, numberDownloads);
+        values.put(Connexion.KEY_NUMBER_UPLOADS, numberUploads);
+
+        // on below line we are calling a update method to update our database and passing our values.
+        // and we are comparing it with name of our course which is stored in original name variable.
+        //Log.d("log","portNumber = " + portNumber);
+        db.update(Connexion.TABLE_NAME, values, "connexion_id=?", new String[]{String.valueOf(connexionID)});
+        db.close();
+    }
+
 
 
     public int getConnexionRowsNumber(){
