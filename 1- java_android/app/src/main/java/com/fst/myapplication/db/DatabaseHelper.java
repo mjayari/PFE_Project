@@ -5,9 +5,15 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.TableRow;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.fst.myapplication.ui.Administration.AdministrationFragment;
+
+import java.util.Hashtable;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
@@ -182,6 +188,35 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //Log.d("log","portNumber = " + portNumber);
         db.update(Connexion.TABLE_NAME, values, "connexion_id=?", new String[]{String.valueOf(connexionID)});
         db.close();
+    }
+
+    public Hashtable <Integer, String[]> readConnexionData() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("Select * from Connexion", new String[] {});
+
+        if(cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            int i = 0 ;
+            Hashtable <Integer, String[]> dataTable = new Hashtable<Integer, String[]>() ;
+
+            do {
+                String userId = cursor.getString(cursor.getColumnIndex("user_id"));
+                String downloadNumber = cursor.getString(cursor.getColumnIndex("number_downloads"));
+                String uploadNumber = cursor.getString(cursor.getColumnIndex("number_uploads"));
+                String connexionTime = cursor.getString(cursor.getColumnIndex("connexion_time"));
+
+                dataTable.put(
+                        Integer.valueOf(i),
+                        new String[] {userId, downloadNumber, uploadNumber, connexionTime}
+                        );
+                i ++;
+
+            } while (cursor.moveToNext() && i < 5);
+
+            return dataTable;
+
+        }
+        return null;
     }
 
 
