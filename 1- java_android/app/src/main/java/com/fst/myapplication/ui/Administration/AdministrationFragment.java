@@ -64,21 +64,8 @@ public class AdministrationFragment extends Fragment {
 
         String downloadPath = configuration.getDownloadPath();
 
-        showTableData();
-
-
-        //binding.connexionIDText.setText(downloadPath);
-
-        // binding.button2.setOnClickListener(new View.OnClickListener() {
-        //    @Override
-        //  public void onClick(View view) {
-               /* NavHostFragment.findNavController(FirstFragment.this)
-                        .navigate(R.id.action_FirstFragment_to_SecondFragment);*/
-        //    Toast.makeText(ConfigurationFragment.super.getContext(), "Button pressed", Toast.LENGTH_SHORT).show();
-
-        //}
-        //});
-
+        //showTableData();
+        //displayConnexionTableData();
 
     }
 
@@ -127,8 +114,40 @@ public class AdministrationFragment extends Fragment {
 
             stk.addView(tr1);
         }
-
     }
+
+    /*public void displayConnexionTableData() {
+        TableLayout stk = binding.tableLayout;
+        TableRow tr0 = new TableRow(AdministrationFragment.super.getContext());
+        tr0.setBackgroundColor(Color.GRAY);
+
+        TextView tv1 = new TextView(AdministrationFragment.super.getContext());
+        tv1.setText("UserId");
+        tv1.setTextColor(Color.WHITE);
+        //tv1.setPadding(5,5,5,5);
+        tr0.addView(tv1);
+
+        TextView tv2 = new TextView(AdministrationFragment.super.getContext());
+        tv2.setText("DownloadsNumber");
+        tv2.setTextColor(Color.WHITE);
+        //tv2.setPadding(5,5,5,5);
+        tr0.addView(tv2);
+
+        TextView tv3 = new TextView(AdministrationFragment.super.getContext());
+        tv3.setText("UploadsNumber");
+        //tv3.setPadding(5,5,5,5);
+        tv3.setTextColor(Color.WHITE);
+
+        tr0.addView(tv3);
+
+        TextView tv4 = new TextView(AdministrationFragment.super.getContext());
+        tv4.setText("ConnexionTime");
+        tv4.setTextColor(Color.WHITE);
+        //tv4.setPadding(5,5,5,5);
+        tr0.addView(tv4);
+
+        stk.addView(tr0);
+    }*/
 
 
     @Override

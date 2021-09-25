@@ -21,6 +21,7 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.Hashtable;
@@ -975,8 +976,25 @@ public class NanoHTTPD
 						if(progress.startsWith("100.00 %")) {
 							Log.d("log", "Upload progress completed");
 
+							SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+							Date currentDate = new Date();
+							System.out.println(formatter.format(currentDate));
+							Log.d("log","Date : " +formatter.format(currentDate));
+
 							int pk = FiletransferFragment.db.getFileTransferRowsNumber() + 1 ;
-							FiletransferFragment.db.addFileTransfer(new FileTransfer(pk,fileNameParam,"upload","current_date", ConnexionFragment.connexionID));
+							FiletransferFragment.db.addFileTransfer(new FileTransfer(
+									pk,
+									fileNameParam,
+									"upload",
+									formatter.format(currentDate),
+									ConnexionFragment.connexionID));
+
+							ConnexionFragment.numberUploads ++;
+							FiletransferFragment.db.updateConnexion(
+									ConnexionFragment.connexionID,
+									ConnexionFragment.numberDownloads,
+									ConnexionFragment.numberUploads
+							);
 						}
 
 					}

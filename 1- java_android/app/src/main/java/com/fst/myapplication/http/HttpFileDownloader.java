@@ -17,7 +17,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.DecimalFormat;
- 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * A utility that downloads a file from a URL.
  * @author www.codejava.net
@@ -149,8 +151,18 @@ public class HttpFileDownloader {
                 String fn = fileURL.substring( fileURL.lastIndexOf('/')+1, fileURL.length() );
                 Log.d("log","File Name : " + fn);
 
+                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                Date currentDate = new Date();
+                System.out.println(formatter.format(currentDate));
+                Log.d("log","Date : " +formatter.format(currentDate));
+
                 int pk = FiletransferFragment.db.getFileTransferRowsNumber() + 1 ;
-                FiletransferFragment.db.addFileTransfer(new FileTransfer(pk,fn,"download","current_date", ConnexionFragment.connexionID));
+                FiletransferFragment.db.addFileTransfer(new FileTransfer(
+                        pk,
+                        fn,
+                        "download",
+                        formatter.format(currentDate),
+                        ConnexionFragment.connexionID));
 
                 ConnexionFragment.numberDownloads++;
                 FiletransferFragment.db.updateConnexion(

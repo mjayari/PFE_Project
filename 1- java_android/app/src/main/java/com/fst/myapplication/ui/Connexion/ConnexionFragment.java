@@ -21,6 +21,9 @@ import com.fst.myapplication.db.Connexion;
 import com.fst.myapplication.db.DatabaseHelper;
 import com.fst.myapplication.db.User;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class ConnexionFragment extends Fragment {
 
     private ConnexionViewModel connexionViewModel;
@@ -68,31 +71,7 @@ public class ConnexionFragment extends Fragment {
                 String userid = binding.useridInput.getText().toString();
                 String password = binding.passwordInput.getText().toString();
 
-
-
-                // Toast.makeText(ConnexionFragment.super.getContext(), "Button pressed", Toast.LENGTH_SHORT).show();// UserID input verification
-                // if (userid.equals(""))
-                // Toast.makeText(ConnexionFragment.super.getContext(), "Please enter UserID field", Toast.LENGTH_SHORT).show();
-
-                // Password input verification
-                //if (password.equals(""))
-                //    Toast.makeText(ConnexionFragment.super.getContext(), "Please enter Password field", Toast.LENGTH_SHORT).show();
-
-                // Function for validate UserID
-                //binding.passwordInput.setTransformationMethod(PasswordTransformationMethod.getInstance());
                 boolean check= validateinfo(userid,password);
-
-               // boolean check1= validateinfo1(password);
-
-                //Log.d("password", password);
-                //boolean check=true;
-                //if(check==true) {
-                //  Toast.makeText(ConnexionFragment.super.getContext(), "Valid ", Toast.LENGTH_SHORT).show();
-                //}
-                //else {
-                //  Toast.makeText(ConnexionFragment.super.getContext(), "Invalid ", Toast.LENGTH_SHORT).show();
-                //}
-
 
                 if (check) {
                     // request Verification of exsitence of USerID and password in DB
@@ -106,8 +85,16 @@ public class ConnexionFragment extends Fragment {
 
                     // request Verification of exsitence of USerID and password in DB
                     int pk = db.getConnexionRowsNumber() + 1;
-                    db.addConnexion(new Connexion(pk, "current_date", 0, 0, userid));
+
+                    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                    Date currentDate = new Date();
+                    System.out.println(formatter.format(currentDate));
+                    Log.d("log","Date : " +formatter.format(currentDate));
+
+                    db.addConnexion(new Connexion(pk,
+                            formatter.format(currentDate), 0, 0, userid));
                     ConnexionFragment.connexionID = pk;
+
                 }
 
 
