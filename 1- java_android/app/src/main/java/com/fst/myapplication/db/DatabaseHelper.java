@@ -219,6 +219,49 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return null;
     }
 
+    public Hashtable <Integer, String[]> readFileTransferData() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("Select * from File_Transfer", new String[] {});
+
+        if(cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            int i = 0 ;
+            Hashtable <Integer, String[]> dataTable = new Hashtable<Integer, String[]>() ;
+
+            do {
+                String transferId = cursor.getString(cursor.getColumnIndex("transfer_id"));
+                String fileName = cursor.getString(cursor.getColumnIndex("file_name"));
+                String transferType = cursor.getString(cursor.getColumnIndex("transfer_type"));
+                String transferTime = cursor.getString(cursor.getColumnIndex("transfer_time"));
+                String connexionId = cursor.getString(cursor.getColumnIndex("connexion_id"));
+
+
+                dataTable.put(
+                        Integer.valueOf(i),
+                        new String[] {transferId, fileName, transferType, transferTime, connexionId}
+                );
+                i ++;
+
+            } while (cursor.moveToNext() && i < 6);
+
+            return dataTable;
+
+        }
+        return null;
+    }
+
+    public String getUserIdByConnexionId(int connexionId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("Select * from Connexion where connexion_id = ?", new String[] {String.valueOf(connexionId)});
+
+        if(cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            String userId = cursor.getString(cursor.getColumnIndex("user_id"));
+            return userId;
+        } else
+            return null;
+    }
+
 
 
     public int getConnexionRowsNumber(){
