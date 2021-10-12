@@ -1,0 +1,6 @@
+slide 12 et 13 
+ -Colorer la méthode on Create() et onViewCreate().
+Slide 25
+ -Corriger le Diagramme de cas d'utilisation 
+Slide 28
+ -Remplacer l'image avec celle de rapport   
