@@ -4,3 +4,11 @@ Slide 25
  -Corriger le Diagramme de cas d'utilisation 
 Slide 28
  -Remplacer l'image avec celle de rapport   
+Slide 33
+ -Corriger le diagramme 
+slide 44 
+ -Ajouter la liste des fichiers sous le répertoire download et upload.
+slide44 
+ -Corriger le carreau rouge 
+slide 55
+ -Corriger le carreau rouge 
