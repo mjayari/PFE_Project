@@ -227,6 +227,8 @@ public class ConfigurationFragment extends Fragment {
                 {
                     server2 = new MyHttpServer( port, wwwroot );
                     server2.status=true;
+                    //server = new HttpServer(ConfigurationFragment.this);
+                    //server.startServer();
                     binding.ServerStatusText.setText("Server Status: Running!");
 
                 }

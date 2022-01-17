@@ -192,7 +192,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Hashtable <Integer, String[]> readConnexionData() {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("Select * from Connexion", new String[] {});
+        Cursor cursor = db.rawQuery("Select * from Connexion order by connexion_id DESC", new String[] {});
 
         if(cursor.getCount() > 0) {
             cursor.moveToFirst();
@@ -221,7 +221,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Hashtable <Integer, String[]> readFileTransferData() {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("Select * from File_Transfer", new String[] {});
+        Cursor cursor = db.rawQuery("Select * from File_Transfer order by transfer_id DESC", new String[] {});
 
         if(cursor.getCount() > 0) {
             cursor.moveToFirst();
@@ -234,18 +234,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 String transferType = cursor.getString(cursor.getColumnIndex("transfer_type"));
                 String transferTime = cursor.getString(cursor.getColumnIndex("transfer_time"));
                 String connexionId = cursor.getString(cursor.getColumnIndex("connexion_id"));
-
-
                 dataTable.put(
                         Integer.valueOf(i),
                         new String[] {transferId, fileName, transferType, transferTime, connexionId}
                 );
                 i ++;
 
-            } while (cursor.moveToNext() && i < 6);
+            } while (cursor.moveToNext() && i < 5);
 
             return dataTable;
-
         }
         return null;
     }
@@ -286,7 +283,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     // request of check UserID  and password  in DB
-    public Boolean checkusernamepassword(String user_id, String password){
+    public Boolean checkUsernamePassword(String user_id, String password){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("Select * from User where user_id = ? and password = ?", new String[] {user_id,password});
         if(cursor.getCount()>0)

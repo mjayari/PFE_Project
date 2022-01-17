@@ -65,36 +65,30 @@ public class ConnexionFragment extends Fragment {
 
         // Login Button onclicklistener
         binding.loginButton.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
                 String userid = binding.useridInput.getText().toString();
                 String password = binding.passwordInput.getText().toString();
 
                 boolean check= validateinfo(userid,password);
-
                 if (check) {
                     // request Verification of exsitence of USerID and password in DB
-                    Boolean checkuserpass = db.checkusernamepassword(userid, password);
+                    Boolean checkuserpass = db.checkUsernamePassword(userid, password);
                     if (checkuserpass == true) {
                         Toast.makeText(ConnexionFragment.super.getContext(), "Sign in successfull", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(ConnexionFragment.super.getContext(), "Invalid Credentials", Toast.LENGTH_SHORT).show();
                     }
-
-
                     // request Verification of exsitence of USerID and password in DB
                     int pk = db.getConnexionRowsNumber() + 1;
 
                     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                     Date currentDate = new Date();
-                    System.out.println(formatter.format(currentDate));
                     Log.d("log","Date : " +formatter.format(currentDate));
 
                     db.addConnexion(new Connexion(pk,
                             formatter.format(currentDate), 0, 0, userid));
                     ConnexionFragment.connexionID = pk;
-
                 }
 
 
@@ -114,11 +108,13 @@ public class ConnexionFragment extends Fragment {
                 String password = binding.passwordInput.getText().toString();
 
                 boolean check= validateinfo(userid,password);
-                //Log.d("log","password : " + password);
+
+                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                Date currentDate = new Date();
 
                 if(check ==true) {
 
-                    db.addUser(new User(userid, password, "current date"));
+                    db.addUser(new User(userid, password, formatter.format(currentDate)));
                     Toast.makeText(ConnexionFragment.super.getContext(), "Registration Successful!", Toast.LENGTH_SHORT).show();
 
                 }

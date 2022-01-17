@@ -942,12 +942,14 @@ public class NanoHTTPD
 				String firstParam = parms.getProperty("request");
 				String fileUrlParam = parms.getProperty("fileUrl");
 				String progressParam = parms.getProperty("progress");
+				
 				System.out.println("firstParam = " + firstParam);
 
 				if(firstParam != null && firstParam.equals("upload")) {
 					System.out.println("Request = True");
 					try {
-						sendRequestResponse(mySocket);
+						//sendRequestResponse(mySocket);
+						sendError( HTTP_FORBIDDEN, "User cannot be authenticated!" );
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

@@ -112,14 +112,14 @@ public class HttpFileDownloader {
             String saveFilePath = saveDir + File.separator + fileName;
              
             // opens an output stream to save into file
-            FileOutputStream outputStream = new FileOutputStream(saveFilePath);
+            FileOutputStream fileOutputStream = new FileOutputStream(saveFilePath);
  
             int bytesRead = -1;
             byte[] buffer = new byte[BUFFER_SIZE];
             int writtenBytes = 0 ;
 
             while ((bytesRead = inputStream.read(buffer)) != -1) {        
-			    outputStream.write(buffer, 0, bytesRead);
+			    fileOutputStream.write(buffer, 0, bytesRead);
 			    
 			    writtenBytes += bytesRead ; 
 			    //float prog = (float) (30 / 100) * 100;
@@ -181,7 +181,7 @@ public class HttpFileDownloader {
 
             
  
-            outputStream.close();
+            fileOutputStream.close();
             inputStream.close();
  
             System.out.println("File downloaded");

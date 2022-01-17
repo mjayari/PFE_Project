@@ -3,6 +3,7 @@ package com.fst.myapplication.http;
 import android.util.Log;
 
 import com.fst.myapplication.databinding.FragmentFiletransferBinding;
+import com.fst.myapplication.db.FileTransfer;
 import com.fst.myapplication.ui.Filetransfer.FiletransferFragment;
 
 import org.json.JSONArray;
@@ -47,11 +48,16 @@ public class HttpUrlOpener {
 
             int code = urlConnection.getResponseCode();
             Log.d("log","code:" + code);
-            if (code !=  200) {
+            if (code ==  200) {
+                FiletransferFragment.userAuthenticated = true;
+                binding.serverStatusTextView.setText("Server is running! | Status: Connected! ");
+            }else if (code == 403) {
+                FiletransferFragment.userAuthenticated = false;
+                binding.serverStatusTextView.setText("Server is running! | User cannot be authenticated! ");
+            }else{
                 throw new IOException("Invalid response from server: " + code);
             }
 
-            binding.serverStatusTextView.setText("Server is running! | Status: Connected! ");
 
             BufferedReader rd = new BufferedReader(new InputStreamReader(
                     urlConnection.getInputStream()));

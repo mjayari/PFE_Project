@@ -69,7 +69,7 @@ public class HttpServer {
 
         //Configuration config = db.getConfiguration(1);
         //int port = config.getPortNumber();
-        int port = 12345;
+        int port = 8080;
 
         Toast.makeText(this.fragment.getContext(), "portNumber = " +port , Toast.LENGTH_SHORT).show();
         Log.d("log","portNumber:" + port);
@@ -178,7 +178,7 @@ public class HttpServer {
                         "</title></head>" +
                         "<body>" +
                         "<h1>" +
-                        "This page was served using my Simple Java HTTP Server 1-DEV" +
+                        "Welcome! The Server is running!" +
                         "</h1>" +
                         "</body>" +
                         "</html>";
